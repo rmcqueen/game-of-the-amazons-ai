@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <style>
+  #map {
+        height: 450px;
+        width: 75%;
+		padding-left:50px;
+       }
+
+
+
+	body {
+		background-image: url("img/background1.png");
+		}
+
+		label {
+    font: normal 18px ariel !important;
+	}
+
+	li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+	a:hover {
+    background-color: teal;
+}
+ </style>
+<title>Map Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<body class="w3-content" style="max-width:2000px">
+<ul style = "list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;"
+	class = "w3-blue">
+	<a href="Start.html"><img border="0" src="img/back.png" width="50" height="50"></a>
+	<button onclick="alert('Directions: click directions as you finish them to remove them until you are done, have a nice trip!');" class="btn btn-secondary" type="button"><i class="material-icons w3-xxxlarge">help</i></button>
+  <li style="float:right"><a class="active" href="#about"><b>Sign Up</b></a></li>
+  <li style="float:right"><a class="active" href="#about"><b>Login</b></a></li>
+</ul>
+<!-- First Grid: Logo & About -->
+<div class="w3-row">
+  <div class="w3-quarter w3-container w3-center" style="height:700px">
+    <div class="w3-padding-16">
+      <h1>Route Directions</h1>
+    </div>
+<form class="w3-container w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888">
+<div id="Selected" class="w3-container tab">
+	<ul class="w3-ul w3-card-4" id = "attrList" >
+	</ul>
+    </div>
+  </div>
+  <div class="w3-full w3-lightgrey w3-container" style="height:700px">
+    <div class="w3-padding-16 w3-center">
+      <h1>Map</h1>
+     	<div class = "w3-spi" id="map"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat: 49.8880, lng: -119.4960};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru
+        });
+      }
+    </script>
+     <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVV2Ab0atjhri97nB2q1OGD_Eb6xW-Hw&callback=initMap">
+    </script>
+      <div class="w3-left-align w3-padding-xxlarge">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+printAttractions("attrList");
+printAttractions("attrList");
+x = 2;
+
+function printAttractions(listId)	{
+	var listNode = document.createElement("LI");
+	listNode.setAttribute('class','w3-padding-16 w3-border-bottom w3-border-white ');
+	listNode.setAttribute('onclick',"decrementDirection(this);");
+	var imageNode = document.createElement("IMG");
+	imageNode.setAttribute('src', 'img/best_dog.jpg');
+	imageNode.setAttribute('class','w3-left w3-circle');
+	imageNode.setAttribute('style','width:60px');
+	var spanNodeOne = document.createElement('span');
+	spanNodeOne.innerHTML = "Direction Here";
+	spanNodeOne.setAttribute('class','w3-large');
+	var spanNodeTwo = document.createElement("span");
+	spanNodeTwo.innerHTML = "Desc";
+    listNode.appendChild(imageNode);
+	listNode.appendChild(spanNodeOne);
+	listNode.appendChild(document.createElement("BR"));
+	listNode.appendChild(spanNodeTwo);
+    document.getElementById(listId).appendChild(listNode);
+}
+
+function decrementDirection(item) {
+	item.style.display='none'
+	x = x-1;
+	if(x <= 0) {
+		var listNode = document.createElement("LI");
+		listNode.setAttribute('class','w3-padding-16 w3-border-bottom w3-border-white ');
+		var spanNodeOne = document.createElement('span');
+		spanNodeOne.setAttribute('class','w3-large');
+		spanNodeOne.innerHTML = "All Done";
+		listNode.appendChild(spanNodeOne);
+		document.getElementById("attrList").appendChild(listNode);
+	}
+}
+</script>
+<!-- Footer -->
+
+</body>
+</html>

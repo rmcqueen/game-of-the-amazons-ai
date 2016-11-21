@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <style>
+  #map {
+        height: 450px;
+        width: 100%;
+       }
+  body {
+	background-image: url("img/background1.png");
+     }
+
+	 label {
+    font: bold 18px ariel !important;
+	}
+
+	li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+	}
+
+	a:hover {
+    background-color: teal;
+	}
+
+	.attrImg {
+		src="img/best_dog.jpg"
+		class="w3-left w3-circle"
+		style="width:60px"
+	}
+ </style>
+<title>Route Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<body class="w3-content" style="max-width:2000px">
+<ul style = "list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;"
+	class = "w3-blue">
+	<a href="map.html"><img border="0" src="img/back.png" width="50" height="50"></a>
+	<button onclick="alert('Directions: Add more attractions to visit on route, hit next button when ready to proceed');" class="btn btn-secondary" type="button"><i class="material-icons w3-xxxlarge">help</i></button>
+  <li style="float:right"><a class="active" href="#about"><b>Sign Up</b></a></li>
+  <li style="float:right"><a class="active" href="#about"><b>Login</b></a></li>
+</ul>
+<!-- First Grid: Logo & About -->
+
+<div class="w3-row">
+<div class="w3-third w3-container w3-center" style="height:700px">
+<div class="w3-padding-4 w3-center">
+<h1>Attractions</h1>
+<div class="w3-center">
+<div class="w3-padding-4">
+<form class="w3-container w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888">
+
+<ul class="w3-navbar w3-teal">
+  <li><a href="javascript:void(0)" onclick="openTab('Attraction')">Attractions</a></li>
+  <li><a href="javascript:void(0)" onclick="openTab('Selected')">Selected</a></li>
+  <li style = "float:right"><a href="javascript:void(0)" onclick="openTab('Finalize')">Finalize</a></li>
+</ul>
+<div id="Finalize" class="w3-container tab">
+	<br>
+	<h3>Are you sure your route is ready?</h3>
+	<br>
+	<a href = "map.html"><button class="btn btn-secondary" type="button">Yes, Proceed</button></a>
+</div>
+
+<div id="Attraction" class="w3-container tab">
+	<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="myFunction()">
+	<br>
+	<ul class="w3-ul w3-card-8 w3-padding-8">
+	<div class="w3-row-padding">
+  		<div class="w3-half">
+    			<input type="checkbox" name="Winery" value="Winery" checked>
+			<label class="w3-validate">Wineries</label>
+  		</div>
+  		<div class="w3-half">
+    			<input  type="checkbox" name="Hiking Trail" value="Hiking Trail" checked>
+			<label class="w3-validate">Hiking</label>
+  		</div>
+	</div>
+	<div class="w3-row-padding">
+  		<div class="w3-half">
+    			<input  type="checkbox" name="Historical/Museum" value="Historical/Museum" checked>
+			<label class="w3-validate">Historical Sites</label>
+  		</div>
+  		<div class="w3-half">
+    			<input  type="checkbox" name="Park" value="Park" checked>
+			<label class="w3-validate">Parks</label>
+  		</div>
+	</div>
+	<div class="w3-row-padding">
+  		<div class="w3-half">
+    			<input	type="checkbox" name="Farm/Orchard" value="Farm/Orchard" checked>
+			<label class="w3-validate">Farms/Orchards</label>
+  		</div>
+  		<div class="w3-half">
+    			<input type="checkbox" name="Entertainment" value="Entertainment" checked>
+			<label class="w3-validate">Entertainment</label>
+  		</div>
+	</div>
+	</ul>
+	<br>
+	</form>
+	<ul class="w3-ul w3-card-4" id = "attrList">
+	</ul>
+</div>
+<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888"">
+<div id="Selected" class="w3-container tab">
+	<ul class="w3-ul w3-card-4" id = "selectedList" >
+	</ul>
+</div>
+	<br>
+	</form>
+    </div>
+   </div>
+</div>
+</div>
+
+  <div class="w3-twothird w3-lightgrey w3-container" style="height:700px">
+    <div class="w3-padding-16 w3-center">
+	<br><br>
+     	<div class = "w3-spi" id="map" style = "box-shadow: 10px 10px 5px #888888"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat: 49.8880, lng: -119.4960};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru
+        });
+      }
+    </script>
+
+     <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVV2Ab0atjhri97nB2q1OGD_Eb6xW-	Hw&callback=initMap">
+    </script>
+
+<script>
+openTab("Attraction")
+for(x = 0;x<3;x++){
+	printAttractions("attrList");
+}
+printAttractions("selectedList");
+function openTab(tabName) {
+    var i;
+    var x = document.getElementsByClassName("tab");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    document.getElementById(tabName).style.display = "block";
+}
+
+function printAttractions(listId)	{
+	var listNode = document.createElement("LI");
+	listNode.setAttribute('class','w3-padding-16 w3-border-bottom w3-border-white ');
+	listNode.setAttribute('onclick',"this.style.display='none'");
+	var imageNode = document.createElement("IMG");
+	imageNode.setAttribute('src', 'img/best_dog.jpg');
+	imageNode.setAttribute('class','w3-left w3-circle');
+	imageNode.setAttribute('style','width:60px');
+	var spanNodeOne = document.createElement('span');
+	spanNodeOne.innerHTML = "Attraction Name Here";
+	spanNodeOne.setAttribute('class','w3-xlarge');
+	var spanNodeTwo = document.createElement("span");
+	spanNodeTwo.innerHTML = "Desc";
+    listNode.appendChild(imageNode);
+	listNode.appendChild(spanNodeOne);
+	listNode.appendChild(document.createElement("BR"));
+	listNode.appendChild(spanNodeTwo);
+    document.getElementById(listId).appendChild(listNode);
+}
+</script>
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer -->
+
+</body>
+</html>

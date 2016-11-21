@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <style>
+  #map {
+        height: 450px;
+        width: 75%;
+		padding-left:50px;
+       }
+
+  body {
+		background-image: url("img/background1.png");
+     }
+
+ input[type="checkbox"]{
+		width: 20px;
+		height: 20px;
+	}
+
+ label {
+    font: bold 18px ariel !important;
+	}
+
+	li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+	a:hover {
+    background-color: teal;
+}
+ </style>
+<title>Start Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<body class="w3-content" style="max-width:2000px">
+
+<ul style = "list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;"
+	class = "w3-blue">
+	<!--<a href="route.html"><img border="0" src="img/back.png" width="40" height="40"></a>-->
+ <button onclick="alert('Directions: Enter starting address, then choose either a predefined route, attraction to visit, or custom ending address');" class="btn btn-secondary" type="button"><i class="material-icons" style="font-size:40px">help</i></button>
+  <li style="float:right"><a class="active" href="#about"><b>Sign Up</b></a></li>
+  <li style="float:right"><a class="active" href="#about"><b>Login</b></a></li>
+</ul>
+<!-- First Grid: Logo & About -->
+<div class="w3-row">
+  <div class="w3-half w3-lightgrey w3-container w3-center" style="height:700px">
+    <div class="w3-padding-16">
+      <h1>Recommended Routes</h1>
+    </div>
+    <div class="w3-padding-16">
+	<form class="w3-container w3-bottombar w3-blue w3-border-white" style = "box-shadow: 10px 10px 5px #888888">
+	<h3>Start Location</h3>
+	<div class="input-group">
+  	 <span class="input-group-btn">
+        	<button onclick="getLocation('currPos')" class="btn btn-secondary" type="button"><i class="material-icons w3-large">my_location</i></button>
+			<input type="text" class="form-control input-lg" id="currPos" placeholder="Address" size="40"><br>
+			<h3>Ending Location(optional)</h3>
+      	  </span>
+
+	<button onclick="getLocation('destPos')" class="btn btn-secondary" type="button"><i class="material-icons w3-large">my_location</i></button>
+	<input type="textbox" class="form-control input-lg" id="destPos" placeholder="Address" size="40"><br><br>
+	<input type="button" value="Submit" onclick="proceed(false)">
+	</div>
+	<div class="input-group">
+	</div>
+	<br>
+	</form>
+	<form class="w3-container w3-blue" style = "box-shadow: 10px 10px 5px #888888">
+	<ul class="w3-ul w3-card-4">
+  		<li class="w3-padding-16 w3-border-bottom w3-border-white">
+   		 <span onclick="this.parentElement.style.display='none'"
+    			class="w3-closebtn w3-padding">&times;</span>
+    			<img src="img/best_dog.jpg" class="w3-left w3-circle" style="width:60px">
+    		<span class="w3-xlarge">Route 1</span><br>
+    		<span>Desc</span>
+ 		 </li>
+		<li class="w3-padding-16 w3-border-bottom w3-border-white">
+   		 <span onclick="this.parentElement.style.display='none'"
+    			class="w3-closebtn w3-padding">&times;</span>
+    			<img src="img/best_dog.jpg" class="w3-left w3-circle" style="width:60px">
+    		<span class="w3-xlarge">Route 2</span><br>
+    		<span>Desc</span>
+ 		 </li>
+	</ul>
+	<br>
+	</form>
+    </div>
+  </div>
+  <div class="w3-half w3-container w3-center" style="height:700px">
+    <div class="w3-padding-16 w3-center">
+      <h1>Popular Attractions</h1>
+      <div class="w3-center">
+	<div class="w3-padding-32">
+	<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="getAttractions()">
+	<h3>Location</h3>
+	<div class="w3-row-padding">
+  		<div class="w3-third">
+    			<input id="Winery" type="checkbox" name="Winery" value="Winery" checked>
+			<label class="w3-validate">Wineries</label>
+			</input>
+  		</div>
+  		<div class="w3-third">
+    			<input id="Hiking Trail" type="checkbox" name="Hiking Trail" value="Hiking Trail" checked>
+			<label class="w3-validate">Hiking</label>
+  		</div>
+  		<div class="w3-third">
+    			<input id="Historical/Museum" type="checkbox" name="Historical/Museum" value="Historical/Museum" checked>
+			<label class="w3-validate">Historical Sites</label>
+  		</div>
+	</div>
+	<div class="w3-row-padding">
+  		<div class="w3-third">
+    			<input  id="Park" type="checkbox" name="Park" value="Park" checked>
+			<label class="w3-validate">Parks</label>
+  		</div>
+  		<div class="w3-third">
+    			<input	id="Farm/Orchard" type="checkbox" name="Farm/Orchard" value="Farm/Orchard" checked>
+			<label class="w3-validate">Farms/Orchards</label>
+  		</div>
+  		<div class="w3-third">
+    			<input id="Entertainment" type="checkbox" name="Entertainment" value="Entertainment" checked>
+			<label class="w3-validate">Entertainment</label>
+  		</div>
+	</div>
+	<br>
+	</form>
+	<form class="w3-container w3-blue w3-padding-4" style = "box-shadow: 10px 10px 5px #888888">
+	<ul class="w3-ul w3-card-4" id ="attrList">
+		<button onclick ="attrListMinus();return false" style = 'display:none' id = 'backBtn'>Go Back</button>
+		<button onclick = 'attrListPlus();return false'>Load More</button>
+		<hr>
+	</ul>
+	<br>
+	</form>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer -->
+
+</body>
+</html>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAmVV2Ab0atjhri97nB2q1OGD_Eb6xW-Hw&js?sensor=false"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="js/attractionsAndRoutes2start.js"></script>
+<script>
+
+
+for(x = 0;x<3;x++){
+	printAttractions("attrList");
+}
+
+var attrNum = 0;
+var routeNum = 0;
+var x = document.getElementById("currLoc");
+
+function getLocation(idTag) {
+	x = document.getElementById(idTag);
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+function showPosition(position) {
+	var latlng = {lat: position.coords.latitude, lng: position.coords.longitude};
+	var geocoder = new google.maps.Geocoder;
+    geocoder.geocode({'location': latlng}, function(results, status) {
+		if (status === 'OK') {
+            if (results[0]) {
+				x.value = results[0].formatted_address;
+			}
+		}
+	}
+	)
+}
+
+function proceed(bool)	{
+	var x = document.getElementById("currPos");
+	if(x.value == "") {
+		alert("Please enter starting location");
+		return;
+	}
+	if(document.getElementById("destPos").value != "") {
+		window.location.href = "route.html";
+	}
+	if(bool == true) {
+		window.location.href = "route.html";
+	}
+	alert("Error: Please enter ending location, or select route or attraction");
+	return;
+}
+
+function attrListPlus()	{
+	document.getElementById('backBtn').style.display="inline";
+	attrNum=attrNum+1;
+	<!--database page stuff here
+}
+
+function attrListMinus()	{
+	attrNum=attrNum-1;
+	if(attrNum == 0){
+		document.getElementById('backBtn').style.display="none";
+	}
+	<!--database stuff here
+}
+
+
+function printAttractions(listId)	{
+	var jsonRecRoutes = getRecommendedRoutes();
+	var listNode = document.createElement("LI");
+	listNode.setAttribute('class','w3-padding-16 w3-border-bottom w3-border-white ');
+	listNode.setAttribute('onclick',"this.style.display='none'");
+	var imageNode = document.createElement("IMG");
+	imageNode.setAttribute('src', 'img/best_dog.jpg');
+	imageNode.setAttribute('class','w3-left w3-circle');
+	imageNode.setAttribute('style','width:60px');
+	var spanNodeOne = document.createElement('span');
+	spanNodeOne.innerHTML = "Attraction Name Here";
+	spanNodeOne.setAttribute('class','w3-xlarge');
+	var spanNodeTwo = document.createElement("span");
+	spanNodeTwo.innerHTML = "Desc";
+    listNode.appendChild(imageNode);
+	listNode.appendChild(spanNodeOne);
+	listNode.appendChild(document.createElement("BR"));
+	listNode.appendChild(spanNodeTwo);
+    document.getElementById(listId).appendChild(listNode);
+}
+
+
+</script>

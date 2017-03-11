@@ -1,12 +1,13 @@
-package cosc332_server_test;
+package ygraphs.ai.smart_fox.games;
 
-public class Tile { public boolean isQueen;
+//General parent class for queens and arrows, just holds position
+public class Tile { 
+
+	public int row;
+	public int col;
   
-  public Tile(int i, int j) { rowPos = i;
-    colPos = j;
+  public Tile(int i, int j) { 
+	row = i;
+    col = j;
   }
-  
-  public boolean isOpponent;
-  int rowPos;
-  int colPos;
 }

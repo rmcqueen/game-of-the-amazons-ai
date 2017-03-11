@@ -1,24 +1,18 @@
-package cosc332_server_test;
+package ygraphs.ai.smart_fox.games;
 
 import java.util.LinkedList;
 import java.util.Queue;
-
-
-
-
-
-
-
-
-
 
 public class minDisHeur
 {
   public minDisHeur() {}
   
   static Tile[][] board = null;
+  //GameRules rulez = null;
+  static int ownedByThem = 0;
+  static int ownedByUs = 0;
   
-  public static void main(String[] args) { Tile[][] board = null;
+  public static void main(String[] args) { 
     int[] bQueens = null;
     int[] wQueens = null;
     int[] arrows = null;
@@ -37,53 +31,50 @@ public class minDisHeur
 
   public static void findNearestQueen(int row, int col)
   {
-    Tile[][] board = null;
-    int ownedByThem = 0;
-    int ownedByUs = 0;
-    boolean[][] checked = new boolean[10][10];
-    checked[row][col] = 1;
+	boolean[][] checked = new boolean[10][10];
+    checked[row][col] = true;
     boolean isFound = false;
     
-    Queue<Tile> q = new LinkedList();
-    q = addQueenMoves(q, row, col, checked);
+    Queue<Tile> q = new LinkedList<Tile>();
+    q = addQueenMoves(q, row, col, checked);//all moves a queen could make to reach this tile
     while (!isFound) {
-      Queue<Tile> tempQ = new LinkedList();
+      Queue<Tile> tempQ = new LinkedList<Tile>();
       int index = q.size();
-      
-      if (index == 0) {
+      if (index == 0) {//no valid moves, tile blocked in
         isFound = true;
         break;
       }
-      for (int i = 0; i < index; i++) {
+      for (int i = 0; i < index; i++) {//check every move possible from current tile
         Tile currentTile = (Tile)q.poll();
         
-        if ((board[rowPos][colPos] != null) && (rowPos][colPos].isQueen)) {
+        //current tile has queen here
+        if ((board[currentTile.row][currentTile.col] != null) && (board[currentTile.row][currentTile.col] instanceof Queen)) 
+        {
           isFound = true;
-          boolean enemyQueen = rowPos][colPos].isOpponent;
+          boolean enemyQueen = (Queen)(board[currentTile.row][currentTile.col]).isOpponent;
           boolean contested = false;
           
-          for (Tile shell : q)
+          for (Tile shell : q)//if queen found in q, queen is 1 move away, checks if opposing queens 1 move away 
           {
-            if ((board[rowPos][colPos] != null) && (rowPos][colPos].isQueen) && (rowPos][colPos].isOpponent == enemyQueen))
+        	//opposing queen found 1 move away, tile contested
+            if ((board[shell.row][shell.col] != null) && (board[shell.row][shell.col] instanceof Queen)&& ((Queen)(board[shell.row][shell.col]).isOpponent!=enemyQueen))
               contested = true;
           }
-          if (contested) {
+          if (contested) {//owned by no one
             break;
           }
-          if (rowPos][colPos].isOpponent) {
+          if ((Queen)board[currentTile.row][currentTile.col].isOpponent) {
             ownedByThem++;
             break;
           }
           ownedByUs++;
-          
-
           break;
         }
         
-        checked[rowPos][colPos] = 1;
+        checked[currentTile.row][currentTile.col] = true;
         
-        if (board[rowPos][colPos] == null) {
-          tempQ = addQueenMoves(tempQ, rowPos, colPos, checked);
+        if (board[currentTile.row][currentTile.col] == null) {//tile has no arrow or queen
+          tempQ = addQueenMoves(tempQ, row, col, checked);
         }
       }
       q = tempQ;
@@ -95,7 +86,7 @@ public class minDisHeur
   {
     for (int i = 1; curCol - i >= 0; i++) {
       Tile lData = new Tile(curRow, curCol - 1);
-      if (checked[curRow][(curCol - 1)] == 0) {
+      if (checked[curRow][(curCol - 1)] == false) {
         q.add(lData);
       }
       if (board[curRow][(curCol - i)] != null) {
@@ -105,7 +96,7 @@ public class minDisHeur
     
     for (int i = 1; (curRow - i >= 0) && (curCol - i >= 0); i++) {
       Tile lData = new Tile(curRow - i, curCol - i);
-      if (checked[(curRow - i)][(curCol - i)] == 0) {
+      if (checked[(curRow - i)][(curCol - i)] == false) {
         q.add(lData);
       }
       if (board[(curRow - i)][(curCol - i)] != null) {
@@ -115,7 +106,7 @@ public class minDisHeur
     
     for (int i = 1; curRow - i >= 0; i++) {
       Tile lData = new Tile(curRow - i, curCol);
-      if (checked[(curRow - i)][curCol] == 0) {
+      if (checked[(curRow - i)][curCol] == false) {
         q.add(lData);
       }
       if (board[(curRow - i)][curCol] != null) {
@@ -125,7 +116,7 @@ public class minDisHeur
     
     for (int i = 1; (curRow - i >= 0) && (curCol + i <= 9); i++) {
       Tile lData = new Tile(curRow - i, curCol + i);
-      if (checked[(curRow - i)][(curCol + i)] == 0) {
+      if (checked[(curRow - i)][(curCol + i)] == false) {
         q.add(lData);
       }
       if (board[(curRow - i)][(curCol + i)] != null) {
@@ -135,7 +126,7 @@ public class minDisHeur
     
     for (int i = 1; curCol + i <= 9; i++) {
       Tile lData = new Tile(curRow, curCol + i);
-      if (checked[curRow][(curCol + i)] == 0) {
+      if (checked[curRow][(curCol + i)] == false) {
         q.add(lData);
       }
       if (board[curRow][(curCol + i)] != null) {
@@ -145,7 +136,7 @@ public class minDisHeur
     
     for (int i = 1; (curRow + i <= 9) && (curCol + i <= 9); i++) {
       Tile lData = new Tile(curRow + i, curCol + i);
-      if (checked[(curRow + i)][(curCol + i)] == 0) {
+      if (checked[(curRow + i)][(curCol + i)] == false) {
         q.add(lData);
       }
       if (board[(curRow + i)][(curCol + i)] != null) {
@@ -155,7 +146,7 @@ public class minDisHeur
     
     for (int i = 1; curRow + i <= 9; i++) {
       Tile lData = new Tile(curRow + i, curCol);
-      if (checked[(curRow + i)][curCol] == 0) {
+      if (checked[(curRow + i)][curCol] == false) {
         q.add(lData);
       }
       if (board[(curRow + i)][curCol] != null) {
@@ -165,7 +156,7 @@ public class minDisHeur
     
     for (int i = 1; (curRow + i <= 9) && (curCol - i >= 0); i++) {
       Tile lData = new Tile(curRow + i, curCol - i);
-      if (checked[(curRow + i)][(curCol - i)] == 0) {
+      if (checked[(curRow + i)][(curCol - i)] == false) {
         q.add(lData);
       }
       if (board[(curRow + i)][(curCol - i)] != null) {

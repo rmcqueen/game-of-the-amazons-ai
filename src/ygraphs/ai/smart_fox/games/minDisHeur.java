@@ -51,19 +51,19 @@ public class minDisHeur
         if ((board[currentTile.row][currentTile.col] != null) && (board[currentTile.row][currentTile.col] instanceof Queen)) 
         {
           isFound = true;
-          boolean enemyQueen = (Queen)(board[currentTile.row][currentTile.col]).isOpponent;
+          boolean enemyQueen = ((Queen)board[currentTile.row][currentTile.col]).isOpponent;
           boolean contested = false;
           
           for (Tile shell : q)//if queen found in q, queen is 1 move away, checks if opposing queens 1 move away 
           {
         	//opposing queen found 1 move away, tile contested
-            if ((board[shell.row][shell.col] != null) && (board[shell.row][shell.col] instanceof Queen)&& ((Queen)(board[shell.row][shell.col]).isOpponent!=enemyQueen))
+            if ((board[shell.row][shell.col] != null) && (board[shell.row][shell.col] instanceof Queen)&& (((Queen)board[shell.row][shell.col]).isOpponent!=enemyQueen))
               contested = true;
           }
           if (contested) {//owned by no one
             break;
           }
-          if ((Queen)board[currentTile.row][currentTile.col].isOpponent) {
+          if (((Queen)board[currentTile.row][currentTile.col]).isOpponent) {
             ownedByThem++;
             break;
           }

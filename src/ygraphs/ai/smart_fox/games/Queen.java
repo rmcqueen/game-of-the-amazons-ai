@@ -1,6 +1,10 @@
 package ygraphs.ai.smart_fox.games;
 
-public class Queen extends Tile{
+public class Queen extends Tile implements Cloneable{
+	
+	public Object clone() throws CloneNotSupportedException{
+        return super.clone();
+    }
 	
     protected boolean isOpponent;
 

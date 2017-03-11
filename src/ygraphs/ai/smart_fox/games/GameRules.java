@@ -87,7 +87,7 @@ public class GameRules {
         return this.arrows;
     }
 
-    protected GameRules deepCopy() {
+    protected GameRules deepCopy() throws CloneNotSupportedException {
         Queen[] newFriend = new Queen[4];
         Queen[] newEnemy = new Queen[4];
         ArrayList<Arrow> newArrows = new ArrayList<>();
@@ -103,17 +103,17 @@ public class GameRules {
             }
         }
 
-        GameRules newRules = GameRules(newEnemy, newFriend, newArrows);
+        GameRules newRules = new GameRules(newEnemy, newFriend, newArrows);
         return newRules;
     }
 
-    /**
+	/**
      *
      * @param queen: the queen object to check moves for
      * @return: the best legal move a queen can make from it's current position
      */
     protected ArrayList<int[][]> getLegalMoves(Queen queen) {
-        ArrayList<int[][]> legalMoves = newArrayList<>();
+        ArrayList<int[][]> legalMoves = new ArrayList<>();
         int currentRow = queen.getRowPosition();
         int currentCol = queen.getColPosition();
 

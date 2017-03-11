@@ -388,7 +388,7 @@ public class GameRules {
     private void updateLegalQueenMoves() {
         legalQueenMoves.clear();
         for(Queen q: friend) {
-            legalQueenMoves.addAll(getLegalMoves(queen));
+            legalQueenMoves.addAll(getLegalMoves(q));
         }
     } // end of updateLegalQueenMoves
 
@@ -396,7 +396,7 @@ public class GameRules {
         if(legalArrowMoves != null) {
             legalArrowMoves.clear();
             for(Queen q: friend) {
-                legalArrowMoves.addAll(getLegalMoves(queen));
+                legalArrowMoves.addAll(getLegalMoves(q));
             }
 
         }

@@ -8,23 +8,34 @@ public class minDisHeur
   public minDisHeur() {}
   
   static Tile[][] board = null;
-  //GameRules rulez = null;
+  GameRules bl = null;
+  Queen[] queens = new Queen[8];
   static int ownedByThem = 0;
   static int ownedByUs = 0;
   
-  public static void main(String[] args) { 
-    int[] bQueens = null;
-    int[] wQueens = null;
-    int[] arrows = null;
-    
-    for (int i = 0; i < 10; i++) {
-      for (int j = 0; j < 10; j++)
-      {
-        if (board[i][j] == null) {
-          findNearestQueen(i, j);
-        }
+  public void calculate(GameRules b) {
+      bl = b;
+      // queens <- all queens (friendly and enemy)
+      for(int i=0; i<8; i++) {
+          if(i<4) {
+              queens[i]=b.getFriend()[i];
+          }
+          else {
+              queens[i]=b.getEnemy()[i-4];
+          }
       }
-    }
+      ownedByUs=0;
+      ownedByThem=0;
+
+      // For every tile in the board
+      for(int i=0; i<10; i++){
+          for(int j=0; j<10; j++){
+              // If tile is empty, check who 'owns it'
+              if(bl.board[i][j]==null){
+                  findNearestQueen(i, j);
+              }
+          }
+      }
   }
   
 

@@ -1,5 +1,5 @@
 //package game;
-package src;
+package ygraphs.ai.smart_fox.games;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -372,8 +372,8 @@ public class Amazon extends GamePlayer{
      * @param args
      */
 	public static void main(String[] args) { 
-		Amazon game = new Amazon("yong.gao", "cosc322");
-        //Amazon game2 = new Amazon("Frank", "cosc322");
+		//Amazon game = new Amazon("yong.gao", "cosc322");
+        Amazon game2 = new Amazon("Frank", "cosc322");
 		//Amazon game = new Amazon(args[0], args[1]);
     }
 	

@@ -1,4 +1,4 @@
-package src;
+package ygraphs.ai.smart_fox.games;
 
 import java.util.Stack;
 

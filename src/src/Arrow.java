@@ -1,7 +1,11 @@
-package src;
+package ygraphs.ai.smart_fox.games;
 
-public class Arrow extends Tile{
-
+public class Arrow extends Tile implements Cloneable{
+	
+	public Arrow clone() throws CloneNotSupportedException{
+        return (Arrow) super.clone();
+    }
+	
 	public Arrow(int i, int j) {
 		super(i, j);
 	}

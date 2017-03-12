@@ -1,12 +1,10 @@
-package src;
+package ygraphs.ai.smart_fox.games;
 import java.util.ArrayList;
 
-/**
- * Created by r on 2/15/17.
- */
 // ITERATIVE DEEPENING-SEARCH
 public class SearchTree {
     private SearchTreeNode root;
+    private minDisHeur minDistH = new minDisHeur();
     private int depth;
     private int numOfMoves;
     public static int evaluation;
@@ -34,25 +32,15 @@ public class SearchTree {
     }
     
     private int AlphaBeta(SearchTreeNode N, int D, int alpha, int beta, boolean maxPlayer){
-
-
         if(D == 0 || N.getChildren().size() == 0) {
             evaluation++;
-            if(numOfMoves<7) {
-                queenHeuristic.calculate(N.B);
-                N.setValue(queenHeuristic.ownedByUs - queenHeuristic.ownedByThem);
-
-            }else{
-                kingHeuristic.calculate(N.B);
-                N.setValue(kingHeuristic.ownedByUs - kingHeuristic.ownedByThem);
-
-            }
+            minDistH.calculate(N.gameRules);
+            N.setValue(minDistH.ownedByUs - minDistH.ownedByThem);
             int val = N.getValue();
             return val;
         }
 
         if(maxPlayer){
-
             int V = Integer.MIN_VALUE;
             for(SearchTreeNode S: N.getChildren()){
 
@@ -65,10 +53,8 @@ public class SearchTree {
             N.setValue(V);
             return V;
         }else{
-
             int V = Integer.MAX_VALUE;
             for(SearchTreeNode S: N.getChildren()){
-
                 V = Math.min(V, AlphaBeta(S,D - 1, alpha, beta, true ));
                 beta = Math.min(beta, V);
 
@@ -80,7 +66,7 @@ public class SearchTree {
         }
     }
     
-    public void expandFrontier(){
+    public void expandFrontier() throws CloneNotSupportedException{
         ArrayList<SearchTreeNode> newFrontier = new ArrayList<SearchTreeNode>();
         if(depth != 0){
             if(depth % 2 ==0){
@@ -97,7 +83,7 @@ public class SearchTree {
         //clearing the old frontier and setting the new one
         frontier.clear();
         for(SearchTreeNode S: newFrontier){
-            SearchTreeNode newNode =new SearchTreeNode(S.gameRules.deepCopy());
+            SearchTreeNode newNode = new SearchTreeNode(S.gameRules.deepCopy());
             frontier.add(newNode);
         }
         depth++;
@@ -112,15 +98,9 @@ public class SearchTree {
     public void trimFrontier(){
         int avg = 0;
         for (SearchTreeNode S: frontier){
-            if(numOfMoves>=14) {
-                kingHeuristic.calculate(S.gameRules);
-                S.setValue(kingHeuristic.ownedByUs);
-            }else{
-                queenHeuristic.calculate(S.gameRules);
-                S.setValue(queenHeuristic.ownedByUs);
-            }
-
-                avg += S.getValue();
+        	minDistH.calculate(S.gameRules);
+            S.setValue(minDisHeur.ownedByUs);
+            avg += S.getValue();
         }
         if(frontier.size() != 0)
             avg = avg/frontier.size();

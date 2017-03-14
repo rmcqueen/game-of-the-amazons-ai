@@ -75,10 +75,11 @@ public class SuccessorHeuristicFunction {
         ArrayList<SearchTreeNode> successors = new ArrayList<SearchTreeNode>();
         Queen[] queens;
         //check to see whose move it is and make the appropriate successors
-        if(us){
-            queens = state.getFriend();}
-        else{
-            queens = state.getEnemy();}
+        if(us) {
+            queens = state.getFriend();
+        } else{
+            queens = state.getEnemy();
+        }
 
         int stateCount = 0;
 
@@ -114,18 +115,12 @@ public class SuccessorHeuristicFunction {
                     newState.updateAfterMove();
                     stateCount++;
 
-                    //making search node
-                    //move M = new move(currentQueenMoves.get(j).row,currentQueenMoves.get(j).col,(Queen) currentQueenMoves.get(j).Queen);
-                    SearchTreeNode S = new SearchTreeNode(newState,legalArrowMoves.get(k),0);
+                    SearchTreeNode S = new SearchTreeNode(newState, currentQueenMoves.get(k), legalArrowMoves.get(k), 0);
                     successors.add(S);
                     count++;
-                    // Remove added arrow for next state calc
-//                    int size = newState.arrows.size();
-//                    newState.arrows.set(size-1,null);
                 }
             }
         }
-//        System.out.println("Total States: " + stateCount);
         return successors;
     }
 }

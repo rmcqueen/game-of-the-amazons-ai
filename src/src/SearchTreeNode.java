@@ -10,7 +10,9 @@ public class SearchTreeNode {
 	private boolean terminal;
 	private int heuristicValue;
 	private Arrow arrowShot;
+	private Queen queen;
     private ArrayList<SearchTreeNode> children = new ArrayList<SearchTreeNode>();
+    private SearchTreeNode parent;
     private SuccessorHeuristicFunction successorHeuristic = new SuccessorHeuristicFunction();
     protected GameRules gameRules;
     
@@ -22,10 +24,28 @@ public class SearchTreeNode {
         gameRules = board;
     }
     
-    public SearchTreeNode(GameRules board, Arrow A, int heuristicValue){
+    public Queen getQueen(){
+    	return queen;
+    }
+    
+    public SearchTreeNode getParent(){
+    	return parent;
+    }
+    
+    public void setParent(SearchTreeNode n){
+    	parent = n;
+    }
+    public SearchTreeNode(GameRules board, Queen q, Arrow A, int heuristicValue){
     	gameRules = board;	
+    	queen = q;
     	arrowShot = A;
         this.heuristicValue = heuristicValue;
+    }
+    
+    public SearchTreeNode(GameRules board, Queen q, Arrow A){
+    	gameRules = board;	
+    	queen = q;
+    	arrowShot = A;
     }
 
     public ArrayList<SearchTreeNode> getChildren() {
@@ -36,24 +56,13 @@ public class SearchTreeNode {
         return arrowShot;
     }
     
-    // TO DO: figure out what the boolean parameter is
-    public ArrayList<SearchTreeNode> setSuccessors(boolean Move) throws CloneNotSupportedException{
-
-        if(Move) {
-            ArrayList<SearchTreeNode> expanded = successorHeuristic.getSuccessors(gameRules, true); // TO DO: figure out what the boolean represents
-            // when implementing SuccessorHeuristicFunction.getSuccessors
-            for (SearchTreeNode S: expanded){
-                children.add(S);
-            }
-            return children;
-        }else{
-            ArrayList<SearchTreeNode> expanded = successorHeuristic.getSuccessors(gameRules, false);
-            for (SearchTreeNode S: expanded) {
-                children.add(S);
-            }
-            return children;
+    public ArrayList<SearchTreeNode> setSuccessors(boolean ourMove) throws CloneNotSupportedException{
+        ArrayList<SearchTreeNode> expanded = successorHeuristic.getSuccessors(gameRules, ourMove);
+        for (SearchTreeNode S: expanded){
+            children.add(S);
+            S.setParent(this);
         }
-
+        return children;
     }
     
     public int getValue(){
@@ -63,5 +72,8 @@ public class SearchTreeNode {
     public void setValue(int V){
     	heuristicValue = V;
     }
-
+    
+    public void setTerminal(boolean t){
+    	terminal = t;
+    }
 }

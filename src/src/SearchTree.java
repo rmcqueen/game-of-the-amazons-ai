@@ -1,5 +1,6 @@
 package ygraphs.ai.smart_fox.games;
 import java.util.ArrayList;
+import java.util.Random;
 
 // ITERATIVE DEEPENING-SEARCH
 public class SearchTree {
@@ -115,5 +116,52 @@ public class SearchTree {
             frontier.remove(S);
         }
     }
+    
+    public void makeMoveOnRoot(Queen qCurrentPos, Queen qNextPos, Arrow a){
+        numOfMoves++;
+        root.gameRules.addArrow(a); // adds arrow to be shot
+        //makes a move for the queen ours or theirs
+        if(qCurrentPos.isOpponent){
+            for(Queen Q:root.gameRules.enemy){
+                if(qCurrentPos.getColPosition() == Q.getColPosition() && qCurrentPos.getRowPosition() == Q.getRowPosition())
+                    Q.moveQueen(qNextPos.getRowPosition(),qNextPos.getColPosition());
+            }
+        }else{
+            for(Queen Q:root.gameRules.friend){
+            	if(qCurrentPos.getColPosition() == Q.getColPosition() && qCurrentPos.getRowPosition() == Q.getRowPosition())
+                    Q.moveQueen(qNextPos.getRowPosition(),qNextPos.getColPosition());
+            }
+        }
+        root.gameRules.updateAfterMove();
+        this.clearTree();
+    }
+    
+    public SearchTreeNode makeMove() throws CloneNotSupportedException{
+    	this.expandFrontier();
+   	 	this.performAlphaBeta();
+        SearchTreeNode bestMove = this.getMoveAfterAlphaBeta();
+        this.makeMoveOnRoot(bestMove.getParent().getQueen(), bestMove.getQueen(),bestMove.getArrowShot());
+        return bestMove;
+    }
+    
+    private SearchTreeNode getMoveAfterAlphaBeta(){
+        int max = Integer.MIN_VALUE;
+        SearchTreeNode currentBest = root.getChildren().get(0); // just to initialize currentBest
+        
+        for(SearchTreeNode S:root.getChildren()){
+            if(max <= S.getValue()) {
+                max = S.getValue();
+                currentBest = S;
+            }
+        }
+        return currentBest;
+    }
+    
+    private void clearTree(){
+        depth = 0;
+        frontier.clear();
+        root.getChildren().clear();
+    }
+
 
 }

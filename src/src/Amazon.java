@@ -21,12 +21,13 @@ import ygraphs.ai.smart_fox.games.GamePlayer;
  * @author yong.gao@ubc.ca
  */
 public class Amazon extends GamePlayer{
-
+	private SearchTree search;
     private GameClient gameClient;   
     private JFrame guiFrame = null;    
     private GameBoard board = null; 
     private boolean gameStarted = false;   
     public String usrName = null;
+    private GameRules ourBoard = null;
             
 	/**
 	 * Constructor
@@ -38,6 +39,7 @@ public class Amazon extends GamePlayer{
 	   this.usrName = name;		       	   
 	   setupGUI();       
                      
+	   ourBoard = new GameRules(true);
        connectToServer(name, passwd);        
 	}
 	
@@ -80,23 +82,50 @@ public class Amazon extends GamePlayer{
 			
 		}
 		else if(messageType.equals(GameMessage.GAME_ACTION_MOVE)){
-        	handleOpponentMove(msgDetails);
+        	try {
+				handleOpponentMove(msgDetails);
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
         }
 		return true;
 	}
     
 	//handle the event that the opponent makes a move. 
-	private void handleOpponentMove(Map<String, Object> msgDetails){
+	private void handleOpponentMove(Map<String, Object> msgDetails) throws CloneNotSupportedException{
+		// TO DO: implement a timer and stop the timer at 29.5 seconds
+		// TO DO: figure out how to interrupt the AI when the time is up return the best move found so far
+		
 		System.out.println("OpponentMove(): " + msgDetails.get(AmazonsGameMessage.QUEEN_POS_CURR));
 		ArrayList<Integer> qcurr = (ArrayList<Integer>) msgDetails.get(AmazonsGameMessage.QUEEN_POS_CURR);
 		ArrayList<Integer> qnew = (ArrayList<Integer>) msgDetails.get(AmazonsGameMessage.Queen_POS_NEXT);
 		ArrayList<Integer> arrow = (ArrayList<Integer>) msgDetails.get(AmazonsGameMessage.ARROW_POS);
-		System.out.println("QCurr: " + qcurr);
-		System.out.println("QNew: " + qnew);
-		System.out.println("Arrow: " + arrow);
 		
 		board.markPosition(qnew.get(0), qnew.get(1), arrow.get(0), arrow.get(1), 
 				  qcurr.get(0), qcurr.get(1), true);
+		
+		Queen qCurrent = new Queen(qcurr.get(0), qcurr.get(1), true);
+		Arrow arrowShot = new Arrow(arrow.get(0), arrow.get(1));
+		
+		if(ourBoard.getLegalMoves(qCurrent).size() > 0){
+			qCurrent.moveQueen(qnew.get(0), qnew.get(1));
+			if(ourBoard.getArrowMoves(arrow.get(0), arrow.get(1)).size() > 0){
+				ourBoard.addArrow(arrowShot);
+			}
+		} else {
+			System.out.println("INVALID MOVE !");
+		}
+		
+		// TO DO: need to initialize the SearchTree by building the gameTree based on the board
+		// TO DO: need to figure out how to build the gameTree from the current legal moves
+		
+		SearchTreeNode ourBestMove = search.makeMove();
+        Queen queenNextMove = ourBestMove.getQueen();
+        Arrow nextArrowShot = ourBestMove.getArrowShot();
+
+        // TO DO: call a method to update the board graphics
+
+        // TO DO: call a method to send move to server
 		
 	}
 	

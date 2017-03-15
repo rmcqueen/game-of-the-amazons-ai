@@ -124,6 +124,8 @@ public class SearchTree {
         if(qCurrentPos.isOpponent){
             for(Queen Q:root.gameRules.enemy){
                 if(qCurrentPos.getColPosition() == Q.getColPosition() && qCurrentPos.getRowPosition() == Q.getRowPosition())
+                    qCurrentPos.setPreviousRowPosition(qCurrentPos.getRowPosition());
+                    qCurrentPos.setPreviousColPosition(qCurrentPos.getColPosition());
                     Q.moveQueen(qNextPos.getRowPosition(),qNextPos.getColPosition());
             }
         }else{

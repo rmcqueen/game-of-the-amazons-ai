@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="cosc322_game_client">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Downloads/cosc322_game_client.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../School/Year_3/Semester_2/COSC322/cosc322_game_client.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

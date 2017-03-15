@@ -1,4 +1,4 @@
-package ygraphs.ai.smart_fox.games;
+package src;
 
 public class Arrow extends Tile implements Cloneable{
 	

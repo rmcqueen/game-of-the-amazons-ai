@@ -1,4 +1,4 @@
-package ygraphs.ai.smart_fox.games;
+package src;
 /**
  * Created by r on 2/15/17.
  */

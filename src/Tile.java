@@ -1,4 +1,4 @@
-package ygraphs.ai.smart_fox.games;
+package src;
 
 //General parent class for queens and arrows, just holds position
 public class Tile { 

@@ -1,6 +1,6 @@
-package ygraphs.ai.smart_fox.games;
+package src;
+
 import java.util.ArrayList;
-import java.util.Random;
 
 // ITERATIVE DEEPENING-SEARCH
 public class SearchTree {

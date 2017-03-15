@@ -1,4 +1,4 @@
-package ygraphs.ai.smart_fox.games;
+package src;
 
 import java.util.LinkedList;
 import java.util.Queue;

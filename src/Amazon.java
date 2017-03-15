@@ -1,5 +1,5 @@
 //package game;
-package ygraphs.ai.smart_fox.games;
+package src;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;

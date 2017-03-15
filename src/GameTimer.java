@@ -1,0 +1,51 @@
+package src;
+
+
+import ygraphs.ai.smart_fox.games.GameClient;
+import ygraphs.ai.smart_fox.games.GamePlayer;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class GameTimer extends Timer{
+    public static final int TIMEOUT = 30000;
+    static int violationCount = 0;
+    private Timer timer = new Timer();
+    private GamePlayer delegate;
+    private GameClient gameClient;
+
+    /**
+     *
+     * @param delegate: the player who is being timed
+     * @param gameClient
+     * @param numOfTimeOut: how many times they're gone passed the time limit
+     */
+    public GameTimer(GamePlayer delegate, GameClient gameClient, int numOfTimeOut) {
+        this.delegate = delegate;
+        this.gameClient = gameClient;
+        this.violationCount = numOfTimeOut;
+    }
+
+    /**
+     * Starts the timer when it's our turn
+     */
+    public void startClock() {
+        this.startViolationTimer();
+    }
+
+
+    /**
+     * Starts the timer to count the number of violations
+     */
+    public void startViolationTimer() {
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                GameTimer.violationCount++;
+                System.out.println("Time Violations: "+ GameTimer.violationCount + "for player: " + delegate.userName());
+            }
+        }, TIMEOUT);
+
+
+    }
+}

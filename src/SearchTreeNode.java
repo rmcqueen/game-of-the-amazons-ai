@@ -1,9 +1,7 @@
-package ygraphs.ai.smart_fox.games;
+package src;
+
 import java.util.ArrayList;
 
-/**
- * Created by r on 2/15/17.
- */
 public class SearchTreeNode {
     //private move queenMove;		// TO DO : figure out what a Move object is
     //private Arrow arrowShot;		// TO DO : figure out what an arrowShot object is

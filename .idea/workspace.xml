@@ -2,111 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69baf597-b138-4768-a678-a4bdae599431" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Arrow.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Amazon.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/COSC322" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/GameRules.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IterativeDeepening.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MinQueenDistHeuristic.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Queen.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SearchTree.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SearchTreeNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/serverConnect.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/ygraphs/ai/smart_fox/games/Arrow.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/322_Project/COSC322" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/.idea/libraries/commons_lang_2_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/SFS2X_API(Client)_Java_v1.6.1/SFS2X_API_Java.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/SFS2X_API(Client)_Java_v1.6.1/commons-lang-2.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/SFS2X_API(Client)_Java_v1.6.1/jdom.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/SFS2X_API(Client)_Java_v1.6.1/netty-3.2.2.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/SFS2X_API(Client)_Java_v1.6.1/sfs2x-client-core.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/SFS2X_API(Client)_Java_v1.6.1/slf4j-api-1.6.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/SFS2X_API(Client)_Java_v1.6.1/slf4j-simple-1.6.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/SFS2X_API(Client)_Java_v1.6.1/third-party-licenses/Apache-2.0.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/SFS2X_API(Client)_Java_v1.6.1/third-party-licenses/jdom-license.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/SFS2X_API(Client)_Java_v1.6.1/third-party-licenses/slf4j-license.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/out/production/AI_Project/COSC322Test.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/out/production/AI_Project/serverConnect$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/out/production/AI_Project/serverConnect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/out/production/AI_Project/ygraphs/ai/smart_fox/games/Amazon$GameBoard$GameEventHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/out/production/AI_Project/ygraphs/ai/smart_fox/games/Amazon$GameBoard.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/AI_Project/out/production/AI_Project/ygraphs/ai/smart_fox/games/Amazon.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/SFS2X_API(Client)_Java_v1.6.1/SFS2X_API_Java.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/SFS2X_API(Client)_Java_v1.6.1/commons-lang-2.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/SFS2X_API(Client)_Java_v1.6.1/jdom.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/SFS2X_API(Client)_Java_v1.6.1/netty-3.2.2.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/SFS2X_API(Client)_Java_v1.6.1/sfs2x-client-core.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/SFS2X_API(Client)_Java_v1.6.1/slf4j-api-1.6.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/SFS2X_API(Client)_Java_v1.6.1/slf4j-simple-1.6.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/SFS2X_API(Client)_Java_v1.6.1/third-party-licenses/Apache-2.0.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/SFS2X_API(Client)_Java_v1.6.1/third-party-licenses/jdom-license.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/SFS2X_API(Client)_Java_v1.6.1/third-party-licenses/slf4j-license.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/COSC322Test.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/Tile.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/minDisHeur.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/serverConnect$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/serverConnect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/ygraphs/ai/smart_fox/games/AI_Project.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/ygraphs/ai/smart_fox/games/Amazon$GameBoard$GameEventHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/ygraphs/ai/smart_fox/games/Amazon$GameBoard.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/ygraphs/ai/smart_fox/games/Amazon.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/SFS2X_API_Java.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/commons-lang-2.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/jdom.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/netty-3.2.2.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/sfs2x-client-core.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/slf4j-api-1.6.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/slf4j-simple-1.6.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/third-party-licenses/Apache-2.0.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/third-party-licenses/jdom-license.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/third-party-licenses/slf4j-license.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/bin/ygraphs/ai/smart_fox/games/cosc322_game_client.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/src/COSC322Test.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/src/Tile.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/src/minDisHeur.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/src/serverConnect.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/src/ygraphs/ai/smart_fox/games/AI_Project.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/src/ygraphs/ai/smart_fox/games/Amazon.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/src/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/SFS2X_API_Java.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/src/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/commons-lang-2.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/src/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/jdom.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/src/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/netty-3.2.2.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/src/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/sfs2x-client-core.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/src/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/slf4j-api-1.6.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/src/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/slf4j-simple-1.6.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/src/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/third-party-licenses/Apache-2.0.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/src/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/third-party-licenses/jdom-license.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/src/ygraphs/ai/smart_fox/games/SFS2X_API(Client)_Java_v1.6.1/third-party-licenses/slf4j-license.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/AI_Project/src/ygraphs/ai/smart_fox/games/cosc322_game_client.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/cosc332_server_test/.classpath" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/cosc332_server_test/.project" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/cosc332_server_test/.settings/org.eclipse.jdt.core.prefs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/cosc332_server_test/bin/cosc332_server_test/test.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/workspace/cosc332_server_test/src/cosc332_server_test/test.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ygraphs/ai/state_space_search/Action.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ygraphs/ai/state_space_search/ActionFactory.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ygraphs/ai/state_space_search/BestFirstSearch.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ygraphs/ai/state_space_search/DepthFirstSearch.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ygraphs/ai/state_space_search/SearchTreeNode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ygraphs/ai/state_space_search/State.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ygraphs/ai/state_space_search/StateSpace.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ygraphs/ai/state_space_search/sliding_puzzle/ActionFactoryNPuzzle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ygraphs/ai/state_space_search/sliding_puzzle/ActionSlidingPuzzle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ygraphs/ai/state_space_search/sliding_puzzle/StateNPuzzle.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ygraphs/ai/smart_fox/games/Amazon.java" afterPath="$PROJECT_DIR$/src/Amazon.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ygraphs/ai/smart_fox/games/GameRules.java" afterPath="$PROJECT_DIR$/src/GameRules.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ygraphs/ai/smart_fox/games/IterativeDeepening.java" afterPath="$PROJECT_DIR$/src/IterativeDeepening.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ygraphs/ai/smart_fox/games/MinQueenDistHeuristic.java" afterPath="$PROJECT_DIR$/src/MinQueenDistHeuristic.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ygraphs/ai/smart_fox/games/Queen.java" afterPath="$PROJECT_DIR$/src/Queen.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ygraphs/ai/smart_fox/games/SearchTree.java" afterPath="$PROJECT_DIR$/src/SearchTree.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ygraphs/ai/smart_fox/games/SearchTreeNode.java" afterPath="$PROJECT_DIR$/src/SearchTreeNode.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ygraphs/ai/smart_fox/games/Tile.java" afterPath="$PROJECT_DIR$/src/Tile.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ygraphs/ai/smart_fox/games/minDisHeur.java" afterPath="$PROJECT_DIR$/src/minDisHeur.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ygraphs/ai/smart_fox/games/serverConnect.java" afterPath="$PROJECT_DIR$/src/serverConnect.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/src/SearchTree.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/src/Amazon.java" afterPath="$PROJECT_DIR$/src/Amazon.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/src/Arrow.java" afterPath="$PROJECT_DIR$/src/Arrow.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/src/GameRules.java" afterPath="$PROJECT_DIR$/src/GameRules.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/src/IterativeDeepening.java" afterPath="$PROJECT_DIR$/src/IterativeDeepening.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/src/MinQueenDistHeuristic.java" afterPath="$PROJECT_DIR$/src/MinQueenDistHeuristic.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/src/Queen.java" afterPath="$PROJECT_DIR$/src/Queen.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/src/SearchTreeNode.java" afterPath="$PROJECT_DIR$/src/SearchTreeNode.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/src/SuccessorHeuristicFunction.java" afterPath="$PROJECT_DIR$/src/SuccessorHeuristicFunction.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/src/Tile.java" afterPath="$PROJECT_DIR$/src/Tile.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/src/minDisHeur.java" afterPath="$PROJECT_DIR$/src/minDisHeur.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/src/serverConnect.java" afterPath="$PROJECT_DIR$/src/serverConnect.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/cosc322_game_client.xml" afterPath="$PROJECT_DIR$/.idea/libraries/cosc322_game_client.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cosc322.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -127,122 +39,14 @@
     <favorites_list name="cosc322" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="GameRules.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameRules.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5910">
-              <caret line="400" column="36" selection-start-line="400" selection-start-column="36" selection-end-line="400" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IterativeDeepening.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/IterativeDeepening.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="minDisHeur.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minDisHeur.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MinQueenDistHeuristic.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MinQueenDistHeuristic.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Amazon.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Amazon.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Arrow.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Arrow.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding>
-                <element signature="e#76#77#0" expanded="true" />
-                <element signature="e#94#95#0" expanded="true" />
-                <element signature="e#126#127#0" expanded="true" />
-                <element signature="e#158#159#0" expanded="true" />
-                <element signature="e#193#194#0" expanded="true" />
-                <element signature="e#225#226#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Queen.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Queen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding>
-                <element signature="e#364#365#0" expanded="true" />
-                <element signature="e#390#391#0" expanded="true" />
-                <element signature="e#617#618#0" expanded="true" />
-                <element signature="e#649#650#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SearchTree.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SearchTree.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SearchTreeNode.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SearchTreeNode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="serverConnect.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/serverConnect.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -254,8 +58,14 @@
         <option value="$PROJECT_DIR$/src/ygraphs/ai/smart_fox/games/Queen.java" />
         <option value="$PROJECT_DIR$/src/ygraphs/ai/smart_fox/games/Arrow.java" />
         <option value="$PROJECT_DIR$/src/ygraphs/ai/smart_fox/games/GameRules.java" />
+        <option value="$PROJECT_DIR$/src/src/GameRules.java" />
         <option value="$PROJECT_DIR$/src/serverConnect.java" />
         <option value="$PROJECT_DIR$/src/GameRules.java" />
+        <option value="$PROJECT_DIR$/GameRules.java" />
+        <option value="$PROJECT_DIR$/src/SearchTree.java" />
+        <option value="$PROJECT_DIR$/src/SuccessorHeuristicFunction.java" />
+        <option value="$PROJECT_DIR$/src/SearchTreeNode.java" />
+        <option value="$PROJECT_DIR$/src/GameTimer.java" />
       </list>
     </option>
   </component>
@@ -266,9 +76,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="1280" />
     <option name="y" value="22" />
-    <option name="width" value="1680" />
-    <option name="height" value="1024" />
+    <option name="width" value="1280" />
+    <option name="height" value="1413" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -300,27 +111,27 @@
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="cosc322" />
+              <option name="myItemId" value="COSC322" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="cosc322" />
+              <option name="myItemId" value="COSC322" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="cosc322" />
+              <option name="myItemId" value="COSC322" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="cosc322" />
+              <option name="myItemId" value="COSC322" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="cosc322" />
+              <option name="myItemId" value="COSC322" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -341,7 +152,7 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/cosc322_game_client.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../School/Year_3/Semester_2/COSC322/cosc322_game_client.jar!/" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -609,6 +420,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -649,33 +466,34 @@
       <option name="presentableId" value="Default" />
       <updated>1489275017625</updated>
       <workItem from="1489275019891" duration="1418000" />
+      <workItem from="1489544604699" duration="2043000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1418000" />
+    <option name="totallyTimeSpent" value="3461000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1680" height="1024" extended-state="6" />
-    <editor active="true" />
+    <frame x="1280" y="22" width="1280" height="1413" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12026862" sideWeight="0.49570817" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24717286" sideWeight="0.49570817" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329296" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24969475" sideWeight="0.50429183" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24969475" sideWeight="0.50429183" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -696,25 +514,41 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/GameRules.java">
+    <entry file="file://$PROJECT_DIR$/src/GameRules.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+        <state relative-caret-position="5910">
+          <caret line="400" column="36" selection-start-line="400" selection-start-column="36" selection-end-line="400" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tile.java">
+    <entry file="file://$PROJECT_DIR$/src/IterativeDeepening.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+        <state relative-caret-position="60">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minDisHeur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MinQueenDistHeuristic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Amazon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
+        <state relative-caret-position="135">
           <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
           <folding />
         </state>
@@ -724,20 +558,62 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Queen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SearchTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SearchTreeNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serverConnect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
           <folding>
-            <element signature="e#76#77#0" expanded="true" />
-            <element signature="e#94#95#0" expanded="true" />
-            <element signature="e#126#127#0" expanded="true" />
-            <element signature="e#158#159#0" expanded="true" />
-            <element signature="e#193#194#0" expanded="true" />
-            <element signature="e#225#226#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Amazon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/IterativeDeepening.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
+        <state relative-caret-position="60">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding />
         </state>
@@ -745,7 +621,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minDisHeur.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameRules.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5910">
+          <caret line="400" column="36" selection-start-line="400" selection-start-column="36" selection-end-line="400" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Amazon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Arrow.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-8">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minDisHeur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding />
         </state>
@@ -761,48 +669,102 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Queen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
+        <state relative-caret-position="-8">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding>
-            <element signature="e#364#365#0" expanded="true" />
-            <element signature="e#390#391#0" expanded="true" />
-            <element signature="e#617#618#0" expanded="true" />
-            <element signature="e#649#650#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SearchTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SearchTreeNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameRules.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5910">
-          <caret line="400" column="36" selection-start-line="400" selection-start-column="36" selection-end-line="400" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/serverConnect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+        <state relative-caret-position="435">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameRules.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="573">
+          <caret line="146" column="11" selection-start-line="146" selection-start-column="11" selection-end-line="146" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SearchTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SearchTreeNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SuccessorHeuristicFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
+          <folding>
+            <element signature="e#254#265#0" expanded="true" />
+            <element signature="e#3260#3276#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../School/Year_3/Semester_2/COSC322/cosc322_game_client.jar!/ygraphs/ai/smart_fox/games/GameTimer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameTimer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameRules.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IterativeDeepening.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

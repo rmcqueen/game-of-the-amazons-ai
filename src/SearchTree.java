@@ -131,6 +131,8 @@ public class SearchTree {
         }else{
             for(Queen Q:root.gameRules.friend){
             	if(qCurrentPos.getColPosition() == Q.getColPosition() && qCurrentPos.getRowPosition() == Q.getRowPosition())
+                    qCurrentPos.setPreviousRowPosition(qCurrentPos.getRowPosition());
+                    qCurrentPos.setPreviousColPosition(qCurrentPos.getColPosition());
                     Q.moveQueen(qNextPos.getRowPosition(),qNextPos.getColPosition());
             }
         }

@@ -31,7 +31,7 @@ public class Amazon extends GamePlayer{
             
 	/**
 	 * Constructor
-	 * @param namef
+	 * @param name
 	 * @param passwd
 	 */
     public Amazon(String name, String passwd){  
@@ -46,7 +46,7 @@ public class Amazon extends GamePlayer{
     private void connectToServer(String name, String passwd){
     	// create a client and use "this" class (a GamePlayer) as the delegate.
     	// the client will take care of the communication with the server.
-    	gameClient = new GameClient(name, passwd, this);	
+    	gameClient = new GameClient(name, passwd, (GamePlayer)this);
     }
     
 	@Override
@@ -93,8 +93,7 @@ public class Amazon extends GamePlayer{
     
 	//handle the event that the opponent makes a move. 
 	private void handleOpponentMove(Map<String, Object> msgDetails) throws CloneNotSupportedException{
-		// TO DO: implement a timer and stop the timer at 29.5 seconds
-		// TO DO: figure out how to interrupt the AI when the time is up return the best move found so far
+		// TO DO: place timer here
 		
 		System.out.println("OpponentMove(): " + msgDetails.get(AmazonsGameMessage.QUEEN_POS_CURR));
 		ArrayList<Integer> qcurr = (ArrayList<Integer>) msgDetails.get(AmazonsGameMessage.QUEEN_POS_CURR);
@@ -117,14 +116,18 @@ public class Amazon extends GamePlayer{
 		}
 		
 		// TO DO: need to initialize the SearchTree by building the gameTree based on the board
+		search = new SearchTree(new SearchTreeNode(ourBoard));
 		// TO DO: need to figure out how to build the gameTree from the current legal moves
+
 		
 		SearchTreeNode ourBestMove = search.makeMove();
         Queen queenNextMove = ourBestMove.getQueen();
         Arrow nextArrowShot = ourBestMove.getArrowShot();
-
         // TO DO: call a method to update the board graphics
+        // call board.markPosition
 
+        board.markPosition(queenNextMove.getPreviousRowPosition(), queenNextMove.getPreviousColPosition(), nextArrowShot.getRowPosition(), nextArrowShot.getColPosition(),
+                queenNextMove.getRowPosition(), queenNextMove.getColPosition(), false);
         // TO DO: call a method to send move to server
 		
 	}
@@ -182,7 +185,7 @@ public class Amazon extends GamePlayer{
     
 	private GameBoard createGameBoard(){
 		return new GameBoard(this);
-	}	
+	}
 		
 	public boolean handleMessage(String msg) {
 		System.out.println("Time Out ------ " + msg); 
@@ -226,29 +229,29 @@ public class Amazon extends GamePlayer{
 		boolean playerAMove;
 		
 		public GameBoard(Amazon game){
-	        this.game = game;	       
+	        this.game = game;
 	        gameModel = new BoardGameModel(this.rows + 1, this.cols + 1);
-	      	        
+
 	        //if(!game.isGamebot){
 	        	addMouseListener(new  GameEventHandler());
 	        //}
-	        init(true);	
+	        init(true);
 		}
 		
 		
 		public void init(boolean isPlayerA){
             String tagB = BoardGameModel.POS_MARKED_BLACK;
             String tagW = BoardGameModel.POS_MARKED_WHITE;
- 
-	        gameModel.gameBoard[1][4] = tagW;
+
+	        gameModel.[1][4] = tagW;
 	        gameModel.gameBoard[1][7] = tagW;
 	        gameModel.gameBoard[3][1] = tagW;
 	        gameModel.gameBoard[3][10] = tagW;
-	        	
+
 	        gameModel.gameBoard[8][1] = tagB;
 	        gameModel.gameBoard[8][10] = tagB;
 	        gameModel.gameBoard[10][4] = tagB;
-	        gameModel.gameBoard[10][7] = tagB;		
+	        gameModel.gameBoard[10][7] = tagB;
 		}
 		
 		
@@ -295,13 +298,13 @@ public class Amazon extends GamePlayer{
 					posY = (9 - r) * cellDim + offset;
 					
 				if(gameModel.gameBoard[r + 1][c + 1].equalsIgnoreCase(BoardGameModel.POS_AVAILABLE)){
-					g.clearRect(posX + 1, posY + 1, 49, 49);					
+					g.clearRect(posX + 1, posY + 1, 49, 49);
 				}
- 
+
 				if(gameModel.gameBoard[r + 1][c + 1].equalsIgnoreCase(
 						  BoardGameModel.POS_MARKED_BLACK)){
 					g.fillOval(posX, posY, 50, 50);
-				} 
+				}
 				else if(gameModel.gameBoard[r + 1][c + 1].equalsIgnoreCase(
 					  BoardGameModel.POS_MARKED_ARROW)) {
 					g.clearRect(posX + 1, posY + 1, 49, 49);
@@ -402,7 +405,7 @@ public class Amazon extends GamePlayer{
      */
 	public static void main(String[] args) { 
 		//Amazon game = new Amazon("yong.gao", "cosc322");
-        Amazon game2 = new Amazon("Frank", "cosc322");
+        Amazon game2 = new Amazon("yong.gao", "cosc322");
 		//Amazon game = new Amazon(args[0], args[1]);
     }
 	

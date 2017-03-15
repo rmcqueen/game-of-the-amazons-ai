@@ -1,8 +1,5 @@
-package src;
+package ygraphs.ai.smart_fox.games;
 
-
-import ygraphs.ai.smart_fox.games.GameClient;
-import ygraphs.ai.smart_fox.games.GamePlayer;
 
 import java.util.Timer;
 import java.util.TimerTask;

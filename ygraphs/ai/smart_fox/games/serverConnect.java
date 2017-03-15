@@ -1,4 +1,4 @@
-package src;
+package ygraphs.ai.smart_fox.games;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;

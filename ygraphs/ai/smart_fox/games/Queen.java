@@ -1,4 +1,4 @@
-package src;
+package ygraphs.ai.smart_fox.games;
 
 public class Queen extends Tile implements Cloneable{
 	private int currentRow;

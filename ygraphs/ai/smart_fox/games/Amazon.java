@@ -1,5 +1,5 @@
 //package game;
-package src;
+package ygraphs.ai.smart_fox.games;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -11,10 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ygraphs.ai.smart_fox.GameMessage;
-import ygraphs.ai.smart_fox.games.AmazonsGameMessage;
-import ygraphs.ai.smart_fox.games.BoardGameModel;
-import ygraphs.ai.smart_fox.games.GameClient;
-import ygraphs.ai.smart_fox.games.GamePlayer;
 
 /**
  * For testing and demo purposes only. An GUI Amazon client for human players 
@@ -243,7 +239,7 @@ public class Amazon extends GamePlayer{
             String tagB = BoardGameModel.POS_MARKED_BLACK;
             String tagW = BoardGameModel.POS_MARKED_WHITE;
 
-	        gameModel.[1][4] = tagW;
+	        gameModel.gameBoard[1][4] = tagW;
 	        gameModel.gameBoard[1][7] = tagW;
 	        gameModel.gameBoard[3][1] = tagW;
 	        gameModel.gameBoard[3][10] = tagW;

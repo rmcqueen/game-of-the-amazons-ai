@@ -1,4 +1,4 @@
-package src;
+package ygraphs.ai.smart_fox.games;
 
 import java.util.ArrayList;
 
@@ -62,7 +62,7 @@ public class GameRules {
         }
 
         /**
-         * CONSTRUCTOR FOR src.GameRules
+         * CONSTRUCTOR FOR GameRules
          * @param enemy: the opponent's queen positions
          * @param friend: the player's queen positions
          * @param arrow: holds the positions of the "stones"

@@ -18,4 +18,11 @@ public class Arrow extends Tile implements Cloneable{
         return super.row;
     }
 
+    public int[] combinedMove(int row, int col) {
+        int[] move = new int[2];
+        move[0] = row;
+        move[1] = col;
+        return move;
+    }
+
 }

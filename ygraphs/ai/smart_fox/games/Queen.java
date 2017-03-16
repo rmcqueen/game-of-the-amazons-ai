@@ -12,10 +12,8 @@ public class Queen extends Tile implements Cloneable{
 
     /**
      *
-     * @param currentRow: an integer storing the row location
-     * @param currentCol: an integer storing the column location
-     * @param newRow: an integer storing the new Queen's row location
-     * @param newCol: an integer storing the new Queen's column location
+     * @param x: an integer storing the row location
+     * @param y: an integer storing the column location
      */
     public Queen(int x, int y) {
         super(x,y);
@@ -62,6 +60,13 @@ public class Queen extends Tile implements Cloneable{
     public void moveQueen(int row, int col) {
         super.row = row;
         super.col = col;
+    }
+
+    public int[] combinedMove(int row, int col) {
+        int[] move = new int[2];
+        move[0] = row;
+        move[1] = col;
+        return move;
     }
 
 }

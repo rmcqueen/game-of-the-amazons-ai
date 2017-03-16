@@ -125,6 +125,10 @@ public class Amazon extends GamePlayer{
         board.markPosition(queenNextMove.getPreviousRowPosition(), queenNextMove.getPreviousColPosition(), nextArrowShot.getRowPosition(), nextArrowShot.getColPosition(),
                 queenNextMove.getRowPosition(), queenNextMove.getColPosition(), false);
         // TO DO: call a method to send move to server
+
+		gameClient.sendMoveMessage(queenNextMove.combinedMove(queenNextMove.getPreviousRowPosition(), queenNextMove.getPreviousColPosition()),
+				queenNextMove.combinedMove(queenNextMove.getRowPosition(), queenNextMove.getColPosition()),
+				nextArrowShot.combinedMove(nextArrowShot.getRowPosition(), nextArrowShot.getColPosition()));
 		
 	}
 	

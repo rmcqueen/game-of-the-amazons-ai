@@ -19,36 +19,36 @@ public class GameRules {
         // If the game is being started for the first time, initialize the board
         if(start) {
             board = new Tile[][] {
-                { null, null, null, new Queen(0, 3, true), null, null, new Queen(0, 6, true), null, null, null },
-					{ null, null, null, null, null, null, null, null, null, null },
-					{ null, null, null, null, null, null, null, null, null,	null },
-					{ new Queen(3, 0, true), null, null, null, null, null, null, null, null, new Queen(3, 9, true) },
-					{ null, null, null, null, null, null, null, null, null,	null },
-					{ null, null, null, null, null, null, null, null, null,	null },
-					{ new Queen(6, 0, false), null, null, null, null, null, null, null, null, new Queen(6, 9, false) },
-					{ null, null, null, null, null, null, null, null, null,	null },
-					{ null, null, null, null, null, null, null, null, null,	null },
-                    { null, null, null, new Queen(9, 3, false), null, null, new Queen(9, 6, false), null, null, null }
+                    { null, null, null, null, new Queen(10, 4, true), null, null, new Queen(10, 7, true), null, null, null },
+					{ null, null, null, null, null, null, null, null, null, null, null },
+					{ null, null, null, null, null, null, null, null, null,	null, null },
+					{ null, new Queen(7, 1, true), null, null, null, null, null, null, null, null, new Queen(7, 10, true) },
+					{ null, null, null, null, null, null, null, null, null,	null, null },
+					{ null, null, null, null, null, null, null, null, null,	null, null },
+					{ null, new Queen(4, 1, false), null, null, null, null, null, null, null, null, new Queen(4, 10, false) },
+					{ null, null, null, null, null, null, null, null, null,	null, null },
+					{ null, null, null, null, null, null, null, null, null,	null, null },
+                    { null, null, null, null, new Queen(1, 4, false), null, null, new Queen(1, 7, false), null, null, null }
             };
 
-            enemy = new Queen[] { (Queen) board[0][3], (Queen) board[0][6], (Queen) board[3][0], (Queen) board[3][9] };
-            friend = new Queen[] { (Queen) board[6][0], (Queen) board[6][9], (Queen) board[9][3], (Queen) board[9][6] };
+            enemy = new Queen[] { (Queen) board[10][4], (Queen) board[10][7], (Queen) board[7][1], (Queen) board[7][10] };
+            friend = new Queen[] { (Queen) board[4][1], (Queen) board[4][10], (Queen) board[1][4], (Queen) board[1][7] };
         }
         else {
             board = new Tile[][] {
-					{ null, null, null, new Queen(0, 3, false), null, null, new Queen(0, 6, false), null, null, null },
-					{ null, null, null, null, null, null, null, null, null,	null },
-					{ null, null, null, null, null, null, null, null, null,	null },
-					{ new Queen(3, 0, false), null, null, null, null, null, null, null, null, new Queen(3, 9, false) },
-					{ null, null, null, null, null, null, null, null, null,	null },
-					{ null, null, null, null, null, null, null, null, null,	null },
-					{ new Queen(6, 0, true), null, null, null, null, null, null, null, null, new Queen(6, 9, true) },
-					{ null, null, null, null, null, null, null, null, null,	null },
-					{ null, null, null, null, null, null, null, null, null,	null },
-					{ null, null, null, new Queen(9, 3, true), null, null,	new Queen(9, 6, true), null, null, null }
+					{ null, null, null, null, new Queen(10, 4, false), null, null, new Queen(10, 7, false), null, null, null },
+					{ null, null, null, null, null, null, null, null, null, null, null },
+					{ null, null, null, null, null, null, null, null, null, null, null },
+					{ null, new Queen(7, 1, false), null, null, null, null, null, null, null, null, new Queen(7, 10, false) },
+					{ null, null, null, null, null, null, null, null, null, null, null },
+					{ null, null, null, null, null, null, null, null, null, null, null },
+					{ null, new Queen(4, 1, true), null, null, null, null, null, null, null, null, new Queen(4, 10, true) },
+					{ null, null, null, null, null, null, null, null, null, null,	null },
+					{ null, null, null, null, null, null, null, null, null, null,	null },
+					{ null, null, null, null, new Queen(1, 4, true), null, null, new Queen(1, 7, true), null, null, null }
                 };
-            enemy = new Queen[] { (Queen) board[6][0], (Queen) board[6][9], (Queen) board[9][3], (Queen) board[9][6] };
-            friend = new Queen[] { (Queen) board[0][3], (Queen) board[0][6], (Queen) board[3][0], (Queen) board[3][9] };
+            enemy = new Queen[] { (Queen) board[10][4], (Queen) board[10][7], (Queen) board[7][1], (Queen) board[7][10] };
+            friend = new Queen[] { (Queen) board[4][1], (Queen) board[4][10], (Queen) board[1][4], (Queen) board[1][7] };
         }
 
         /* Instantiate the ArrayLists for legel arrow shots,
@@ -91,7 +91,7 @@ public class GameRules {
         Queen[] newFriend = new Queen[4];
         Queen[] newEnemy = new Queen[4];
         ArrayList<Arrow> newArrows = new ArrayList<>();
-        for(int i = 0; i < newEnemy.length; i++) {
+        for(int i = 1; i <= newEnemy.length; i++) {
             newFriend[i] = (Queen)friend[i].clone();
         }
 
@@ -122,7 +122,7 @@ public class GameRules {
          */
 
         // Legal moves left
-        for(int i = 1; currentCol - i >= 0; i++) {
+        for(int i = 1; currentCol - i >= 1; i++) {
             if(board[currentRow][currentCol-i] == null) {
                 legalMoves.add(new Queen(currentRow, currentCol-i));
             }
@@ -132,7 +132,7 @@ public class GameRules {
         }
 
         // Legal moves right
-        for(int i = 1; currentCol + i <= 9; i++) {
+        for(int i = 1; currentCol + i <= 10; i++) {
             if(board[currentRow][currentCol+i] == null) {
                 legalMoves.add(new Queen(currentRow, currentCol+i));
             }
@@ -147,7 +147,7 @@ public class GameRules {
          */
 
         // Legal moves up
-        for(int i = 1; currentRow - i >= 0; i++) {
+        for(int i = 1; currentRow - i >= 1; i++) {
             if(board[currentRow-i][currentCol] == null) {
                 legalMoves.add(new Queen(currentRow-i, currentCol));
             }
@@ -157,7 +157,7 @@ public class GameRules {
         }
 
         // Legal moves down
-        for(int i = 0; currentRow + i <= 9; i++) {
+        for(int i = 0; currentRow + i <= 10; i++) {
             if(board[currentRow+i][currentCol-i] == null) {
                 legalMoves.add(new Queen(currentRow+i, currentCol));
             }
@@ -173,7 +173,7 @@ public class GameRules {
 
 
         // Legal moves diagonally left/up
-        for(int i = 1; currentRow - i >= 0 && currentCol - i >= 0; i++) {
+        for(int i = 1; currentRow - i >= 1 && currentCol - i >= 1; i++) {
             if(board[currentRow-i][currentCol-i] == null) {
                 legalMoves.add(new Queen(currentRow-i, currentCol-i));
             }
@@ -183,7 +183,7 @@ public class GameRules {
         }
 
         // Legal moves diagonally left/down
-        for(int i = 1; currentRow + i <= 9 && currentCol - i >= 0; i++) {
+        for(int i = 1; currentRow + i <= 10 && currentCol - i >= 1; i++) {
             if(board[currentRow+i][currentCol-i] == null) {
                 legalMoves.add(new Queen(currentRow+i, currentCol-i));
             }
@@ -193,7 +193,7 @@ public class GameRules {
         }
 
         // Legal moves diagonally right/up
-        for(int i = 1; currentRow - i >= 0 && currentCol + i <= 9; i++) {
+        for(int i = 1; currentRow - i >= 1 && currentCol + i <= 10; i++) {
             if(board[currentRow-i][currentCol+i] == null) {
                 legalMoves.add(new Queen(currentRow-i, currentCol+i));
             }
@@ -203,7 +203,7 @@ public class GameRules {
         }
 
         // Legal moves diagonally right/down
-        for(int i = 1; currentRow + i <= 9 && currentCol + i <= 9; i++) {
+        for(int i = 1; currentRow + i <= 10 && currentCol + i <= 10; i++) {
             if(board[currentRow+i][currentCol+i] == null) {
                 legalMoves.add(new Queen(currentRow+i, currentCol+i));
             }
@@ -232,7 +232,7 @@ public class GameRules {
          */
 
         // Legal moves left
-        for(int i = 1; currentCol - i >= 0; i++) {
+        for(int i = 1; currentCol - i >= 1; i++) {
             if(board[currentRow][currentCol-i] == null) {
                 legalArrowMoves.add(new Arrow(currentRow, currentCol-i));
             }
@@ -242,7 +242,7 @@ public class GameRules {
         }
 
         // Legal moves right
-        for(int i = 1; currentCol + i <= 9; i++) {
+        for(int i = 1; currentCol + i <= 10; i++) {
             if(board[currentRow][currentCol+i] == null) {
                 legalArrowMoves.add(new Arrow(currentRow,currentCol+i));
             }
@@ -256,7 +256,7 @@ public class GameRules {
          */
 
         // Legal moves up
-        for(int i = 1; currentRow - i >= 0; i++) {
+        for(int i = 1; currentRow - i >= 1; i++) {
             if(board[currentRow-i][currentCol] == null) {
                 legalArrowMoves.add(new Arrow(currentRow-i,currentCol));
             }
@@ -266,7 +266,7 @@ public class GameRules {
         }
 
         // Legal moves down
-        for(int i = 1; currentRow + i <= 9; i++) {
+        for(int i = 1; currentRow + i <= 10; i++) {
             if(board[currentRow+i][currentCol] == null) {
                 legalArrowMoves.add(new Arrow(currentRow+i,currentCol));
             }
@@ -280,7 +280,7 @@ public class GameRules {
          */
 
         // Legal moves diagonal left/up
-        for(int i = 1; currentRow - i >= 0 && currentCol - i >= 0; i++) {
+        for(int i = 1; currentRow - i >= 1 && currentCol - i >= 1; i++) {
             if(board[currentRow-i][currentCol-i] == null) {
                 legalArrowMoves.add(new Arrow(currentRow-i,currentCol-i));
             }
@@ -290,7 +290,7 @@ public class GameRules {
         }
 
         // Legal moves diagonal left/down
-        for(int i = 1; currentRow + i <= 9 && currentCol - i >= 0; i++) {
+        for(int i = 1; currentRow + i <= 10 && currentCol - i >= 1; i++) {
             if(board[currentRow+i][currentCol-i] == null) {
                 legalArrowMoves.add(new Arrow(currentRow+i,currentCol-i));
             }
@@ -300,7 +300,7 @@ public class GameRules {
         }
 
         // Legal moves diagonal right/up
-        for(int i = 1; currentRow - i >= 0 && currentCol + i <= 9; i++) {
+        for(int i = 1; currentRow - i >= 1 && currentCol + i <= 10; i++) {
             if(board[currentRow-i][currentCol+i] == null) {
                 legalArrowMoves.add(new Arrow(currentRow-i,currentCol+i));
             }
@@ -310,7 +310,7 @@ public class GameRules {
         }
 
         // Legal moves diagonal right/down
-        for(int i = 1; currentRow + i <= 9 && currentCol + i <= 9; i++) {
+        for(int i = 1; currentRow + i <= 10 && currentCol + i <= 10; i++) {
             if(board[currentRow+i][currentCol+i] == null) {
                 legalArrowMoves.add(new Arrow(currentRow+i,currentCol+i));
             }
@@ -329,40 +329,40 @@ public class GameRules {
             int initialRow = q.getRowPosition();
             int initialCol = q.getColPosition();
             
-            if(initialRow - 1 >= 0 && board[initialRow - 1][initialCol] == null){
+            if(initialRow - 1 >= 1 && board[initialRow - 1][initialCol] == null){
                 enemyMove = true;
                 break;
             }
 
-            if(initialRow + 1 <= 9 && board[initialRow + 1][initialCol] == null){
+            if(initialRow + 1 <= 10 && board[initialRow + 1][initialCol] == null){
                 enemyMove = true;
                 break;
             }
 
-            if(initialCol - 1 >= 0 && board[initialRow][initialCol - 1] == null){
+            if(initialCol - 1 >= 1 && board[initialRow][initialCol - 1] == null){
                 enemyMove = true;
                 break;
             }
-            if(initialCol + 1 <= 9 && board[initialRow][initialCol + 1] == null){
-                enemyMove = true;
-                break;
-            }
-
-            if((initialRow - 1 >= 0 && initialCol - 1 >= 0) && board[initialRow - 1][initialCol - 1] == null){
+            if(initialCol + 1 <= 10 && board[initialRow][initialCol + 1] == null){
                 enemyMove = true;
                 break;
             }
 
-            if((initialRow + 1 <= 9 && initialCol - 1 >= 0) && board[initialRow + 1][initialCol - 1] == null){
+            if((initialRow - 1 >= 1 && initialCol - 1 >= 1) && board[initialRow - 1][initialCol - 1] == null){
                 enemyMove = true;
                 break;
             }
 
-            if((initialRow + 1 <= 9 && initialCol + 1 <= 9) && board[initialRow + 1][initialCol + 1] == null){
+            if((initialRow + 1 <= 10 && initialCol - 1 >= 1) && board[initialRow + 1][initialCol - 1] == null){
                 enemyMove = true;
                 break;
             }
-            if((initialRow - 1 >= 0 && initialCol + 1 <= 9) && board[initialRow - 1][initialCol + 1] == null){
+
+            if((initialRow + 1 <= 10 && initialCol + 1 <= 10) && board[initialRow + 1][initialCol + 1] == null){
+                enemyMove = true;
+                break;
+            }
+            if((initialRow - 1 >= 1 && initialCol + 1 <= 10) && board[initialRow - 1][initialCol + 1] == null){
                 enemyMove = true;
                 break;
             }
@@ -427,8 +427,8 @@ public class GameRules {
      * Reset each board
      */
     private void clearBoard() {
-        for(int i = 0; i <= 9; i++) {
-            for(int j = 0; i <= 9; j++) {
+        for(int i = 1; i <= 10; i++) {
+            for(int j = 0; i <= 10; j++) {
                 board[i][j] = null;
             }
         }

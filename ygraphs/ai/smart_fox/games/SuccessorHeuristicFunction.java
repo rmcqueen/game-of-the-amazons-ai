@@ -27,6 +27,8 @@ public class SuccessorHeuristicFunction {
 				ArrayList<Arrow> numshots = new ArrayList<>();
 
 				Queen[] placeholderBoardQueens = placeHolderBoard.getFriend();
+				if(curQueenMoves.get(j).row == 0 && curQueenMoves.get(j).col == 0)
+					continue;
 				placeholderBoardQueens[i].moveQueen(curQueenMoves.get(j).row, curQueenMoves.get(j).col);
 				//                    Update board
 				placeHolderBoard.updateAfterMove();

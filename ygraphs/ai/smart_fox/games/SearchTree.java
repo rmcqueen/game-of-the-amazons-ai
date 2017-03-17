@@ -124,15 +124,11 @@ public class SearchTree {
         if(qCurrentPos.isOpponent){
             for(Queen Q:root.gameRules.enemy){
                 if(qCurrentPos.getColPosition() == Q.getColPosition() && qCurrentPos.getRowPosition() == Q.getRowPosition())
-                    qCurrentPos.setPreviousRowPosition(qCurrentPos.getRowPosition());
-                    qCurrentPos.setPreviousColPosition(qCurrentPos.getColPosition());
                     Q.moveQueen(qNextPos.getRowPosition(),qNextPos.getColPosition());
             }
         }else{
             for(Queen Q:root.gameRules.friend){
             	if(qCurrentPos.getColPosition() == Q.getColPosition() && qCurrentPos.getRowPosition() == Q.getRowPosition())
-                    qCurrentPos.setPreviousRowPosition(qCurrentPos.getRowPosition());
-                    qCurrentPos.setPreviousColPosition(qCurrentPos.getColPosition());
                     Q.moveQueen(qNextPos.getRowPosition(),qNextPos.getColPosition());
             }
         }
@@ -144,7 +140,7 @@ public class SearchTree {
     	this.expandFrontier();
    	 	this.performAlphaBeta();
         SearchTreeNode bestMove = this.getMoveAfterAlphaBeta();
-        this.makeMoveOnRoot(bestMove.getParent().getQueen(), bestMove.getQueen(),bestMove.getArrowShot());
+        this.makeMoveOnRoot(bestMove.getParent().getQueen(), bestMove.getQueen(), bestMove.getArrowShot());
         return bestMove;
     }
     

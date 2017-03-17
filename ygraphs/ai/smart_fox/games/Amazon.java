@@ -105,27 +105,21 @@ public class Amazon extends GamePlayer{
 		if(ourBoard.getLegalMoves(qCurrent).size() > 0){
 			qCurrent.moveQueen(qnew.get(0), qnew.get(1));
 			if(ourBoard.getArrowMoves(arrow.get(0), arrow.get(1)).size() > 0){
+				System.out.println("adding shot");
 				ourBoard.addArrow(arrowShot);
 			}
 		} else {
 			System.out.println("INVALID MOVE !");
 		}
 		
-		// TO DO: need to initialize the SearchTree by building the gameTree based on the board
-		System.out.print("Making Move");
+		System.out.println("Making Move");
 		search = new SearchTree(new SearchTreeNode(ourBoard));
-		// TO DO: need to figure out how to build the gameTree from the current legal moves
-
 		
 		SearchTreeNode ourBestMove = search.makeMove();
         Queen queenNextMove = ourBestMove.getQueen();
         Arrow nextArrowShot = ourBestMove.getArrowShot();
-        // TO DO: call a method to update the board graphics
-        // call board.markPosition
-
         board.markPosition(queenNextMove.getPreviousRowPosition(), queenNextMove.getPreviousColPosition(), nextArrowShot.getRowPosition(), nextArrowShot.getColPosition(),
                 queenNextMove.getRowPosition(), queenNextMove.getColPosition(), false);
-        // TO DO: call a method to send move to server
 
 		gameClient.sendMoveMessage(queenNextMove.combinedMove(queenNextMove.getPreviousRowPosition(), queenNextMove.getPreviousColPosition()),
 				queenNextMove.combinedMove(queenNextMove.getRowPosition(), queenNextMove.getColPosition()),
@@ -168,7 +162,7 @@ public class Amazon extends GamePlayer{
 	    guiFrame = new JFrame();
 		   
 		guiFrame.setSize(800, 600);
-		guiFrame.setTitle("Game of the Amazons (COSC 322, UBCO)");	
+		guiFrame.setTitle("Game of the Amazons (COSC 322, UBCO) User: " + this.userName());
 		
 		guiFrame.setLocation(200, 200);
 		guiFrame.setVisible(true);
@@ -405,8 +399,8 @@ public class Amazon extends GamePlayer{
      * @param args
      */
 	public static void main(String[] args) { 
-		//Amazon game = new Amazon("yong.gao", "cosc322");
-        Amazon game2 = new Amazon("yong.gao", "cosc322");
+		Amazon game = new Amazon("yong.gao", "cosc322");
+        Amazon game2 = new Amazon("test", "cosc322");
 		//Amazon game = new Amazon(args[0], args[1]);
     }
 	

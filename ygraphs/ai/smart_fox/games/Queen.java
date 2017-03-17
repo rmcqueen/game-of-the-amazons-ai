@@ -1,8 +1,8 @@
 package ygraphs.ai.smart_fox.games;
 
 public class Queen extends Tile implements Cloneable{
-	private int currentRow;
-    private int currentCol;
+	private int previousRow;
+    private int previousCol;
 
 	public Queen clone() throws CloneNotSupportedException{
         return (Queen) super.clone();
@@ -42,22 +42,24 @@ public class Queen extends Tile implements Cloneable{
     }
 
     public void setPreviousRowPosition(int row) {
-        this.currentRow = row;
+        this.previousRow = row;
     }
 
     public void setPreviousColPosition(int col) {
-        this.currentCol = col;
+        this.previousCol = col;
     }
 
     public int getPreviousRowPosition() {
-        return this.currentRow;
+        return this.previousRow;
     }
 
     public int getPreviousColPosition() {
-        return this.currentCol;
+        return this.previousCol;
     }
 
     public void moveQueen(int row, int col) {
+        setPreviousRowPosition(super.row);
+        setPreviousColPosition(super.col);
         super.row = row;
         super.col = col;
     }

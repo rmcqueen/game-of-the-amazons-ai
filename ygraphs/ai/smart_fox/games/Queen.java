@@ -21,6 +21,8 @@ public class Queen extends Tile implements Cloneable{
     
     public Queen(int x, int y,boolean isOpponent) {
     	super(x,y);
+        this.previousRow = x;
+        this.previousCol = y;
     	this.isOpponent = isOpponent;
     }
 

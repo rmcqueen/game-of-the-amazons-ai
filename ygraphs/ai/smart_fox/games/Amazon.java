@@ -34,8 +34,7 @@ public class Amazon extends GamePlayer{
 	
 	   this.usrName = name;		       	   
 	   setupGUI();       
-                     
-	   ourBoard = new GameRules(true);
+
        connectToServer(name, passwd);        
 	}
 	
@@ -74,7 +73,11 @@ public class Amazon extends GamePlayer{
 			
 			if(((String) msgDetails.get("player-black")).equals(this.userName())){
 				System.out.println("Game State: " +  msgDetails.get("player-black"));
+                ourBoard = new GameRules(true);
 			}
+			else {
+                ourBoard = new GameRules(false);
+            }
 			
 		}
 		else if(messageType.equals(GameMessage.GAME_ACTION_MOVE)){
@@ -234,20 +237,32 @@ public class Amazon extends GamePlayer{
 		}
 		
 		
-		public void init(boolean isPlayerA){
+		public void init(boolean isPlayerA) {
             String tagB = BoardGameModel.POS_MARKED_BLACK;
             String tagW = BoardGameModel.POS_MARKED_WHITE;
+            if (isPlayerA) {
+                gameModel.gameBoard[1][4] = tagW;
+                gameModel.gameBoard[1][7] = tagW;
+                gameModel.gameBoard[3][1] = tagW;
+                gameModel.gameBoard[3][10] = tagW;
 
-	        gameModel.gameBoard[1][4] = tagW;
-	        gameModel.gameBoard[1][7] = tagW;
-	        gameModel.gameBoard[3][1] = tagW;
-	        gameModel.gameBoard[3][10] = tagW;
+                gameModel.gameBoard[8][1] = tagB;
+                gameModel.gameBoard[8][10] = tagB;
+                gameModel.gameBoard[10][4] = tagB;
+                gameModel.gameBoard[10][7] = tagB;
+            }
+            else {
+                gameModel.gameBoard[1][4] = tagB;
+                gameModel.gameBoard[1][7] = tagB;
+                gameModel.gameBoard[3][1] = tagB;
+                gameModel.gameBoard[3][10] = tagB;
 
-	        gameModel.gameBoard[8][1] = tagB;
-	        gameModel.gameBoard[8][10] = tagB;
-	        gameModel.gameBoard[10][4] = tagB;
-	        gameModel.gameBoard[10][7] = tagB;
-		}
+                gameModel.gameBoard[8][1] = tagW;
+                gameModel.gameBoard[8][10] = tagW;
+                gameModel.gameBoard[10][4] = tagW;
+                gameModel.gameBoard[10][7] = tagW;
+            }
+        }
 		
 		
 		/**
@@ -316,7 +331,7 @@ public class Amazon extends GamePlayer{
 		
 		//JComponent method
 		public Dimension getPreferredSize() {
-		        return new Dimension(500,500);
+		        return new Dimension(600,800);
 		 }
 
 		/**
@@ -400,7 +415,7 @@ public class Amazon extends GamePlayer{
      */
 	public static void main(String[] args) { 
 		Amazon game = new Amazon("yong.gao", "cosc322");
-        Amazon game2 = new Amazon("test", "cosc322");
+        //Amazon game2 = new Amazon("test", "cosc322");
 		//Amazon game = new Amazon(args[0], args[1]);
     }
 	

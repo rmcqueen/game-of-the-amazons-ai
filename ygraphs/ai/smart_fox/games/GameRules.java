@@ -94,6 +94,7 @@ public class GameRules {
         ArrayList<Arrow> newArrows = new ArrayList<>();
         for(int i = 1; i < newEnemy.length; i++) {
             newFriend[i] = friend[i].clone();
+            newEnemy[i] = enemy[i].clone();
         }
 
         if(arrows != null) {
@@ -443,7 +444,8 @@ public class GameRules {
 
         // Reset the position of each friendly queen
         for(Queen q: friend) {
-            System.out.println(board[1][7]);
+            System.out.println("Row: " + q.getRowPosition() +  " Col: " + q.getColPosition());
+            System.out.println("Previous Row: " + q.getPreviousRowPosition() + " Col: " + q.getPreviousColPosition());
             board[q.getRowPosition()][q.getColPosition()] = q;
         }
 

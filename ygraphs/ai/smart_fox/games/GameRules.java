@@ -160,7 +160,6 @@ public class GameRules {
 
         // Legal moves down
         for(int i = 0; currentRow + i <= 10; i++) {
-            System.out.println(currentCol);
             if(board[currentRow+i][currentCol-i] == null) {
                 legalMoves.add(new Queen(currentRow+i, currentCol));
             }
@@ -390,7 +389,7 @@ public class GameRules {
         return legalQueenMoves;
     }
 
-    private void updateLegalQueenMoves() {
+    public void updateLegalQueenMoves() {
         legalQueenMoves.clear();
         for(Queen q: friend) {
             legalQueenMoves.addAll(getLegalMoves(q));
@@ -445,8 +444,6 @@ public class GameRules {
 
         // Reset the position of each friendly queen
         for(Queen q: friend) {
-            System.out.println("Row: " + q.getRowPosition() +  " Col: " + q.getColPosition());
-            System.out.println("Previous Row: " + q.getPreviousRowPosition() + " Col: " + q.getPreviousColPosition());
             board[q.getRowPosition()][q.getColPosition()] = q;
         }
 

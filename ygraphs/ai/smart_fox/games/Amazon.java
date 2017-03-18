@@ -92,41 +92,54 @@ public class Amazon extends GamePlayer{
     
 	//handle the event that the opponent makes a move. 
 	private void handleOpponentMove(Map<String, Object> msgDetails) throws CloneNotSupportedException{
-		// TO DO: place timer here
-		
+        boolean gameOver = false;
 		System.out.println("OpponentMove(): " + msgDetails.get(AmazonsGameMessage.QUEEN_POS_CURR));
 		ArrayList<Integer> qcurr = (ArrayList<Integer>) msgDetails.get(AmazonsGameMessage.QUEEN_POS_CURR);
 		ArrayList<Integer> qnew = (ArrayList<Integer>) msgDetails.get(AmazonsGameMessage.Queen_POS_NEXT);
 		ArrayList<Integer> arrow = (ArrayList<Integer>) msgDetails.get(AmazonsGameMessage.ARROW_POS);
-		
-		board.markPosition(qnew.get(0), qnew.get(1), arrow.get(0), arrow.get(1), 
-				  qcurr.get(0), qcurr.get(1), true);
-		
-		Queen qCurrent = new Queen(qcurr.get(0), qcurr.get(1), true);
-		Arrow arrowShot = new Arrow(arrow.get(0), arrow.get(1));
-		
-		if(ourBoard.getLegalMoves(qCurrent).size() > 0){
-			qCurrent.moveQueen(qnew.get(0), qnew.get(1));
-			if(ourBoard.getArrowMoves(arrow.get(0), arrow.get(1)).size() > 0){
-				System.out.println("adding shot");
-				ourBoard.addArrow(arrowShot);
-			}
-		} else {
-			System.out.println("INVALID MOVE !");
-		}
-		
-		System.out.println("Making Move");
+        // Enemy move
+        board.markPosition(qnew.get(0), qnew.get(1), arrow.get(0), arrow.get(1),
+                qcurr.get(0), qcurr.get(1), true);
+        Queen qCurrent = new Queen(qcurr.get(0), qcurr.get(1), true);
+        Arrow arrowShot = new Arrow(arrow.get(0), arrow.get(1));
 		search = new SearchTree(new SearchTreeNode(ourBoard));
-		
-		SearchTreeNode ourBestMove = search.makeMove();
+        search.makeMoveOnRoot(qCurrent, arrowShot);
+        ourBoard.canEnemyMove();
+        ourBoard.updateLegalQueenMoves();
+
+        // Our move
+        SearchTreeNode ourBestMove = search.makeMove();
         Queen queenNextMove = ourBestMove.getQueen();
         Arrow nextArrowShot = ourBestMove.getArrowShot();
         board.markPosition(queenNextMove.getPreviousRowPosition(), queenNextMove.getPreviousColPosition(), nextArrowShot.getRowPosition(), nextArrowShot.getColPosition(),
                 queenNextMove.getRowPosition(), queenNextMove.getColPosition(), false);
 
-		gameClient.sendMoveMessage(queenNextMove.combinedMove(queenNextMove.getPreviousRowPosition(), queenNextMove.getPreviousColPosition()),
-				queenNextMove.combinedMove(queenNextMove.getRowPosition(), queenNextMove.getColPosition()),
-				nextArrowShot.combinedMove(nextArrowShot.getRowPosition(), nextArrowShot.getColPosition()));
+        gameClient.sendMoveMessage(queenNextMove.combinedMove(queenNextMove.getPreviousRowPosition(), queenNextMove.getPreviousColPosition()),
+                queenNextMove.combinedMove(queenNextMove.getRowPosition(), queenNextMove.getColPosition()),
+                nextArrowShot.combinedMove(nextArrowShot.getRowPosition(), nextArrowShot.getColPosition()));
+        if(ourBoard.getLegalMoves().size() > 0){
+            qCurrent.moveQueen(qnew.get(0), qnew.get(1));
+            if(ourBoard.getLegalArrowMoves().size() > 0){
+                System.out.println("adding shot");
+                ourBoard.addArrow(arrowShot);
+            }
+        } else {
+            System.out.println("INVALID MOVE !");
+        }
+
+        gameOver = ourBoard.goalTest();
+
+        if(gameOver) {
+            System.out.println("\n THE GAME IS NOW OVER \n");
+        }
+
+
+
+
+
+
+
+
 		
 	}
 	
@@ -233,7 +246,7 @@ public class Amazon extends GamePlayer{
 	        //if(!game.isGamebot){
 	        	addMouseListener(new  GameEventHandler());
 	        //}
-	        init(true);
+	        init(false);
 		}
 		
 		
@@ -416,7 +429,7 @@ public class Amazon extends GamePlayer{
      */
 	public static void main(String[] args) { 
 		Amazon game = new Amazon("yong.gao", "cosc322");
-        //Amazon game2 = new Amazon("test", "cosc322");
+        Amazon game2 = new Amazon("test", "cosc322");
 		//Amazon game = new Amazon(args[0], args[1]);
     }
 	

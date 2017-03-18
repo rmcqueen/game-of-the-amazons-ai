@@ -160,6 +160,7 @@ public class GameRules {
 
         // Legal moves down
         for(int i = 0; currentRow + i <= 10; i++) {
+            System.out.println(currentCol);
             if(board[currentRow+i][currentCol-i] == null) {
                 legalMoves.add(new Queen(currentRow+i, currentCol));
             }

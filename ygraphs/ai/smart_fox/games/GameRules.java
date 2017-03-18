@@ -16,7 +16,7 @@ public class GameRules {
 
      */
     protected GameRules(boolean start) {
-        // If the game is being started for the first time, initialize the board
+        // If we are the black-player, set white pieces to true to indicate they are our opponent
         if(start) {
             board = new Tile[][] {
                     { null, null, null, null, null, null, null, null, null, null, null },
@@ -34,6 +34,8 @@ public class GameRules {
             enemy = new Queen[] { (Queen) board[10][4], (Queen) board[10][7], (Queen) board[7][1], (Queen) board[7][10] };
             friend = new Queen[] { (Queen) board[4][1], (Queen) board[4][10], (Queen) board[1][4], (Queen) board[1][7] };
         }
+
+        // We are the white-player, set the white pieces to false to indicate they are ours
         else {
             board = new Tile[][] {
                     { null, null, null, null, null, null, null, null, null, null, null },

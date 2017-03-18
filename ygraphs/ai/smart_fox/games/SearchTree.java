@@ -140,7 +140,7 @@ public class SearchTree {
     	this.expandFrontier();
    	 	this.performAlphaBeta();
         SearchTreeNode bestMove = this.getMoveAfterAlphaBeta();
-        this.makeMoveOnRoot( bestMove.getQueen(), bestMove.getArrowShot());
+        this.makeMoveOnRoot(bestMove.getQueen(), bestMove.getArrowShot());
         return bestMove;
     }
     

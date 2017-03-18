@@ -71,12 +71,19 @@ public class Amazon extends GamePlayer{
 		
 		if(messageType.equals(GameMessage.GAME_ACTION_START)){	 
 			
-			if(((String) msgDetails.get("player-black")).equals(this.userName())){
-				System.out.println("Game State: " +  msgDetails.get("player-black"));
+			if(((String) msgDetails.get("player-white")).equals(this.userName())){
+				System.out.println("Game State: " +  msgDetails.get("player-white"));
                 ourBoard = new GameRules(false);
-			}
+                search = new SearchTree(new SearchTreeNode(ourBoard));
+                try {
+                    search.makeMove();
+                } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
+                }
+            }
 			else {
                 ourBoard = new GameRules(true);
+                search = new SearchTree(new SearchTreeNode(ourBoard));
             }
 			
 		}
@@ -97,26 +104,32 @@ public class Amazon extends GamePlayer{
 		ArrayList<Integer> qcurr = (ArrayList<Integer>) msgDetails.get(AmazonsGameMessage.QUEEN_POS_CURR);
 		ArrayList<Integer> qnew = (ArrayList<Integer>) msgDetails.get(AmazonsGameMessage.Queen_POS_NEXT);
 		ArrayList<Integer> arrow = (ArrayList<Integer>) msgDetails.get(AmazonsGameMessage.ARROW_POS);
+
         // Enemy move
         board.markPosition(qnew.get(0), qnew.get(1), arrow.get(0), arrow.get(1),
                 qcurr.get(0), qcurr.get(1), true);
         Queen qCurrent = new Queen(qcurr.get(0), qcurr.get(1), true);
         Arrow arrowShot = new Arrow(arrow.get(0), arrow.get(1));
-		search = new SearchTree(new SearchTreeNode(ourBoard));
         search.makeMoveOnRoot(qCurrent, arrowShot);
         ourBoard.canEnemyMove();
         ourBoard.updateLegalQueenMoves();
 
+        // Check if we're at a goal node
+        gameOver = ourBoard.goalTest();
+
+        if(gameOver) {
+            System.out.println("\n THE GAME IS NOW OVER \n");
+        }
+
+        search.makeMove();
         // Our move
         SearchTreeNode ourBestMove = search.makeMove();
         Queen queenNextMove = ourBestMove.getQueen();
         Arrow nextArrowShot = ourBestMove.getArrowShot();
-        board.markPosition(queenNextMove.getPreviousRowPosition(), queenNextMove.getPreviousColPosition(), nextArrowShot.getRowPosition(), nextArrowShot.getColPosition(),
-                queenNextMove.getRowPosition(), queenNextMove.getColPosition(), false);
+        ourBoard.canEnemyMove();;
+        ourBoard.updateLegalQueenMoves();
 
-        gameClient.sendMoveMessage(queenNextMove.combinedMove(queenNextMove.getPreviousRowPosition(), queenNextMove.getPreviousColPosition()),
-                queenNextMove.combinedMove(queenNextMove.getRowPosition(), queenNextMove.getColPosition()),
-                nextArrowShot.combinedMove(nextArrowShot.getRowPosition(), nextArrowShot.getColPosition()));
+        // Make sure we have moves
         if(ourBoard.getLegalMoves().size() > 0){
             qCurrent.moveQueen(qnew.get(0), qnew.get(1));
             if(ourBoard.getLegalArrowMoves().size() > 0){
@@ -133,14 +146,11 @@ public class Amazon extends GamePlayer{
             System.out.println("\n THE GAME IS NOW OVER \n");
         }
 
-
-
-
-
-
-
-
-		
+        board.markPosition(queenNextMove.getPreviousRowPosition(), queenNextMove.getPreviousColPosition(), nextArrowShot.getRowPosition(), nextArrowShot.getColPosition(),
+                queenNextMove.getRowPosition(), queenNextMove.getColPosition(), false);
+        gameClient.sendMoveMessage(queenNextMove.combinedMove(queenNextMove.getPreviousRowPosition(), queenNextMove.getPreviousColPosition()),
+                queenNextMove.combinedMove(queenNextMove.getRowPosition(), queenNextMove.getColPosition()),
+                nextArrowShot.combinedMove(nextArrowShot.getRowPosition(), nextArrowShot.getColPosition()));
 	}
 	
 	
@@ -237,8 +247,7 @@ public class Amazon extends GamePlayer{
 		Amazon game = null; 
 	    private BoardGameModel gameModel = null;
 		
-		boolean playerAMove;
-		
+
 		public GameBoard(Amazon game){
 	        this.game = game;
 	        gameModel = new BoardGameModel(this.rows + 1, this.cols + 1);
@@ -253,29 +262,15 @@ public class Amazon extends GamePlayer{
 		public void init(boolean isPlayerA) {
             String tagB = BoardGameModel.POS_MARKED_BLACK;
             String tagW = BoardGameModel.POS_MARKED_WHITE;
-//            if (isPlayerA) {
-//                gameModel.gameBoard[1][4] = tagW;
-//                gameModel.gameBoard[1][7] = tagW;
-//                gameModel.gameBoard[3][1] = tagW;
-//                gameModel.gameBoard[3][10] = tagW;
-//
-//                gameModel.gameBoard[8][1] = tagB;
-//                gameModel.gameBoard[8][10] = tagB;
-//                gameModel.gameBoard[10][4] = tagB;
-//                gameModel.gameBoard[10][7] = tagB;
-//
-//            }
-//            else {
-                gameModel.gameBoard[1][4] = tagB;
-                gameModel.gameBoard[1][7] = tagB;
-                gameModel.gameBoard[3][1] = tagB;
-                gameModel.gameBoard[3][10] = tagB;
+            gameModel.gameBoard[8][1] = tagW;
+            gameModel.gameBoard[8][10] = tagW;
+            gameModel.gameBoard[10][4] = tagW;
+            gameModel.gameBoard[10][7] = tagW;
+            gameModel.gameBoard[1][4] = tagB;
+            gameModel.gameBoard[1][7] = tagB;
+            gameModel.gameBoard[3][1] = tagB;
+            gameModel.gameBoard[3][10] = tagB;
 
-                gameModel.gameBoard[8][1] = tagW;
-                gameModel.gameBoard[8][10] = tagW;
-                gameModel.gameBoard[10][4] = tagW;
-                gameModel.gameBoard[10][7] = tagW;
-            //}
         }
 		
 		
@@ -429,7 +424,7 @@ public class Amazon extends GamePlayer{
      */
 	public static void main(String[] args) { 
 		Amazon game = new Amazon("yong.gao", "cosc322");
-        Amazon game2 = new Amazon("test", "cosc322");
+        //Amazon game2 = new Amazon("test", "cosc322");
 		//Amazon game = new Amazon(args[0], args[1]);
     }
 	

@@ -92,7 +92,7 @@ public class GameRules {
         Queen[] newFriend = new Queen[4];
         Queen[] newEnemy = new Queen[4];
         ArrayList<Arrow> newArrows = new ArrayList<>();
-        for(int i = 1; i < newEnemy.length; i++) {
+        for(int i = 0; i < newEnemy.length; i++) {
             newFriend[i] = friend[i].clone();
             newEnemy[i] = enemy[i].clone();
         }

@@ -123,13 +123,13 @@ public class SearchTree {
         //makes a move for the queen ours or theirs
         if(qCurrentPos.isOpponent){
             for(Queen Q:root.gameRules.enemy){
-                if(qCurrentPos.getColPosition() == Q.getColPosition() && qCurrentPos.getRowPosition() == Q.getRowPosition())
-                    Q.moveQueen(qCurrentPos.getRowPosition(),qCurrentPos.getColPosition());
+                if(qCurrentPos.getPreviousColPosition() == Q.getColPosition() && qCurrentPos.getPreviousRowPosition() == Q.getRowPosition())
+                    Q.moveQueen(qCurrentPos.getRowPosition(), qCurrentPos.getColPosition());
             }
-        }else{
+        } else{
             for(Queen Q:root.gameRules.friend){
-            	if(qCurrentPos.getColPosition() == Q.getColPosition() && qCurrentPos.getRowPosition() == Q.getRowPosition())
-                    Q.moveQueen(qCurrentPos.getRowPosition(),qCurrentPos.getColPosition());
+            	if(qCurrentPos.getPreviousColPosition() == Q.getColPosition() && qCurrentPos.getPreviousRowPosition() == Q.getRowPosition())
+                    Q.moveQueen(qCurrentPos.getRowPosition(), qCurrentPos.getColPosition());
             }
         }
         root.gameRules.updateAfterMove();

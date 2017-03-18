@@ -121,19 +121,19 @@ public class Amazon extends GamePlayer{
             System.out.println("\n THE GAME IS NOW OVER \n");
         }
 
-        search.makeMove();
         // Our move
         SearchTreeNode ourBestMove = search.makeMove();
-        Queen queenNextMove = ourBestMove.getQueen();
+        Queen ourNextMove = ourBestMove.getQueen();
         Arrow nextArrowShot = ourBestMove.getArrowShot();
-        ourBoard.canEnemyMove();;
+        ourBoard.canEnemyMove();
         ourBoard.updateLegalQueenMoves();
 
+        System.out.println("\nPrevious Row: " + ourNextMove.getPreviousRowPosition() + " Previous Col: " + ourNextMove.getPreviousColPosition());
+        System.out.println("Row: " + ourNextMove.getRowPosition() + " Col: " + ourNextMove.getColPosition() + "\n");
         // Make sure we have moves
-        if(ourBoard.getLegalMoves().size() > 0){
-            qCurrent.moveQueen(qnew.get(0), qnew.get(1));
+        if(ourBoard.getLegalMoves().size() > 0) {
+            ourNextMove.moveQueen(ourNextMove.getRowPosition(), ourNextMove.getColPosition());
             if(ourBoard.getLegalArrowMoves().size() > 0){
-                System.out.println("adding shot");
                 ourBoard.addArrow(arrowShot);
             }
         } else {
@@ -141,15 +141,14 @@ public class Amazon extends GamePlayer{
         }
 
         gameOver = ourBoard.goalTest();
-
         if(gameOver) {
             System.out.println("\n THE GAME IS NOW OVER \n");
         }
 
-        board.markPosition(queenNextMove.getPreviousRowPosition(), queenNextMove.getPreviousColPosition(), nextArrowShot.getRowPosition(), nextArrowShot.getColPosition(),
-                queenNextMove.getRowPosition(), queenNextMove.getColPosition(), false);
-        gameClient.sendMoveMessage(queenNextMove.combinedMove(queenNextMove.getPreviousRowPosition(), queenNextMove.getPreviousColPosition()),
-                queenNextMove.combinedMove(queenNextMove.getRowPosition(), queenNextMove.getColPosition()),
+        board.markPosition(ourNextMove.getRowPosition(), ourNextMove.getColPosition(), nextArrowShot.getRowPosition(), nextArrowShot.getColPosition(),
+                ourNextMove.getPreviousRowPosition(), ourNextMove.getPreviousColPosition(), false);
+        gameClient.sendMoveMessage(ourNextMove.combinedMove(ourNextMove.getPreviousRowPosition(), ourNextMove.getPreviousColPosition()),
+                ourNextMove.combinedMove(ourNextMove.getRowPosition(), ourNextMove.getColPosition()),
                 nextArrowShot.combinedMove(nextArrowShot.getRowPosition(), nextArrowShot.getColPosition()));
 	}
 	
@@ -255,11 +254,11 @@ public class Amazon extends GamePlayer{
 	        //if(!game.isGamebot){
 	        	addMouseListener(new  GameEventHandler());
 	        //}
-	        init(false);
+	        init();
 		}
 		
 		
-		public void init(boolean isPlayerA) {
+		public void init() {
             String tagB = BoardGameModel.POS_MARKED_BLACK;
             String tagW = BoardGameModel.POS_MARKED_WHITE;
             gameModel.gameBoard[8][1] = tagW;
@@ -423,8 +422,8 @@ public class Amazon extends GamePlayer{
      * @param args
      */
 	public static void main(String[] args) { 
-		Amazon game = new Amazon("yong.gao", "cosc322");
-        //Amazon game2 = new Amazon("test", "cosc322");
+		Amazon game = new Amazon("rm", "cosc322");
+        Amazon game2 = new Amazon("test", "cosc322");
 		//Amazon game = new Amazon(args[0], args[1]);
     }
 	

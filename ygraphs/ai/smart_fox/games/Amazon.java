@@ -76,7 +76,16 @@ public class Amazon extends GamePlayer{
                 ourBoard = new GameRules(false);
                 search = new SearchTree(new SearchTreeNode(ourBoard));
                 try {
-                    search.makeMove();
+                    SearchTreeNode ourBestMove = search.makeMove();
+                    Queen ourNextMove = ourBestMove.getQueen();
+                    Arrow nextArrowShot = ourBestMove.getArrowShot();
+                    ourBoard.canEnemyMove();
+                    ourBoard.updateLegalQueenMoves();
+                    board.markPosition(ourNextMove.getRowPosition(), ourNextMove.getColPosition(), nextArrowShot.getRowPosition(), nextArrowShot.getColPosition(),
+                            ourNextMove.getPreviousRowPosition(), ourNextMove.getPreviousColPosition(), false);
+                    gameClient.sendMoveMessage(ourNextMove.combinedMove(ourNextMove.getPreviousRowPosition(), ourNextMove.getPreviousColPosition()),
+                            ourNextMove.combinedMove(ourNextMove.getRowPosition(), ourNextMove.getColPosition()),
+                            nextArrowShot.combinedMove(nextArrowShot.getRowPosition(), nextArrowShot.getColPosition()));
                 } catch (CloneNotSupportedException e) {
                     e.printStackTrace();
                 }
@@ -127,9 +136,6 @@ public class Amazon extends GamePlayer{
         Arrow nextArrowShot = ourBestMove.getArrowShot();
         ourBoard.canEnemyMove();
         ourBoard.updateLegalQueenMoves();
-
-        System.out.println("\nPrevious Row: " + ourNextMove.getPreviousRowPosition() + " Previous Col: " + ourNextMove.getPreviousColPosition());
-        System.out.println("Row: " + ourNextMove.getRowPosition() + " Col: " + ourNextMove.getColPosition() + "\n");
         // Make sure we have moves
         if(ourBoard.getLegalMoves().size() > 0) {
             ourNextMove.moveQueen(ourNextMove.getRowPosition(), ourNextMove.getColPosition());

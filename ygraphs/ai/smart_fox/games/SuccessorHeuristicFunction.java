@@ -98,6 +98,8 @@ public class SuccessorHeuristicFunction {
                 // Temp board with moved queen
                 GameRules tempBoard = state.deepCopy();
                 // System.out.println("Deep Copy is: \n"+tempBoard.toString());
+                if(currentQueenMoves.get(j).row == 0 && currentQueenMoves.get(j).col == 0)
+					continue;
                 tempBoard.friend[i].row = currentQueenMoves.get(j).row;
                 tempBoard.friend[i].col = currentQueenMoves.get(j).col;
                 tempBoard.updateAfterMove();
@@ -117,7 +119,7 @@ public class SuccessorHeuristicFunction {
                     newState.updateAfterMove();
                     stateCount++;
 
-                    SearchTreeNode S = new SearchTreeNode(newState, currentQueenMoves.get(k), legalArrowMoves.get(k), 0);
+                    SearchTreeNode S = new SearchTreeNode(newState, currentQueenMoves.get(j), legalArrowMoves.get(k), 0);
                     successors.add(S);
                     count++;
                 }

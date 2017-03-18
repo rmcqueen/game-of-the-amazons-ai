@@ -5,16 +5,24 @@ import java.util.Queue;
 
 public class minDisHeur
 {
-	public minDisHeur() {}
-	  
-	  static Tile[][] board = null;
+	Tile[][] board = null;
 	  GameRules bl = null;
 	  Queen[] queens = new Queen[8];
-	  static int ownedByThem = 0;
-	  static int ownedByUs = 0;
+	  public int ownedByThem = 0;
+	  public int ownedByUs = 0;
+	  
+	public minDisHeur() 
+	{
+		board = null;
+		bl = null;
+		queens = new Queen[8];
+		ownedByThem = 0;
+		ownedByUs = 0;
+	}
 	  
 	  public void calculate(GameRules b) {
 	      bl = b;
+	      board = bl.board;
 	      // queens <- all queens (friendly and enemy)
 	      for(int i=0; i<8; i++) {
 	          if(i<4) {
@@ -40,7 +48,7 @@ public class minDisHeur
 	  
 
 
-	  public static void findNearestQueen(int row, int col)
+	  public void findNearestQueen(int row, int col)
 	  {
 		boolean[][] checked = new boolean[11][11];
 	    checked[row][col] = true;
@@ -96,9 +104,9 @@ public class minDisHeur
 	  }
 	  
 
-	  private static Queue<Tile> addQueenMoves(Queue<Tile> q, int curRow, int curCol, boolean[][] checked)
+	  public Queue<Tile> addQueenMoves(Queue<Tile> q, int curRow, int curCol, boolean[][] checked)
 	  {
-	    for (int i = 1; curCol - i >= 0; i++) {
+	    for (int i = 1; curCol - i >= 1; i++) {
 	      Tile lData = new Tile(curRow, curCol - 1);
 	      if (checked[curRow][(curCol - 1)] == false) {
 	        q.add(lData);
@@ -108,7 +116,7 @@ public class minDisHeur
 	      }
 	    }
 	    
-	    for (int i = 1; (curRow - i >= 0) && (curCol - i >= 0); i++) {
+	    for (int i = 1; (curRow - i >= 1) && (curCol - i >= 1); i++) {
 	      Tile lData = new Tile(curRow - i, curCol - i);
 	      if (checked[(curRow - i)][(curCol - i)] == false) {
 	        q.add(lData);
@@ -118,7 +126,7 @@ public class minDisHeur
 	      }
 	    }
 	    
-	    for (int i = 1; curRow - i >= 0; i++) {
+	    for (int i = 1; curRow - i >= 1; i++) {
 	      Tile lData = new Tile(curRow - i, curCol);
 	      if (checked[(curRow - i)][curCol] == false) {
 	        q.add(lData);
@@ -128,7 +136,7 @@ public class minDisHeur
 	      }
 	    }
 	    
-	    for (int i = 1; (curRow - i >= 0) && (curCol + i <= 9); i++) {
+	    for (int i = 1; (curRow - i >= 1) && (curCol + i <= 10); i++) {
 	      Tile lData = new Tile(curRow - i, curCol + i);
 	      if (checked[(curRow - i)][(curCol + i)] == false) {
 	        q.add(lData);
@@ -138,17 +146,18 @@ public class minDisHeur
 	      }
 	    }
 	    
-	    for (int i = 1; curCol + i <= 9; i++) {
+	    for (int i = 1; curCol + i <= 10; i++) {
 	      Tile lData = new Tile(curRow, curCol + i);
 	      if (checked[curRow][(curCol + i)] == false) {
 	        q.add(lData);
 	      }
+	      //System.out.println("Cur Col = " + curCol+" Cur Row = "+curRow+" I: "+i+" Board:"+board);
 	      if (board[curRow][(curCol + i)] != null) {
 	        break;
 	      }
 	    }
 	    
-	    for (int i = 1; (curRow + i <= 9) && (curCol + i <= 9); i++) {
+	    for (int i = 1; (curRow + i <= 10) && (curCol + i <= 10); i++) {
 	      Tile lData = new Tile(curRow + i, curCol + i);
 	      if (checked[(curRow + i)][(curCol + i)] == false) {
 	        q.add(lData);
@@ -158,7 +167,7 @@ public class minDisHeur
 	      }
 	    }
 	    
-	    for (int i = 1; curRow + i <= 9; i++) {
+	    for (int i = 1; curRow + i <= 10; i++) {
 	      Tile lData = new Tile(curRow + i, curCol);
 	      if (checked[(curRow + i)][curCol] == false) {
 	        q.add(lData);
@@ -168,7 +177,7 @@ public class minDisHeur
 	      }
 	    }
 	    
-	    for (int i = 1; (curRow + i <= 9) && (curCol - i >= 0); i++) {
+	    for (int i = 1; (curRow + i <= 10) && (curCol - i >= 1); i++) {
 	      Tile lData = new Tile(curRow + i, curCol - i);
 	      if (checked[(curRow + i)][(curCol - i)] == false) {
 	        q.add(lData);

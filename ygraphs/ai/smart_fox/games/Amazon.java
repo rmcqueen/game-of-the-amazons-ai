@@ -83,9 +83,9 @@ public class Amazon extends GamePlayer{
                     ourBoard.updateLegalQueenMoves();
                     board.markPosition(ourNextMove.getRowPosition(), ourNextMove.getColPosition(), nextArrowShot.getRowPosition(), nextArrowShot.getColPosition(),
                             ourNextMove.getPreviousRowPosition(), ourNextMove.getPreviousColPosition(), false);
-                    gameClient.sendMoveMessage(ourNextMove.combinedMove(ourNextMove.getPreviousRowPosition(), ourNextMove.getPreviousColPosition()),
-                            ourNextMove.combinedMove(ourNextMove.getRowPosition(), ourNextMove.getColPosition()),
-                            nextArrowShot.combinedMove(nextArrowShot.getRowPosition(), nextArrowShot.getColPosition()));
+                    gameClient.sendMoveMessage(ourNextMove.combinedMove(ourNextMove.getPreviousRowPosition()+1, ourNextMove.getPreviousColPosition()+1),
+                            ourNextMove.combinedMove(ourNextMove.getRowPosition()+1, ourNextMove.getColPosition()+1),
+                            nextArrowShot.combinedMove(nextArrowShot.getRowPosition()+1, nextArrowShot.getColPosition()+1));
                 } catch (CloneNotSupportedException e) {
                     e.printStackTrace();
                 }
@@ -153,9 +153,9 @@ public class Amazon extends GamePlayer{
 
         board.markPosition(ourNextMove.getRowPosition(), ourNextMove.getColPosition(), nextArrowShot.getRowPosition(), nextArrowShot.getColPosition(),
                 ourNextMove.getPreviousRowPosition(), ourNextMove.getPreviousColPosition(), false);
-        gameClient.sendMoveMessage(ourNextMove.combinedMove(ourNextMove.getPreviousRowPosition(), ourNextMove.getPreviousColPosition()),
-                ourNextMove.combinedMove(ourNextMove.getRowPosition(), ourNextMove.getColPosition()),
-                nextArrowShot.combinedMove(nextArrowShot.getRowPosition(), nextArrowShot.getColPosition()));
+        gameClient.sendMoveMessage(ourNextMove.combinedMove(ourNextMove.getPreviousRowPosition()+1, ourNextMove.getPreviousColPosition()+1),
+                ourNextMove.combinedMove(ourNextMove.getRowPosition()+1, ourNextMove.getColPosition()+1),
+                nextArrowShot.combinedMove(nextArrowShot.getRowPosition()+1, nextArrowShot.getColPosition()+1));
 	}
 	
 	
@@ -291,8 +291,8 @@ public class Amazon extends GamePlayer{
 		public boolean markPosition(int qrow, int qcol, int arow, int acol, 
 				  int qfr, int qfc, boolean  opponentMove){						
 			
-			System.out.println(qrow + ", " + qcol + ", " + arow + ", " + acol 
-					+ ", " + qfr + ", " + qfc);
+			System.out.println(qrow+1 + ", " + qcol+1 + ", " + arow+1 + ", " + acol+1
+					+ ", " + qfr+1 + ", " + qfc+1);
 			
 			boolean valid = gameModel.positionMarked(qrow, qcol, arow, acol, qfr, qfc, opponentMove);
             if(valid) {

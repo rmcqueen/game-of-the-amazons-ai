@@ -107,8 +107,8 @@ public class minDisHeur
 	  public Queue<Tile> addQueenMoves(Queue<Tile> q, int curRow, int curCol, boolean[][] checked)
 	  {
 	    for (int i = 0; curCol - i >= 0; i++) {
-	      Tile lData = new Tile(curRow, curCol - 1);
-	      if (checked[curRow][(curCol - 1)] == false) {
+	      Tile lData = new Tile(curRow, curCol - i);
+	      if (checked[curRow][(curCol - i)] == false) {
 	        q.add(lData);
 	      }
 	      if (board[curRow][(curCol - i)] != null) {

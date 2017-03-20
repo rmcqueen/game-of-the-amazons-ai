@@ -8,7 +8,7 @@ public class SearchTree {
     private minDisHeur minDistH = new minDisHeur();
     private int depth;
     private int numOfMoves;
-    public static int evaluation;
+    public  int evaluation;
     private ArrayList<SearchTreeNode> frontier = new ArrayList<SearchTreeNode>();
 
     public SearchTree(SearchTreeNode node) {
@@ -121,15 +121,19 @@ public class SearchTree {
         numOfMoves++;
         root.gameRules.addArrow(a); // adds arrow to be shot
         //makes a move for the queen ours or theirs
+        System.out.print("num enemys: "+root.gameRules.enemy.length+" num friends: "+root.gameRules.friend.length);
         if(qCurrentPos.isOpponent){
             for(Queen Q:root.gameRules.enemy){
-                if(qCurrentPos.getPreviousColPosition() == Q.getColPosition() && qCurrentPos.getPreviousRowPosition() == Q.getRowPosition())
+            	if(Q.getPreviousRowPosition() == qCurrentPos.getRowPosition() && Q.getPreviousColPosition() == qCurrentPos.getColPosition()) {
                     Q.moveQueen(qCurrentPos.getRowPosition(), qCurrentPos.getColPosition());
+            	}
+                	
             }
         } else{
             for(Queen Q:root.gameRules.friend){
-            	if(qCurrentPos.getPreviousColPosition() == Q.getColPosition() && qCurrentPos.getPreviousRowPosition() == Q.getRowPosition())
+            	if(Q.getPreviousRowPosition() == qCurrentPos.getRowPosition() && Q.getPreviousColPosition() == qCurrentPos.getColPosition()) {
                     Q.moveQueen(qCurrentPos.getRowPosition(), qCurrentPos.getColPosition());
+            	}            		
             }
         }
         root.gameRules.updateAfterMove();

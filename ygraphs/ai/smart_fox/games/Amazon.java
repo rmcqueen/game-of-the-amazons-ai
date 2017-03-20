@@ -80,7 +80,9 @@ public class Amazon extends GamePlayer{
                     Queen ourNextMove = ourBestMove.getQueen();
                     Arrow nextArrowShot = ourBestMove.getArrowShot();
                     ourBoard.canEnemyMove();
+                    System.out.println("LegalMoves: Before we have the first move: " + ourBoard.getLegalMoves().toString());
                     ourBoard.updateLegalQueenMoves();
+                    System.out.println("LegalMoves: After we have the first move: " + ourBoard.getLegalMoves().toString());
                     board.markPosition(ourNextMove.getRowPosition(), ourNextMove.getColPosition(), nextArrowShot.getRowPosition(), nextArrowShot.getColPosition(),
                             ourNextMove.getPreviousRowPosition(), ourNextMove.getPreviousColPosition(), false);
                     gameClient.sendMoveMessage(ourNextMove.combinedMove(ourNextMove.getPreviousRowPosition()+1, ourNextMove.getPreviousColPosition()+1),
@@ -115,10 +117,10 @@ public class Amazon extends GamePlayer{
 		ArrayList<Integer> arrow = (ArrayList<Integer>) msgDetails.get(AmazonsGameMessage.ARROW_POS);
 
         // Enemy move
-        board.markPosition(qnew.get(0), qnew.get(1), arrow.get(0), arrow.get(1),
-                qcurr.get(0), qcurr.get(1), true);
-        Queen qCurrent = new Queen(qcurr.get(0), qcurr.get(1), true);
-        Arrow arrowShot = new Arrow(arrow.get(0), arrow.get(1));
+        board.markPosition(qnew.get(0)-1, qnew.get(1)-1, arrow.get(0)-1, arrow.get(1)-1,
+                qcurr.get(0)-1, qcurr.get(1)-1, true);
+        Queen qCurrent = new Queen(qcurr.get(0)-1, qcurr.get(1)-1, true);
+        Arrow arrowShot = new Arrow(arrow.get(0)-1, arrow.get(1)-1);
         search.makeMoveOnRoot(qCurrent, arrowShot);
         ourBoard.canEnemyMove();
         ourBoard.updateLegalQueenMoves();
@@ -291,10 +293,10 @@ public class Amazon extends GamePlayer{
 		public boolean markPosition(int qrow, int qcol, int arow, int acol, 
 				  int qfr, int qfc, boolean  opponentMove){						
 			
-			System.out.println(qrow+1 + ", " + qcol+1 + ", " + arow+1 + ", " + acol+1
-					+ ", " + qfr+1 + ", " + qfc+1);
+			System.out.println(qrow + ", " + qcol + ", " + arow + ", " + acol
+					+ ", " + qfr + ", " + qfc + "All values +1");
 			
-			boolean valid = gameModel.positionMarked(qrow, qcol, arow, acol, qfr, qfc, opponentMove);
+			boolean valid = gameModel.positionMarked(qrow+1, qcol+1, arow+1, acol+1, qfr+1, qfc+1, opponentMove);
             if(valid) {
                 repaint();
             }

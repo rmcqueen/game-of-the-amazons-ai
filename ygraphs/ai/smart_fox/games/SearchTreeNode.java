@@ -56,7 +56,9 @@ public class SearchTreeNode {
     
     public ArrayList<SearchTreeNode> setSuccessors(boolean ourMove) throws CloneNotSupportedException{
         ArrayList<SearchTreeNode> expanded = successorHeuristic.getSuccessors(gameRules, ourMove);
+        //System.out.println("expanded size: "+expanded.size());
         for (SearchTreeNode S: expanded){
+        	//System.out.println("Node expanded - value: " + S.getValue());
             children.add(S);
             S.setParent(this);
         }

@@ -27,8 +27,6 @@ public class SuccessorHeuristicFunction {
 				ArrayList<Arrow> numshots = new ArrayList<>();
 
 				Queen[] placeholderBoardQueens = placeHolderBoard.getFriend();
-				if(curQueenMoves.get(j).row == 0 && curQueenMoves.get(j).col == 0)
-					continue;
 				placeholderBoardQueens[i].moveQueen(curQueenMoves.get(j).row, curQueenMoves.get(j).col);
 				//                    Update board
 				placeHolderBoard.updateAfterMove();
@@ -84,13 +82,13 @@ public class SuccessorHeuristicFunction {
         }
 
         int stateCount = 0;
-
+        //System.out.print("Queen Size: "+queens.length+"\n");
         for(int i=0; i<queens.length; i++) {
         	ArrayList<Queen> currentQueenMoves = new ArrayList<>();
 			// Make a deep copy of all queen moves at specific queen
 			for(Queen q : state.getLegalMoves(queens[i])) {
 				currentQueenMoves.add(q);
-				//System.out.println("Queen: "+i+" has move "+md.rowPos+"(row), "+md.colPos+"(col)");
+				//System.out.println("Queen: "+i+" has move "+q.getRowPosition()+"(row), "+q.getColPosition()+"(col)");
 			}
 
             // For each queen move
@@ -98,8 +96,6 @@ public class SuccessorHeuristicFunction {
                 // Temp board with moved queen
                 GameRules tempBoard = state.deepCopy();
                 // System.out.println("Deep Copy is: \n"+tempBoard.toString());
-                if(currentQueenMoves.get(j).row == 0 && currentQueenMoves.get(j).col == 0)
-					continue;
                 tempBoard.friend[i].row = currentQueenMoves.get(j).row;
                 tempBoard.friend[i].col = currentQueenMoves.get(j).col;
                 tempBoard.updateAfterMove();
@@ -109,10 +105,10 @@ public class SuccessorHeuristicFunction {
                 
                 // Add legal arrow shots from given position
                 for(Arrow a : tempBoard.getArrowMoves(currentQueenMoves.get(j).row,currentQueenMoves.get(j).col)) {
-                	legalArrowMoves.add(a.clone());
+                	legalArrowMoves.add((Arrow)a.clone());
                 }
 				
-				
+				//System.out.print(legalArrowMoves.size());
                 for(int k = 0; k < legalArrowMoves.size(); k++) {
                 	GameRules newState = tempBoard.deepCopy();
                     newState.addArrow(legalArrowMoves.get(k));

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class GameRules {
     private boolean enemyMove;
-    protected Tile[][] board = new Tile[11][11];
+    protected Tile[][] board = new Tile[10][10];
     protected Queen[] enemy;
     protected Queen[] friend;
     protected ArrayList<Arrow> arrows;
@@ -29,7 +29,7 @@ public class GameRules {
 					{ new Queen(3, 0, false), null, null, null, null, null, null, null, null, new Queen(3, 9, false) },
 					{ null, null, null, null, null, null, null, null, null, null },
 					{ null, null, null, null, null, null, null, null, null, null },
-                    { null, null, null, new Queen(1, 4, false), null, null, new Queen(1, 7, false), null, null, null }
+                    { null, null, null, new Queen(0, 3, false), null, null, new Queen(0, 6, false), null, null, null }
             };
             enemy = new Queen[] { (Queen) board[9][3], (Queen) board[9][6], (Queen) board[6][0], (Queen) board[6][9] };
             friend = new Queen[] { (Queen) board[3][0], (Queen) board[3][9], (Queen) board[0][3], (Queen) board[0][6] };
@@ -61,9 +61,14 @@ public class GameRules {
         legalArrowMoves = new ArrayList<>();
         legalQueenMoves = new ArrayList<>();
         updateLegalQueenMoves();
-
         }
 
+    protected GameRules(Tile[][] board) {
+    	this.board = board;
+        legalArrowMoves = new ArrayList<Queen>();
+        legalQueenMoves = new ArrayList<Queen>();
+        updateLegalQueenMoves();
+    }
         /**
          * CONSTRUCTOR FOR GameRules
          * @param enemy: the opponent's queen positions
@@ -95,8 +100,8 @@ public class GameRules {
         Queen[] newEnemy = new Queen[4];
         ArrayList<Arrow> newArrows = new ArrayList<>();
         for(int i = 0; i < newEnemy.length; i++) {
-            newFriend[i] = friend[i].clone();
-            newEnemy[i] = enemy[i].clone();
+            newFriend[i] = (Queen) friend[i].clone();
+            newEnemy[i] = (Queen) enemy[i].clone();
         }
 
         if(arrows != null) {
@@ -126,7 +131,7 @@ public class GameRules {
          */
 
         // Legal moves left
-        for(int i = 0; currentCol - i >= 0; i++) {
+        for(int i = 1; currentCol - i >= 0; i++) {
             if(board[currentRow][currentCol-i] == null) {
                 legalMoves.add(new Queen(currentRow, currentCol-i));
             }
@@ -136,7 +141,7 @@ public class GameRules {
         }
 
         // Legal moves right
-        for(int i = 0; currentCol + i <= 9; i++) {
+        for(int i = 1; currentCol + i <= 9; i++) {
             if(board[currentRow][currentCol+i] == null) {
                 legalMoves.add(new Queen(currentRow, currentCol+i));
             }
@@ -151,7 +156,7 @@ public class GameRules {
          */
 
         // Legal moves up
-        for(int i = 0; currentRow - i >= 0; i++) {
+        for(int i = 1; currentRow - i >= 0; i++) {
             if(board[currentRow-i][currentCol] == null) {
                 legalMoves.add(new Queen(currentRow-i, currentCol));
             }
@@ -161,8 +166,8 @@ public class GameRules {
         }
 
         // Legal moves down
-        for(int i = 0; currentRow + i <= 9; i++) {
-            if(board[currentRow+i][currentCol-i] == null) {
+        for(int i = 1; currentRow + i <= 9; i++) {
+            if(board[currentRow+i][currentCol] == null) {
                 legalMoves.add(new Queen(currentRow+i, currentCol));
             }
             else {
@@ -177,7 +182,7 @@ public class GameRules {
 
 
         // Legal moves diagonally left/up
-        for(int i = 0; currentRow - i >= 0 && currentCol - i >= 0; i++) {
+        for(int i = 1; currentRow - i >= 0 && currentCol - i >= 0; i++) {
             if(board[currentRow-i][currentCol-i] == null) {
                 legalMoves.add(new Queen(currentRow-i, currentCol-i));
             }
@@ -187,7 +192,7 @@ public class GameRules {
         }
 
         // Legal moves diagonally left/down
-        for(int i = 0; currentRow + i <= 9 && currentCol - i >= 0; i++) {
+        for(int i = 1; currentRow + i <= 9 && currentCol - i >= 0; i++) {
             if(board[currentRow+i][currentCol-i] == null) {
                 legalMoves.add(new Queen(currentRow+i, currentCol-i));
             }
@@ -197,7 +202,7 @@ public class GameRules {
         }
 
         // Legal moves diagonally right/up
-        for(int i = 0; currentRow - i >= 0 && currentCol + i <= 9; i++) {
+        for(int i = 1; currentRow - i >= 0 && currentCol + i <= 9; i++) {
             if(board[currentRow-i][currentCol+i] == null) {
                 legalMoves.add(new Queen(currentRow-i, currentCol+i));
             }
@@ -207,7 +212,7 @@ public class GameRules {
         }
 
         // Legal moves diagonally right/down
-        for(int i = 0; currentRow + i <= 9 && currentCol + i <= 9; i++) {
+        for(int i = 1; currentRow + i <= 9 && currentCol + i <= 9; i++) {
             if(board[currentRow+i][currentCol+i] == null) {
                 legalMoves.add(new Queen(currentRow+i, currentCol+i));
             }
@@ -236,7 +241,7 @@ public class GameRules {
          */
 
         // Legal moves left
-        for(int i = 0; currentCol - i >= 0; i++) {
+        for(int i = 1; currentCol - i >= 0; i++) {
             if(board[currentRow][currentCol-i] == null) {
                 legalArrowMoves.add(new Arrow(currentRow, currentCol-i));
             }
@@ -246,7 +251,7 @@ public class GameRules {
         }
 
         // Legal moves right
-        for(int i = 0; currentCol + i <= 9; i++) {
+        for(int i = 1; currentCol + i <= 9; i++) {
             if(board[currentRow][currentCol+i] == null) {
                 legalArrowMoves.add(new Arrow(currentRow,currentCol+i));
             }
@@ -260,7 +265,7 @@ public class GameRules {
          */
 
         // Legal moves up
-        for(int i = 0; currentRow - i >= 0; i++) {
+        for(int i = 1; currentRow - i >= 0; i++) {
             if(board[currentRow-i][currentCol] == null) {
                 legalArrowMoves.add(new Arrow(currentRow-i,currentCol));
             }
@@ -270,7 +275,7 @@ public class GameRules {
         }
 
         // Legal moves down
-        for(int i = 0; currentRow + i <= 9; i++) {
+        for(int i = 1; currentRow + i <= 9; i++) {
             if(board[currentRow+i][currentCol] == null) {
                 legalArrowMoves.add(new Arrow(currentRow+i,currentCol));
             }
@@ -284,7 +289,7 @@ public class GameRules {
          */
 
         // Legal moves diagonal left/up
-        for(int i = 0; currentRow - i >= 0 && currentCol - i >= 0; i++) {
+        for(int i = 1; currentRow - i >= 0 && currentCol - i >= 0; i++) {
             if(board[currentRow-i][currentCol-i] == null) {
                 legalArrowMoves.add(new Arrow(currentRow-i,currentCol-i));
             }
@@ -294,7 +299,7 @@ public class GameRules {
         }
 
         // Legal moves diagonal left/down
-        for(int i = 1; currentRow + i <= 10 && currentCol - i >= 1; i++) {
+        for(int i = 1; currentRow + i <= 9 && currentCol - i >= 0; i++) {
             if(board[currentRow+i][currentCol-i] == null) {
                 legalArrowMoves.add(new Arrow(currentRow+i,currentCol-i));
             }
@@ -304,7 +309,7 @@ public class GameRules {
         }
 
         // Legal moves diagonal right/up
-        for(int i = 0; currentRow - i >= 0 && currentCol + i <= 9; i++) {
+        for(int i = 1; currentRow - i >= 0 && currentCol + i <= 9; i++) {
             if(board[currentRow-i][currentCol+i] == null) {
                 legalArrowMoves.add(new Arrow(currentRow-i,currentCol+i));
             }
@@ -314,7 +319,7 @@ public class GameRules {
         }
 
         // Legal moves diagonal right/down
-        for(int i = 1; currentRow + i <= 10 && currentCol + i <= 10; i++) {
+        for(int i = 1; currentRow + i <= 9 && currentCol + i <= 9; i++) {
             if(board[currentRow+i][currentCol+i] == null) {
                 legalArrowMoves.add(new Arrow(currentRow+i,currentCol+i));
             }
@@ -387,7 +392,6 @@ public class GameRules {
      * @return: ArrayList<int[][]> of every possible Queen move
      */
     protected ArrayList<Queen> getLegalMoves() {
-
         return legalQueenMoves;
     }
 
@@ -446,17 +450,22 @@ public class GameRules {
 
         // Reset the position of each friendly queen
         for(Queen q: friend) {
-            board[q.getRowPosition()][q.getColPosition()] = q;
+        	if(friend != null){
+        		board[q.getRowPosition()][q.getColPosition()] = q;
+        	}
         }
 
         // Reset the position of each enemy queen
         for(Queen q: enemy) {
+        	if(enemy != null) {
             board[q.getRowPosition()][q.getColPosition()] = q;
+        	}
         }
 
         // Reset each arrow on the board
         for(Arrow arrow: arrows) {
             if(arrow != null) {
+            	
                 board[arrow.getRowPosition()][arrow.getColPosition()] = arrow;
             }
         }

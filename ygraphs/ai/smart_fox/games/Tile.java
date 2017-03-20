@@ -10,4 +10,9 @@ public class Tile {
 	row = i;
     col = j;
   }
+  
+  public Tile()
+  {
+	  
+  }
 }

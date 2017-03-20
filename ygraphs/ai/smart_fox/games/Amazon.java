@@ -53,7 +53,7 @@ public class Amazon extends GamePlayer{
 		
 		//once logged in, the gameClient will have  the names of available game rooms  
 		ArrayList<String> rooms = gameClient.getRoomList();
-		this.gameClient.joinRoom(rooms.get(0));	 		
+		this.gameClient.joinRoom(rooms.get(7));
 	}
     
     
@@ -73,27 +73,28 @@ public class Amazon extends GamePlayer{
 			
 			if(((String) msgDetails.get("player-white")).equals(this.userName())){
 				System.out.println("Game State: " +  msgDetails.get("player-white"));
-                ourBoard = new GameRules(false);
+                ourBoard = new GameRules(true);
                 search = new SearchTree(new SearchTreeNode(ourBoard));
                 try {
                     SearchTreeNode ourBestMove = search.makeMove();
                     Queen ourNextMove = ourBestMove.getQueen();
                     Arrow nextArrowShot = ourBestMove.getArrowShot();
                     ourBoard.canEnemyMove();
-                    System.out.println("LegalMoves: Before we have the first move: " + ourBoard.getLegalMoves().toString());
                     ourBoard.updateLegalQueenMoves();
-                    System.out.println("LegalMoves: After we have the first move: " + ourBoard.getLegalMoves().toString());
+                    System.out.println("Our Original Position: (" + ourNextMove.getPreviousRowPosition() + ", " +ourNextMove.getPreviousColPosition() + ")");
                     board.markPosition(ourNextMove.getRowPosition(), ourNextMove.getColPosition(), nextArrowShot.getRowPosition(), nextArrowShot.getColPosition(),
                             ourNextMove.getPreviousRowPosition(), ourNextMove.getPreviousColPosition(), false);
+                    System.out.println("Our Next Position: (" + ourNextMove.getRowPosition() + ", " +ourNextMove.getColPosition() + ")");
                     gameClient.sendMoveMessage(ourNextMove.combinedMove(ourNextMove.getPreviousRowPosition()+1, ourNextMove.getPreviousColPosition()+1),
                             ourNextMove.combinedMove(ourNextMove.getRowPosition()+1, ourNextMove.getColPosition()+1),
                             nextArrowShot.combinedMove(nextArrowShot.getRowPosition()+1, nextArrowShot.getColPosition()+1));
+                    System.out.println("Our Arrow Shot: (" + nextArrowShot.getRowPosition() + ", " + nextArrowShot.getColPosition() + ")");
                 } catch (CloneNotSupportedException e) {
                     e.printStackTrace();
                 }
             }
 			else {
-                ourBoard = new GameRules(true);
+                ourBoard = new GameRules(false);
                 search = new SearchTree(new SearchTreeNode(ourBoard));
             }
 			
@@ -111,11 +112,13 @@ public class Amazon extends GamePlayer{
 	//handle the event that the opponent makes a move. 
 	private void handleOpponentMove(Map<String, Object> msgDetails) throws CloneNotSupportedException{
         boolean gameOver = false;
+		ourBoard.printBoard();
 		System.out.println("OpponentMove(): " + msgDetails.get(AmazonsGameMessage.QUEEN_POS_CURR));
+        System.out.println("Opponent Arrow Shot: " + msgDetails.get(AmazonsGameMessage.ARROW_POS));
 		ArrayList<Integer> qcurr = (ArrayList<Integer>) msgDetails.get(AmazonsGameMessage.QUEEN_POS_CURR);
 		ArrayList<Integer> qnew = (ArrayList<Integer>) msgDetails.get(AmazonsGameMessage.Queen_POS_NEXT);
 		ArrayList<Integer> arrow = (ArrayList<Integer>) msgDetails.get(AmazonsGameMessage.ARROW_POS);
-
+		ourBoard.printBoard();
         // Enemy move
         board.markPosition(qnew.get(0)-1, qnew.get(1)-1, arrow.get(0)-1, arrow.get(1)-1,
                 qcurr.get(0)-1, qcurr.get(1)-1, true);
@@ -155,6 +158,7 @@ public class Amazon extends GamePlayer{
 
         board.markPosition(ourNextMove.getRowPosition(), ourNextMove.getColPosition(), nextArrowShot.getRowPosition(), nextArrowShot.getColPosition(),
                 ourNextMove.getPreviousRowPosition(), ourNextMove.getPreviousColPosition(), false);
+
         gameClient.sendMoveMessage(ourNextMove.combinedMove(ourNextMove.getPreviousRowPosition()+1, ourNextMove.getPreviousColPosition()+1),
                 ourNextMove.combinedMove(ourNextMove.getRowPosition()+1, ourNextMove.getColPosition()+1),
                 nextArrowShot.combinedMove(nextArrowShot.getRowPosition()+1, nextArrowShot.getColPosition()+1));
@@ -431,7 +435,7 @@ public class Amazon extends GamePlayer{
      */
 	public static void main(String[] args) { 
 		Amazon game = new Amazon("rm", "cosc322");
-        //Amazon game2 = new Amazon("test", "cosc322");
+        Amazon game2 = new Amazon("test", "cosc322");
 		//Amazon game = new Amazon(args[0], args[1]);
     }
 	

@@ -6,8 +6,9 @@ public class Queen extends Tile implements Cloneable{
     private int qRow;
     private int qCol;
 
-	public Object clone() throws CloneNotSupportedException{
-        return super.clone();
+	protected Queen clone() {
+        Queen qNew = new Queen(row, col, isOpponent);
+        return qNew;
     }
 	
     protected boolean isOpponent;
@@ -18,7 +19,6 @@ public class Queen extends Tile implements Cloneable{
      * @param y: an integer storing the column location
      */
     public Queen(int x, int y) {
-    	super(x,y);
         qRow = x;
         qCol = y;
         previousRow = x;

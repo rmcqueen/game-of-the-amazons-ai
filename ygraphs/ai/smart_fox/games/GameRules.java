@@ -50,8 +50,8 @@ public class GameRules {
 					{ null, null, null, null, null, null, null, null, null, null },
 					{ null, null, null, new Queen(0, 3, true), null, null, new Queen(0, 6, true), null, null, null }
                 };
-            enemy = new Queen[] { (Queen) board[9][3], (Queen) board[9][6], (Queen) board[6][0], (Queen) board[6][9] };
-            friend = new Queen[] { (Queen) board[3][0], (Queen) board[3][9], (Queen) board[0][3], (Queen) board[0][6] };
+            friend = new Queen[] { (Queen) board[9][3], (Queen) board[9][6], (Queen) board[6][0], (Queen) board[6][9] };
+            enemy = new Queen[] { (Queen) board[3][0], (Queen) board[3][9], (Queen) board[0][3], (Queen) board[0][6] };
         }
 
         /* Instantiate the ArrayLists for legel arrow shots,
@@ -490,5 +490,14 @@ public class GameRules {
             return false;
         }
     }
-
+    public void printBoard() {
+        System.out.println("---------------------- \n");
+        for(int i = 0; i < board.length; i++) {
+            for(int j = 0; j < board.length; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println("\n");
+        }
+        System.out.println("\n ---------------------- \n");
+    }
 }

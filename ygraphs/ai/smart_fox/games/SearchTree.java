@@ -121,7 +121,6 @@ public class SearchTree {
         numOfMoves++;
         root.gameRules.addArrow(a); // adds arrow to be shot
         //makes a move for the queen ours or theirs
-        System.out.print("num enemys: "+root.gameRules.enemy.length+" num friends: "+root.gameRules.friend.length);
         if(qCurrentPos.isOpponent){
             for(Queen Q:root.gameRules.enemy){
             	if(Q.getPreviousRowPosition() == qCurrentPos.getRowPosition() && Q.getPreviousColPosition() == qCurrentPos.getColPosition()) {

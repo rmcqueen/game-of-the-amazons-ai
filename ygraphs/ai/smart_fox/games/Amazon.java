@@ -269,14 +269,14 @@ public class Amazon extends GamePlayer{
 		public void init() {
             String tagB = BoardGameModel.POS_MARKED_BLACK;
             String tagW = BoardGameModel.POS_MARKED_WHITE;
-            gameModel.gameBoard[7][1] = tagW;
-            gameModel.gameBoard[7][10] = tagW;
-            gameModel.gameBoard[10][4] = tagW;
-            gameModel.gameBoard[10][7] = tagW;
-            gameModel.gameBoard[1][4] = tagB;
-            gameModel.gameBoard[1][7] = tagB;
-            gameModel.gameBoard[4][1] = tagB;
-            gameModel.gameBoard[4][10] = tagB;
+            gameModel.gameBoard[7][1] = tagB;
+            gameModel.gameBoard[7][10] = tagB;
+            gameModel.gameBoard[10][4] = tagB;
+            gameModel.gameBoard[10][7] = tagB;
+            gameModel.gameBoard[1][4] = tagW;
+            gameModel.gameBoard[1][7] = tagW;
+            gameModel.gameBoard[4][1] = tagW;
+            gameModel.gameBoard[4][10] = tagW;
 
         }
 		
@@ -431,7 +431,7 @@ public class Amazon extends GamePlayer{
      */
 	public static void main(String[] args) { 
 		Amazon game = new Amazon("rm", "cosc322");
-        Amazon game2 = new Amazon("test", "cosc322");
+        //Amazon game2 = new Amazon("test", "cosc322");
 		//Amazon game = new Amazon(args[0], args[1]);
     }
 	

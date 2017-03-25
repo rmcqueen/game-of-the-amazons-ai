@@ -2,8 +2,9 @@ package ygraphs.ai.smart_fox.games;
 
 public class Arrow extends Tile implements Cloneable{
 	
-	public Object clone() throws CloneNotSupportedException{
-        return super.clone();
+	protected Arrow clone() {
+        Arrow aNew = new Arrow(row, col);
+        return aNew;
     }
 	
 	public Arrow(int i, int j) {

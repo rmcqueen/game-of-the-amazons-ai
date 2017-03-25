@@ -1,13 +1,14 @@
 package ygraphs.ai.smart_fox.games;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 // ITERATIVE DEEPENING-SEARCH
 public class SearchTree {
     private SearchTreeNode root;
     private minDisHeur minDistH = new minDisHeur();
     private int depth;
-    private int numOfMoves;
+   private int numOfMoves;
     public  int evaluation;
     private ArrayList<SearchTreeNode> frontier = new ArrayList<SearchTreeNode>();
 
@@ -15,6 +16,10 @@ public class SearchTree {
         this.root = node;
         this.depth = 0;
         this.evaluation = 0;
+    }
+
+    public SearchTreeNode getRoot() {
+        return this.root;
     }
 
     public void calculateDepth() {
@@ -53,7 +58,7 @@ public class SearchTree {
             }
             N.setValue(V);
             return V;
-        }else{
+        } else{
             int V = Integer.MAX_VALUE;
             for(SearchTreeNode S: N.getChildren()){
                 V = Math.min(V, AlphaBeta(S,D - 1, alpha, beta, true ));
@@ -67,7 +72,7 @@ public class SearchTree {
         }
     }
     
-    public void expandFrontier() throws CloneNotSupportedException{
+    public void expandFrontier() {
         ArrayList<SearchTreeNode> newFrontier = new ArrayList<SearchTreeNode>();
         if(depth != 0){
             if(depth % 2 ==0){
@@ -123,41 +128,61 @@ public class SearchTree {
         //makes a move for the queen ours or theirs
         if(qCurrentPos.isOpponent){
             for(Queen Q:root.gameRules.enemy){
-            	if(Q.getPreviousRowPosition() == qCurrentPos.getRowPosition() && Q.getPreviousColPosition() == qCurrentPos.getColPosition()) {
-                    Q.moveQueen(qCurrentPos.getRowPosition(), qCurrentPos.getColPosition());
+            	if(Q.row == qCurrentPos.previousRow && Q.col== qCurrentPos.previousCol) {
+                    Q.moveQueen(qCurrentPos.row, qCurrentPos.row);
             	}
                 	
             }
         } else{
             for(Queen Q:root.gameRules.friend){
-            	if(Q.getPreviousRowPosition() == qCurrentPos.getRowPosition() && Q.getPreviousColPosition() == qCurrentPos.getColPosition()) {
-                    Q.moveQueen(qCurrentPos.getRowPosition(), qCurrentPos.getColPosition());
-            	}            		
+                if(Q.row == qCurrentPos.previousRow && Q.row == qCurrentPos.previousCol) {
+                    Q.moveQueen(qCurrentPos.row, qCurrentPos.col);
+            	}
             }
         }
         root.gameRules.updateAfterMove();
         this.clearTree();
     }
     
-    public SearchTreeNode makeMove() throws CloneNotSupportedException{
+    public SearchTreeNode makeMove() {
     	this.expandFrontier();
    	 	this.performAlphaBeta();
         SearchTreeNode bestMove = this.getMoveAfterAlphaBeta();
-        this.makeMoveOnRoot(bestMove.getQueen(), bestMove.getArrowShot());
+        if(bestMove != null) {
+            this.makeMoveOnRoot(bestMove.getQueen(), bestMove.getArrowShot());
+        }
+        else {
+            System.out.println("Goal state reached!");
+        }
         return bestMove;
+
     }
     
     private SearchTreeNode getMoveAfterAlphaBeta(){
         int max = Integer.MIN_VALUE;
-        SearchTreeNode currentBest = root.getChildren().get(0); // just to initialize currentBest
-        
-        for(SearchTreeNode S:root.getChildren()){
+        SearchTreeNode best = null;
+        Random ran = new Random();
+        ArrayList<SearchTreeNode> currentBest = new ArrayList<SearchTreeNode>(); // just to initialize currentBest
+        for(SearchTreeNode S: root.getChildren()){
             if(max <= S.getValue()) {
                 max = S.getValue();
-                currentBest = S;
+                currentBest.add(S);
             }
         }
-        return currentBest;
+        if(currentBest.size() > 1) {
+            best = currentBest.get(ran.nextInt(currentBest.size()-1));
+        }
+
+        else {
+            try {
+                best = currentBest.get(0);
+            }
+            catch(IndexOutOfBoundsException e) {
+                System.out.println("Goal state reached!");
+            }
+        }
+
+        return best;
     }
     
     private void clearTree(){

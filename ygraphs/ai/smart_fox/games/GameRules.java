@@ -16,42 +16,41 @@ public class GameRules {
 
      */
     protected GameRules(boolean start) {
-        // If we are the black-player, set white pieces to true to indicate they are our opponent
-        // Note: We're not actually the white player in this scenario :')
+        // Our move first
         if(start) {
             board = new Tile[][] {
-                    { null, null, null, new Queen(9, 3, true), null, null, new Queen(9, 6, true), null, null, null },
-					{ null, null, null, null, null, null, null, null, null, null },
-					{ null, null, null, null, null, null, null, null, null, null },
-					{ new Queen(6, 0, true), null, null, null, null, null, null, null, null, new Queen(6, 9, true) },
-					{ null, null, null, null, null, null, null, null, null, null },
-					{ null, null, null, null, null, null, null, null, null, null },
-					{ new Queen(3, 0, false), null, null, null, null, null, null, null, null, new Queen(3, 9, false) },
-					{ null, null, null, null, null, null, null, null, null, null },
-					{ null, null, null, null, null, null, null, null, null, null },
-                    { null, null, null, new Queen(0, 3, false), null, null, new Queen(0, 6, false), null, null, null }
-            };
-            enemy = new Queen[] { (Queen) board[9][3], (Queen) board[9][6], (Queen) board[6][0], (Queen) board[6][9] };
-            friend = new Queen[] { (Queen) board[3][0], (Queen) board[3][9], (Queen) board[0][3], (Queen) board[0][6] };
-        }
+                    { null, null, null, new Queen(0, 3, true), null, null, new Queen(0, 6, true), null, null, null },
+                    { null, null, null, null, null, null, null, null, null, null },
+                    { null, null, null, null, null, null, null, null, null,	null },
+                    { new Queen(3, 0, true), null, null, null, null, null, null, null, null, new Queen(3, 9, true) },
+                    { null, null, null, null, null, null, null, null, null,	null },
+                    { null, null, null, null, null, null, null, null, null,	null },
+                    { new Queen(6, 0, false), null, null, null, null, null, null, null, null, new Queen(6, 9, false) },
+                    { null, null, null, null, null, null, null, null, null,	null },
+                    { null, null, null, null, null, null, null, null, null,	null },
+                    { null, null, null, new Queen(9, 3, false), null, null, new Queen(9, 6, false), null, null, null } };
 
-        // We are the white-player, set the white pieces to false to indicate they are ours
-        // Note: We are the white player in this scenario
+            // enemies is an array of the opponents queens while friendly is our own queens
+            enemy = new Queen[] { (Queen) board[0][3], (Queen) board[0][6], (Queen) board[3][0], (Queen) board[3][9] };
+            friend = new Queen[] { (Queen) board[6][0], (Queen) board[6][9], (Queen) board[9][3],	(Queen) board[9][6] };
+
+        }
+        // Opponent move first
         else {
             board = new Tile[][] {
-					{ null, null, null, new Queen(9, 3, false), null, null, new Queen(9, 6, false), null, null, null },
-					{ null, null, null, null, null, null, null, null, null, null },
-					{ null, null, null, null, null, null, null, null, null, null },
-					{ new Queen(6, 0, false), null, null, null, null, null, null, null, null, new Queen(6, 9, false) },
-					{ null, null, null, null, null, null, null, null, null, null },
-					{ null, null, null, null, null, null, null, null, null, null },
-					{ new Queen(3, 0, true), null, null, null, null, null, null, null, null, new Queen(3, 9, true) },
-					{ null, null, null, null, null, null, null, null, null, null },
-					{ null, null, null, null, null, null, null, null, null, null },
-					{ null, null, null, new Queen(0, 3, true), null, null, new Queen(0, 6, true), null, null, null }
-                };
-            friend = new Queen[] { (Queen) board[9][3], (Queen) board[9][6], (Queen) board[6][0], (Queen) board[6][9] };
-            enemy = new Queen[] { (Queen) board[3][0], (Queen) board[3][9], (Queen) board[0][3], (Queen) board[0][6] };
+                    { null, null, null, new Queen(0, 3, false), null, null, new Queen(0, 6, false), null, null, null },
+                    { null, null, null, null, null, null, null, null, null,	null },
+                    { null, null, null, null, null, null, null, null, null,	null },
+                    { new Queen(3, 0, false), null, null, null, null, null, null, null, null, new Queen(3, 9, false) },
+                    { null, null, null, null, null, null, null, null, null,	null },
+                    { null, null, null, null, null, null, null, null, null,	null },
+                    { new Queen(6, 0, true), null, null, null, null, null, null, null, null, new Queen(6, 9, true) },
+                    { null, null, null, null, null, null, null, null, null,	null },
+                    { null, null, null, null, null, null, null, null, null,	null },
+                    { null, null, null, new Queen(9, 3, true), null, null,	new Queen(9, 6, true), null, null, null } };
+
+            friend = new Queen[] { (Queen) board[0][3], (Queen) board[0][6], (Queen) board[3][0], (Queen) board[3][9] };
+            enemy = new Queen[] { (Queen) board[6][0], (Queen) board[6][9], (Queen) board[9][3],	(Queen) board[9][6] };
         }
 
         /* Instantiate the ArrayLists for legel arrow shots,
@@ -62,12 +61,8 @@ public class GameRules {
         legalQueenMoves = new ArrayList<>();
         updateLegalQueenMoves();
         }
-
-    protected GameRules(Tile[][] board) {
-    	this.board = board;
-        legalArrowMoves = new ArrayList<Queen>();
-        legalQueenMoves = new ArrayList<Queen>();
-        updateLegalQueenMoves();
+    protected GameRules(Tile[][] newBoard) {
+        this.board = newBoard;
     }
         /**
          * CONSTRUCTOR FOR GameRules
@@ -95,7 +90,7 @@ public class GameRules {
         return this.arrows;
     }
 
-    protected GameRules deepCopy() throws CloneNotSupportedException {
+    protected GameRules deepCopy() {
         Queen[] newFriend = new Queen[4];
         Queen[] newEnemy = new Queen[4];
         ArrayList<Arrow> newArrows = new ArrayList<>();
@@ -335,8 +330,8 @@ public class GameRules {
      */
     public void canEnemyMove() {
         for(Queen q: enemy) {
-            int initialRow = q.getRowPosition();
-            int initialCol = q.getColPosition();
+            int initialRow = q.row;
+            int initialCol = q.col;
             
             if(initialRow - 1 >= 0 && board[initialRow - 1][initialCol] == null){
                 enemyMove = true;
@@ -451,14 +446,14 @@ public class GameRules {
         // Reset the position of each friendly queen
         for(Queen q: friend) {
         	if(friend != null){
-        		board[q.getRowPosition()][q.getColPosition()] = q;
+        		board[q.row][q.col] = q;
         	}
         }
 
         // Reset the position of each enemy queen
         for(Queen q: enemy) {
         	if(enemy != null) {
-            board[q.getRowPosition()][q.getColPosition()] = q;
+            board[q.row][q.col] = q;
         	}
         }
 
@@ -466,7 +461,7 @@ public class GameRules {
         for(Arrow arrow: arrows) {
             if(arrow != null) {
             	
-                board[arrow.getRowPosition()][arrow.getColPosition()] = arrow;
+                board[arrow.row][arrow.col] = arrow;
             }
         }
 

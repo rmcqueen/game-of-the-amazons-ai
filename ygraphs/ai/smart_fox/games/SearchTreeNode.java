@@ -3,48 +3,44 @@ package ygraphs.ai.smart_fox.games;
 import java.util.ArrayList;
 
 public class SearchTreeNode {
-    //private move queenMove;		// TO DO : figure out what a Move object is
-    //private Arrow arrowShot;		// TO DO : figure out what an arrowShot object is
 	private boolean terminal;
 	private int heuristicValue;
 	private Arrow arrowShot;
 	private Queen queen;
     private ArrayList<SearchTreeNode> children = new ArrayList<SearchTreeNode>();
-    private SearchTreeNode parent;
     private SuccessorHeuristicFunction successorHeuristic = new SuccessorHeuristicFunction();
     protected GameRules gameRules;
-    
-    public boolean isTerminal(){
-    	return terminal;
+
+
+    public SearchTreeNode(GameRules board, Queen q, Arrow A){
+        gameRules = board;
+        queen = q;
+        arrowShot = A;
     }
-    
+
+    public SearchTreeNode(GameRules board, Queen q, Arrow A, int val){
+        gameRules = board;
+        queen = q;
+        arrowShot = A;
+        this.heuristicValue = val;
+    }
+
+
     public SearchTreeNode(GameRules board){
         gameRules = board;
     }
+
+
+
+    public boolean isTerminal(){
+    	return terminal;
+    }
+
     
     public Queen getQueen(){
     	return queen;
     }
-    
-    public SearchTreeNode getParent(){
-    	return parent;
-    }
-    
-    public void setParent(SearchTreeNode n){
-    	parent = n;
-    }
-    public SearchTreeNode(GameRules board, Queen q, Arrow A, int heuristicValue){
-    	gameRules = board;	
-    	queen = q;
-    	arrowShot = A;
-        this.heuristicValue = heuristicValue;
-    }
-    
-    public SearchTreeNode(GameRules board, Queen q, Arrow A){
-    	gameRules = board;	
-    	queen = q;
-    	arrowShot = A;
-    }
+
 
     public ArrayList<SearchTreeNode> getChildren() {
         return children;
@@ -54,13 +50,10 @@ public class SearchTreeNode {
         return arrowShot;
     }
     
-    public ArrayList<SearchTreeNode> setSuccessors(boolean ourMove) throws CloneNotSupportedException{
+    public ArrayList<SearchTreeNode> setSuccessors(boolean ourMove)  {
         ArrayList<SearchTreeNode> expanded = successorHeuristic.getSuccessors(gameRules, ourMove);
-        //System.out.println("expanded size: "+expanded.size());
         for (SearchTreeNode S: expanded){
-        	//System.out.println("Node expanded - value: " + S.getValue());
             children.add(S);
-            S.setParent(this);
         }
         return children;
     }

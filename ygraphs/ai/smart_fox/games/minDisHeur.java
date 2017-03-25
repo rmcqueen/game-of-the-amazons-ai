@@ -66,8 +66,8 @@ public class minDisHeur
 	      for (int i = 0; i < index; i++) {//check every move possible from current tile
 	        Tile currentTile = (Tile)q.poll();
 	        
-	        if(currentTile.row == 0 || currentTile.col == 0)
-	        	continue;
+//	        if(currentTile.row == 0 || currentTile.col == 0)
+//	        	continue;
 	        
 	        //current tile has queen here
 	        if ((board[currentTile.row][currentTile.col] != null) && (board[currentTile.row][currentTile.col] instanceof Queen)) 
@@ -79,7 +79,7 @@ public class minDisHeur
 	          for (Tile shell : q)//if queen found in q, queen is 1 move away, checks if opposing queens 1 move away 
 	          {
 	        	//opposing queen found 1 move away, tile contested
-	            if ((board[shell.row][shell.col] != null) && (board[shell.row][shell.col] instanceof Queen)&& (((Queen)board[shell.row][shell.col]).isOpponent!=enemyQueen))
+	            if ((board[shell.row][shell.col] != null) && (board[shell.row][shell.col] instanceof Queen)&& !(((Queen)board[shell.row][shell.col]).isOpponent==enemyQueen))
 	              contested = true;
 	          }
 	          if (contested) {//owned by no one
@@ -87,16 +87,18 @@ public class minDisHeur
 	          }
 	          if (((Queen)board[currentTile.row][currentTile.col]).isOpponent) {
 	            ownedByThem++;
-	            break;
 	          }
-	          ownedByUs++;
-	          break;
+	          else {
+				  ownedByUs++;
+			  }
+			  break;
 	        }
-	        
-	        checked[currentTile.row][currentTile.col] = true;
+	        else {
+				checked[currentTile.row][currentTile.col] = true;
+			}
 	        
 	        if (board[currentTile.row][currentTile.col] == null) {//tile has no arrow or queen
-	          tempQ = addQueenMoves(tempQ, row, col, checked);
+	          tempQ = addQueenMoves(tempQ, currentTile.row, currentTile.col, checked);
 	        }
 	      }
 	      q = tempQ;
@@ -116,7 +118,7 @@ public class minDisHeur
 	      }
 	    }
 	    
-	    for (int i = 0; (curRow - i >= 0) && (curCol - i >= 0); i++) {
+	    for (int i = 1; (curRow - i >= 0) && (curCol - i >= 0); i++) {
 	      Tile lData = new Tile(curRow - i, curCol - i);
 	      if (checked[(curRow - i)][(curCol - i)] == false) {
 	        q.add(lData);
@@ -126,7 +128,7 @@ public class minDisHeur
 	      }
 	    }
 	    
-	    for (int i = 0; curRow - i >= 0; i++) {
+	    for (int i = 1; curRow - i >= 0; i++) {
 	      Tile lData = new Tile(curRow - i, curCol);
 	      if (checked[(curRow - i)][curCol] == false) {
 	        q.add(lData);
@@ -136,7 +138,7 @@ public class minDisHeur
 	      }
 	    }
 	    
-	    for (int i = 0; (curRow - i >= 0) && (curCol + i <= 9); i++) {
+	    for (int i = 1; (curRow - i >= 0) && (curCol + i <= 9); i++) {
 	      Tile lData = new Tile(curRow - i, curCol + i);
 	      if (checked[(curRow - i)][(curCol + i)] == false) {
 	        q.add(lData);
@@ -146,18 +148,17 @@ public class minDisHeur
 	      }
 	    }
 	    
-	    for (int i = 0; curCol + i <= 9; i++) {
+	    for (int i = 1; curCol + i <= 9; i++) {
 	      Tile lData = new Tile(curRow, curCol + i);
 	      if (checked[curRow][(curCol + i)] == false) {
 	        q.add(lData);
 	      }
-	      //System.out.println("Cur Col = " + curCol+" Cur Row = "+curRow+" I: "+i+" Board:"+board);
 	      if (board[curRow][(curCol + i)] != null) {
 	        break;
 	      }
 	    }
 	    
-	    for (int i = 0; (curRow + i <= 9) && (curCol + i <= 9); i++) {
+	    for (int i = 1; (curRow + i <= 9) && (curCol + i <= 9); i++) {
 	      Tile lData = new Tile(curRow + i, curCol + i);
 	      if (checked[(curRow + i)][(curCol + i)] == false) {
 	        q.add(lData);
@@ -167,7 +168,7 @@ public class minDisHeur
 	      }
 	    }
 	    
-	    for (int i = 0; curRow + i <= 9; i++) {
+	    for (int i = 1; curRow + i <= 9; i++) {
 	      Tile lData = new Tile(curRow + i, curCol);
 	      if (checked[(curRow + i)][curCol] == false) {
 	        q.add(lData);
@@ -177,7 +178,7 @@ public class minDisHeur
 	      }
 	    }
 	    
-	    for (int i = 0; (curRow + i <= 9) && (curCol - i >= 0); i++) {
+	    for (int i = 1; (curRow + i <= 9) && (curCol - i >= 0); i++) {
 	      Tile lData = new Tile(curRow + i, curCol - i);
 	      if (checked[(curRow + i)][(curCol - i)] == false) {
 	        q.add(lData);

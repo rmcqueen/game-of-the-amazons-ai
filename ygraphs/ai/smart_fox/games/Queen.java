@@ -1,36 +1,37 @@
 package ygraphs.ai.smart_fox.games;
 
 public class Queen extends Tile implements Cloneable{
-	private int previousRow;
-    private int previousCol;
-    private int qRow;
-    private int qCol;
+    public int previousRow;
+    public int previousCol;
+    public int qRow;
+    public int qCol;
+    protected boolean isOpponent;
 
 	protected Queen clone() {
         Queen qNew = new Queen(row, col, isOpponent);
         return qNew;
     }
 	
-    protected boolean isOpponent;
 
+
+    public Queen(int x, int y) {
+        super(x, y);
+        previousRow = x;
+        previousCol = y;
+    }
     /**
      *
      * @param x: an integer storing the row location
      * @param y: an integer storing the column location
+     * @param isOpponent a boolean indicating if the Queen is an opponent or not
      */
-    public Queen(int x, int y) {
-        qRow = x;
-        qCol = y;
-        previousRow = x;
-        previousCol = y;
-    }
-    
+
     public Queen(int x, int y, boolean isOpponent) {
-    	super(x,y);
-    	qRow = x;
-        qCol = y;
-        previousRow = x;
-        previousCol = y;
+        super(x, y);
+        this.previousRow = x;
+        this.previousCol = y;
+        this.qRow = x;
+        this.qCol =  y;
     	this.isOpponent = isOpponent;
     }
 
@@ -47,30 +48,16 @@ public class Queen extends Tile implements Cloneable{
      * @return: the column position of the current Queen
      */
     public int getColPosition() {
-        return qCol;
-    }
-
-    public void setPreviousRowPosition(int row) {
-        previousRow = row;
-    }
-
-    public void setPreviousColPosition(int col) {
-        previousCol = col;
-    }
-
-    public int getPreviousRowPosition() {
-        return previousRow;
-    }
-
-    public int getPreviousColPosition() {
-        return previousCol;
+        return this.qCol;
     }
 
     public void moveQueen(int row, int col) {
-        setPreviousRowPosition(qRow);
-        setPreviousColPosition(qCol);
-        qRow = row;
-        qCol = col;
+        this.previousRow = qRow;
+        this.previousCol = qCol;
+        this.qRow = row;
+        this.qCol = col;
+        super.row = row;
+        super.col = col;
     }
 
     public int[] combinedMove(int row, int col) {

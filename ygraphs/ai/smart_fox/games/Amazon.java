@@ -54,7 +54,7 @@ public class Amazon extends GamePlayer{
 		
 		//once logged in, the gameClient will have  the names of available game rooms  
 		ArrayList<String> rooms = gameClient.getRoomList();
-		this.gameClient.joinRoom(rooms.get(8));
+		this.gameClient.joinRoom(rooms.get(9));
 	}
     
     
@@ -83,14 +83,13 @@ public class Amazon extends GamePlayer{
                 Arrow ourArrow = ourBestMove.getArrowShot();
                 ourBoard.canEnemyMove();
                 ourBoard.updateLegalQueenMoves();
-				board.markPosition(ourMove.row, ourMove.col, ourArrow.getRowPosition(), ourArrow.getColPosition(),
-                        ourMove.previousRow, ourMove.previousCol, false);
-
+				System.out.println("\nOur Move: [" + translateRow(ourMove.row) + ", " + translateCol(ourMove.col) + "]");
+				System.out.println("Our Arrow Shot: [" + translateRow(ourArrow.row) + ", " + translateCol(ourArrow.col) + "]\n");
+				board.markPosition(translateRow(ourMove.row), translateCol(ourMove.col), translateRow(ourArrow.getRowPosition()), translateCol(ourArrow.getColPosition()),
+						translateRow(ourMove.previousRow), translateCol(ourMove.previousCol), false);
                 gameClient.sendMoveMessage(ourMove.combinedMove(translateRow(ourMove.previousRow), translateCol(ourMove.previousCol)),
                         ourMove.combinedMove(translateRow(ourMove.row), translateCol(ourMove.col)),
                         ourArrow.combinedMove(translateRow(ourArrow.getRowPosition()), translateCol(ourArrow.getColPosition())));
-                System.out.println("\nOur Move: [" + ourMove.row + ", " + ourMove.col + "]");
-                System.out.println("Our Arrow Shot: [" + ourArrow.getRowPosition() + ", " + ourArrow.getColPosition() + "]\n");
             }
 			else {
                 ourBoard = new GameRules(false);
@@ -111,7 +110,7 @@ public class Amazon extends GamePlayer{
 	//handle the event that the opponent makes a move. 
 	private void handleOpponentMove(Map<String, Object> msgDetails) throws CloneNotSupportedException{
         boolean gameOver = false;
-		System.out.println("\nOpponentMove(): " + msgDetails.get(AmazonsGameMessage.QUEEN_POS_CURR));
+		System.out.println("\nOpponentMove: " + msgDetails.get(AmazonsGameMessage.Queen_POS_NEXT));
         System.out.println("Opponent Arrow Shot: " + msgDetails.get(AmazonsGameMessage.ARROW_POS) + "\n");
 		ArrayList<Integer> qcurr = (ArrayList<Integer>) msgDetails.get(AmazonsGameMessage.QUEEN_POS_CURR);
 		ArrayList<Integer> qnew = (ArrayList<Integer>) msgDetails.get(AmazonsGameMessage.Queen_POS_NEXT);
@@ -140,10 +139,10 @@ public class Amazon extends GamePlayer{
         Arrow ourArrow = ourBestMove.getArrowShot();
         ourBoard.canEnemyMove();
         ourBoard.updateLegalQueenMoves();
-        System.out.println("\nOur Move: [" + ourMove.row + ", " + ourMove.col + "]");
-        board.markPosition(ourMove.row, ourMove.col, ourArrow.getRowPosition(), ourArrow.getColPosition(),
-                ourMove.previousRow, ourMove.previousCol, false);
-		System.out.println("Our Arrow Shot: [" + ourArrow.row + ", " + ourArrow.col + "]\n");
+        System.out.println("\nOur Move: [" + translateRow(ourMove.row) + ", " + translateCol(ourMove.col) + "]");
+        board.markPosition(translateRow(ourMove.row), translateCol(ourMove.col), translateRow(ourArrow.getRowPosition()), translateCol(ourArrow.getColPosition()),
+                translateRow(ourMove.previousRow), translateCol(ourMove.previousCol), false);
+		System.out.println("Our Arrow Shot: [" + translateRow(ourArrow.row) + ", " + translateCol(ourArrow.col) + "]\n");
 
         gameClient.sendMoveMessage(ourMove.combinedMove(translateRow(ourMove.previousRow), translateCol(ourMove.previousCol)),
 				ourMove.combinedMove(translateRow(ourMove.row), translateCol(ourMove.col)),
@@ -163,7 +162,7 @@ public class Amazon extends GamePlayer{
     }
 
     private int translateRow(int row){
-        return (10 - row);	      // formula to convert our Board's row coordinate system to the server's coordinate system
+        return Math.abs(10 - row);	      // formula to convert our Board's row coordinate system to the server's coordinate system
     }
 
     private boolean randomMove(GameRules b) {
@@ -460,8 +459,8 @@ public class Amazon extends GamePlayer{
      * @param args
      */
 	public static void main(String[] args) { 
-		Amazon game = new Amazon("diamond2", "cosc322");
-		Amazon game2 = new Amazon("asd", "cosc322");
+		Amazon game = new Amazon("Ronald", "cosc322");
+		//Amazon game2 = new Amazon("asd", "cosc322");
     }
 	
 }//end of Amazon

@@ -129,13 +129,13 @@ public class SearchTree {
         if(qCurrentPos.isOpponent){
             for(Queen Q:root.gameRules.enemy){
             	if(Q.row == qCurrentPos.previousRow && Q.col== qCurrentPos.previousCol) {
-                    Q.moveQueen(qCurrentPos.row, qCurrentPos.row);
+                    Q.moveQueen(qCurrentPos.row, qCurrentPos.col);
             	}
                 	
             }
         } else{
             for(Queen Q:root.gameRules.friend){
-                if(Q.row == qCurrentPos.previousRow && Q.row == qCurrentPos.previousCol) {
+                if(Q.row == qCurrentPos.previousRow && Q.col == qCurrentPos.previousCol) {
                     Q.moveQueen(qCurrentPos.row, qCurrentPos.col);
             	}
             }

@@ -28,10 +28,19 @@ public class SuccessorHeuristicFunction {
             for(int j = 0; j < currentQueenMoves.size(); j++) {
                 // Temp board with moved queen
                 GameRules tempBoard = state.deepCopy();
-                tempBoard.friend[i].row = currentQueenMoves.get(j).row;
-                tempBoard.friend[i].col = currentQueenMoves.get(j).col;
-				tempBoard.friend[i].previousRow = currentQueenMoves.get(j).previousRow;
-				tempBoard.friend[i].previousCol = currentQueenMoves.get(j).previousCol;
+                if(us) {
+                    tempBoard.friend[i].row = currentQueenMoves.get(j).row;
+                    tempBoard.friend[i].col = currentQueenMoves.get(j).col;
+                    tempBoard.friend[i].previousRow = currentQueenMoves.get(j).previousRow;
+                    tempBoard.friend[i].previousCol = currentQueenMoves.get(j).previousCol;
+                }
+                else {
+                    tempBoard.enemy[i].row = currentQueenMoves.get(j).row;
+                    tempBoard.enemy[i].col = currentQueenMoves.get(j).col;
+                    tempBoard.enemy[i].previousRow = currentQueenMoves.get(j).previousRow;
+                    tempBoard.enemy[i].previousCol = currentQueenMoves.get(j).previousCol;
+                }
+
                 tempBoard.updateAfterMove();
 
                 // For each arrow shot at that locations

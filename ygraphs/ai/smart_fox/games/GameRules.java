@@ -394,6 +394,7 @@ public class GameRules {
         legalQueenMoves.clear();
         for(Queen q: friend) {
             legalQueenMoves.addAll(getLegalMoves(q));
+            // TODO: updateLegalArrowMoves?
         }
     } // end of updateLegalQueenMoves
 
@@ -431,7 +432,7 @@ public class GameRules {
      */
     private void clearBoard() {
         for(int i = 0; i <= 9; i++) {
-            for(int j = 1; j <= 9; j++) {
+            for(int j = 0; j <= 9; j++) {
                 board[i][j] = null;
             }
         }
@@ -453,14 +454,13 @@ public class GameRules {
         // Reset the position of each enemy queen
         for(Queen q: enemy) {
         	if(enemy != null) {
-            board[q.row][q.col] = q;
+                board[q.row][q.col] = q;
         	}
         }
 
         // Reset each arrow on the board
         for(Arrow arrow: arrows) {
             if(arrow != null) {
-            	
                 board[arrow.row][arrow.col] = arrow;
             }
         }

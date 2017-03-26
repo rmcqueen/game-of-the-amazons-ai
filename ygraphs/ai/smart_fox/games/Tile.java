@@ -7,8 +7,8 @@ public class Tile {
     protected int col;
   
   public Tile(int i, int j) { 
-	this.row = i;
-    this.col = j;
+	row = i;
+    col = j;
   }
 
 }

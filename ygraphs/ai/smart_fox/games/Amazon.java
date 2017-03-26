@@ -54,7 +54,7 @@ public class Amazon extends GamePlayer{
 		
 		//once logged in, the gameClient will have  the names of available game rooms  
 		ArrayList<String> rooms = gameClient.getRoomList();
-		this.gameClient.joinRoom(rooms.get(9));
+		this.gameClient.joinRoom(rooms.get(8));
 	}
     
     
@@ -75,6 +75,8 @@ public class Amazon extends GamePlayer{
 			if(((String) msgDetails.get("player-white")).equals(this.userName())){
 				System.out.println("Game State: " +  msgDetails.get("player-white"));
                 ourBoard = new GameRules(true);
+                System.out.println("Initial Board");
+                ourBoard.printBoard();
 				ourBoard.canEnemyMove();
 				ourBoard.updateLegalQueenMoves();
                 search = new SearchTree(new SearchTreeNode(ourBoard));
@@ -87,9 +89,12 @@ public class Amazon extends GamePlayer{
 				System.out.println("Our Arrow Shot: [" + translateRow(ourArrow.row) + ", " + translateCol(ourArrow.col) + "]\n");
 				board.markPosition(translateRow(ourMove.row), translateCol(ourMove.col), translateRow(ourArrow.getRowPosition()), translateCol(ourArrow.getColPosition()),
 						translateRow(ourMove.previousRow), translateCol(ourMove.previousCol), false);
+
                 gameClient.sendMoveMessage(ourMove.combinedMove(translateRow(ourMove.previousRow), translateCol(ourMove.previousCol)),
                         ourMove.combinedMove(translateRow(ourMove.row), translateCol(ourMove.col)),
                         ourArrow.combinedMove(translateRow(ourArrow.getRowPosition()), translateCol(ourArrow.getColPosition())));
+                ourBoard.printBoard();
+
             }
 			else {
                 ourBoard = new GameRules(false);
@@ -117,15 +122,16 @@ public class Amazon extends GamePlayer{
 		ArrayList<Integer> arrow = (ArrayList<Integer>) msgDetails.get(AmazonsGameMessage.ARROW_POS);
 
         // Enemy move
-		Queen enemyQueen = new Queen(convertRow(qnew.get(0)), convertCol(qnew.get(1)));
-		enemyQueen.previousRow = qcurr.get(0);
-		enemyQueen.previousCol = qcurr.get(1);
+		Queen enemyQueen = new Queen(convertRow(qnew.get(0)), convertCol(qnew.get(1)), true);
+		enemyQueen.previousRow = convertRow(qcurr.get(0));
+		enemyQueen.previousCol = convertCol(qcurr.get(1));
 		Arrow enemyArrow = new Arrow(convertRow(arrow.get(0)), convertCol(arrow.get((1))));
 		search.makeMoveOnRoot(enemyQueen, enemyArrow);
         board.markPosition(qnew.get(0), qnew.get(1), arrow.get(0), arrow.get(1),
                 qcurr.get(0), qcurr.get(1), true);
         ourBoard.canEnemyMove();
 		ourBoard.updateLegalQueenMoves();
+        ourBoard.printBoard();
 
         // Check if we're at a goal node
         gameOver = ourBoard.goalTest();
@@ -135,7 +141,6 @@ public class Amazon extends GamePlayer{
         }
 
         // Our move
-        //randomMove(ourBoard);
         SearchTreeNode ourBestMove = search.makeMove();
         Queen ourMove = ourBestMove.getQueen();
         Arrow ourArrow = ourBestMove.getArrowShot();
@@ -145,10 +150,10 @@ public class Amazon extends GamePlayer{
         board.markPosition(translateRow(ourMove.row), translateCol(ourMove.col), translateRow(ourArrow.getRowPosition()), translateCol(ourArrow.getColPosition()),
                 translateRow(ourMove.previousRow), translateCol(ourMove.previousCol), false);
 		System.out.println("Our Arrow Shot: [" + translateRow(ourArrow.row) + ", " + translateCol(ourArrow.col) + "]\n");
-
         gameClient.sendMoveMessage(ourMove.combinedMove(translateRow(ourMove.previousRow), translateCol(ourMove.previousCol)),
 				ourMove.combinedMove(translateRow(ourMove.row), translateCol(ourMove.col)),
 				ourArrow.combinedMove(translateRow(ourArrow.getRowPosition()), translateCol(ourArrow.getColPosition())));
+        ourBoard.printBoard();
 	}
 
     private int convertRow(int row){
@@ -434,8 +439,8 @@ public class Amazon extends GamePlayer{
      * @param args
      */
 	public static void main(String[] args) { 
-		//Amazon game = new Amazon("Ronald", "cosc322");
-		Amazon game2 = new Amazon("Ronald V2", "cosc322");
+		Amazon game = new Amazon("Ronald", "cosc322");
+		//Amazon game2 = new Amazon("Ronald V2", "cosc322");
     }
 	
 }//end of Amazon

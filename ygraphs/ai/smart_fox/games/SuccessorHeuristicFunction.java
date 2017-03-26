@@ -45,10 +45,10 @@ public class SuccessorHeuristicFunction {
 
                 // For each arrow shot at that locations
                 ArrayList<Arrow> legalArrowMoves = new ArrayList<>();
-                
+
                 // Add legal arrow shots from given position
                 for(Arrow a : tempBoard.getArrowMoves(currentQueenMoves.get(j).row, currentQueenMoves.get(j).col)) {
-                	legalArrowMoves.add(a.clone());
+                    legalArrowMoves.add(a.clone());
                 }
 
                 for(int k = 0; k < legalArrowMoves.size(); k++) {

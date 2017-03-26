@@ -1,15 +1,14 @@
 package ygraphs.ai.smart_fox.games;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 // ITERATIVE DEEPENING-SEARCH
 public class SearchTree {
     private SearchTreeNode root;
     private minDisHeur minDistH = new minDisHeur();
     private int depth;
-   private int numOfMoves;
-    public  int evaluation;
+    private int numOfMoves;
+    public int evaluation;
     private ArrayList<SearchTreeNode> frontier = new ArrayList<SearchTreeNode>();
 
     public SearchTree(SearchTreeNode node) {
@@ -25,20 +24,19 @@ public class SearchTree {
     public void calculateDepth() {
         SearchTreeNode n = this.root;
         int tempDepth = 0;
-        while(n != null) {
-            if(!n.getChildren().isEmpty()) {
+        while (n != null) {
+            if (!n.getChildren().isEmpty()) {
                 n = n.getChildren().get(0);
-            }
-            else{
+            } else {
                 break;
             }
             tempDepth++;
         }
         this.depth = tempDepth;
     }
-    
-    private int AlphaBeta(SearchTreeNode N, int D, int alpha, int beta, boolean maxPlayer){
-        if(D == 0 || N.getChildren().size() == 0) {
+
+    private int AlphaBeta(SearchTreeNode N, int D, int alpha, int beta, boolean maxPlayer) {
+        if (D == 0 || N.getChildren().size() == 0) {
             evaluation++;
             minDistH.calculate(N.gameRules);
             N.setValue(minDistH.ownedByUs - minDistH.ownedByThem);
@@ -46,146 +44,138 @@ public class SearchTree {
             return val;
         }
 
-        if(maxPlayer){
+        if (maxPlayer) {
             int V = Integer.MIN_VALUE;
-            for(SearchTreeNode S: N.getChildren()){
+            for (SearchTreeNode S : N.getChildren()) {
 
-                V = Math.max(V, AlphaBeta(S,D - 1, alpha, beta, false ));
+                V = Math.max(V, AlphaBeta(S, D - 1, alpha, beta, false));
                 alpha = Math.max(alpha, V);
 
-                if(beta <= alpha)
+                if (beta <= alpha) {
                     break;
+                }
             }
             N.setValue(V);
             return V;
-        } else{
+
+        } else {
             int V = Integer.MAX_VALUE;
-            for(SearchTreeNode S: N.getChildren()){
-                V = Math.min(V, AlphaBeta(S,D - 1, alpha, beta, true ));
+            for (SearchTreeNode S : N.getChildren()) {
+                V = Math.min(V, AlphaBeta(S, D - 1, alpha, beta, true));
                 beta = Math.min(beta, V);
 
-                if(beta <= alpha)
+                if (beta <= alpha)
                     break;
             }
             N.setValue(V);
             return V;
         }
     }
-    
+
     public void expandFrontier() {
         ArrayList<SearchTreeNode> newFrontier = new ArrayList<SearchTreeNode>();
-        if(depth != 0){
-            if(depth % 2 ==0){
-                for(SearchTreeNode S: frontier)
+        if (depth != 0) {
+            if (depth % 2 == 0) {
+                for (SearchTreeNode S : frontier)
                     newFrontier.addAll(S.setSuccessors(true));
-            }else{
-                for(SearchTreeNode S: frontier)
+            } else {
+                for (SearchTreeNode S : frontier)
                     newFrontier.addAll(S.setSuccessors(false));
             }
-        }else{
+        } else {
             newFrontier.addAll(root.setSuccessors(true));
         }
 
-        //clearing the old frontier and setting the new one
         frontier.clear();
-        for(SearchTreeNode S: newFrontier){
+        for (SearchTreeNode S : newFrontier) {
             SearchTreeNode newNode = new SearchTreeNode(S.gameRules.deepCopy());
             frontier.add(newNode);
         }
         depth++;
     }
-    
-    public void performAlphaBeta(){
-        evaluation=0;
+
+    public void performAlphaBeta() {
+        evaluation = 0;
         calculateDepth();
         AlphaBeta(root, depth, Integer.MIN_VALUE, Integer.MAX_VALUE, true);
     }
-    
-    public void trimFrontier(){
+
+    public void trimFrontier() {
         int avg = 0;
-        for (SearchTreeNode S: frontier){
-        	minDistH.calculate(S.gameRules);
+        for (SearchTreeNode S : frontier) {
+            minDistH.calculate(S.gameRules);
             S.setValue(minDistH.ownedByUs);
             avg += S.getValue();
         }
-        if(frontier.size() != 0)
-            avg = avg/frontier.size();
+        if (frontier.size() != 0)
+            avg = avg / frontier.size();
         ArrayList<SearchTreeNode> toRemove = new ArrayList<SearchTreeNode>();
-        for(SearchTreeNode S: frontier){
-            if(S.getValue() < avg){
+        for (SearchTreeNode S : frontier) {
+            if (S.getValue() < avg) {
                 toRemove.add(S);
             }
         }
 
-        for(SearchTreeNode S: toRemove){
+        for (SearchTreeNode S : toRemove) {
             frontier.remove(S);
         }
     }
-    
-    public void makeMoveOnRoot(Queen qCurrentPos, Arrow a){
+
+    public void makeMoveOnRoot(Queen qCurrentPos, Arrow a) {
         numOfMoves++;
         root.gameRules.addArrow(a); // adds arrow to be shot
         //makes a move for the queen ours or theirs
-        if(qCurrentPos.isOpponent){
-            for(Queen Q:root.gameRules.enemy){
-            	if(Q.row == qCurrentPos.previousRow && Q.col== qCurrentPos.previousCol) {
+        if (qCurrentPos.isOpponent) {
+            for (Queen Q : root.gameRules.enemy) {
+                if (Q.row == qCurrentPos.previousRow && Q.col == qCurrentPos.previousCol) {
                     Q.moveQueen(qCurrentPos.row, qCurrentPos.col);
-            	}
-                	
+                }
+
             }
-        } else{
-            for(Queen Q:root.gameRules.friend){
-                if(Q.row == qCurrentPos.previousRow && Q.col == qCurrentPos.previousCol) {
+        } else {
+            for (Queen Q : root.gameRules.friend) {
+                if (Q.row == qCurrentPos.previousRow && Q.col == qCurrentPos.previousCol) {
                     Q.moveQueen(qCurrentPos.row, qCurrentPos.col);
-            	}
+                }
             }
         }
         root.gameRules.updateAfterMove();
         this.clearTree();
     }
-    
+
     public SearchTreeNode makeMove() {
-    	this.expandFrontier();
-   	 	this.performAlphaBeta();
+        this.expandFrontier();
+        this.performAlphaBeta();
         SearchTreeNode bestMove = this.getMoveAfterAlphaBeta();
-        if(bestMove != null) {
-            this.makeMoveOnRoot(bestMove.getQueen(), bestMove.getArrowShot());
-        }
-        else {
-            System.out.println("Goal state reached!");
-        }
+        this.makeMoveOnRoot(bestMove.getQueen(), bestMove.getArrowShot());
         return bestMove;
 
     }
-    
-    private SearchTreeNode getMoveAfterAlphaBeta(){
+
+    private SearchTreeNode getMoveAfterAlphaBeta() {
         int max = Integer.MIN_VALUE;
         SearchTreeNode best = null;
-        Random ran = new Random();
         ArrayList<SearchTreeNode> currentBest = new ArrayList<SearchTreeNode>(); // just to initialize currentBest
-        for(SearchTreeNode S: root.getChildren()){
-            if(max <= S.getValue()) {
+        for (SearchTreeNode S : root.getChildren()) {
+            if (max < S.getValue()) {
                 max = S.getValue();
                 currentBest.add(S);
             }
         }
-        if(currentBest.size() > 1) {
-            best = currentBest.get(ran.nextInt(currentBest.size()-1));
-        }
-
-        else {
+        if (currentBest.size() > 1) {
+            best = currentBest.get((currentBest.size() - 1));
+        } else {
             try {
                 best = currentBest.get(0);
-            }
-            catch(IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException e) {
                 System.out.println("Goal state reached!");
             }
         }
 
         return best;
     }
-    
-    private void clearTree(){
+
+    private void clearTree() {
         depth = 0;
         frontier.clear();
         root.getChildren().clear();

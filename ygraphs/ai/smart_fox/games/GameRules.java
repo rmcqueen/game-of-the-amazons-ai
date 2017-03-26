@@ -61,9 +61,6 @@ public class GameRules {
         legalQueenMoves = new ArrayList<>();
         updateLegalQueenMoves();
         }
-    protected GameRules(Tile[][] newBoard) {
-        this.board = newBoard;
-    }
         /**
          * CONSTRUCTOR FOR GameRules
          * @param enemy: the opponent's queen positions
@@ -86,9 +83,6 @@ public class GameRules {
         return this.friend;
     }
 
-    protected ArrayList<Arrow> getArrows() {
-        return this.arrows;
-    }
 
     protected GameRules deepCopy() {
         Queen[] newFriend = new Queen[4];
@@ -118,8 +112,8 @@ public class GameRules {
      */
     protected ArrayList<Queen> getLegalMoves(Queen queen) {
         ArrayList<Queen> legalMoves = new ArrayList<>();
-        int currentRow = queen.getRowPosition();
-        int currentCol = queen.getColPosition();
+        int currentRow = queen.row;
+        int currentCol = queen.col;
 
         /*
             Horizontal Movement Checks
@@ -373,22 +367,6 @@ public class GameRules {
         }
     } // end of canEnemyMove
 
-    /**
-     *
-     * @return: ArrayList<int[]> of every possible Arrow move
-     */
-    protected ArrayList<Queen> getLegalArrowMoves() {
-
-        return legalArrowMoves;
-    }
-
-    /**
-     *
-     * @return: ArrayList<int[][]> of every possible Queen move
-     */
-    protected ArrayList<Queen> getLegalMoves() {
-        return legalQueenMoves;
-    }
 
     public void updateLegalQueenMoves() {
         legalQueenMoves.clear();
@@ -396,6 +374,15 @@ public class GameRules {
             legalQueenMoves.addAll(getLegalMoves(q));
         }
     } // end of updateLegalQueenMoves
+
+    public void updateLegalArrowMoves() {
+        if(legalArrowMoves != null) {
+            legalArrowMoves.clear();
+            for(Queen q: friend) {
+                legalArrowMoves.addAll(getLegalMoves(q));
+            }
+        }
+    }
 
 
     /**
@@ -443,6 +430,7 @@ public class GameRules {
             if(arrow != null) {
                 board[arrow.row][arrow.col] = arrow;
             }
+
         }
 
     } // end of updateAfterMove
@@ -465,14 +453,36 @@ public class GameRules {
             return false;
         }
     }
+
+
     public void printBoard() {
-        System.out.println("---------------------- \n");
-        for(int i = 0; i < board.length; i++) {
-            for(int j = 0; j < board.length; j++) {
-                System.out.print(board[i][j] + " ");
+        String s = "\n";
+        String line = "\no--- --- --- --- --- --- --- --- --- ---o";
+        for (int i = 0; i < 10; i++) {
+            s += line + "\n";
+            for (int j = 0; j < 10; j++) {
+                s += "| ";
+                if (board[i][j] == null) s += "  ";
+                else if (board[i][j] instanceof Queen) {
+                    if (board[i][j] == getEnemy()[0] || board[i][j] == getEnemy()[1] ||
+                            board[i][j] == getEnemy()[2] || board[i][j] == getEnemy()[3]) {
+                        s += "B ";
+                    } else s += "W ";
+                } else s += "a ";
             }
-            System.out.println("\n");
+            s += "|";
         }
-        System.out.println("\n ---------------------- \n");
+        s +=line;
+        System.out.println(s);
     }
+//    public void printBoard() {
+//        System.out.println("---------------------- \n");
+//        for(int i = 0; i < board.length; i++) {
+//            for(int j = 0; j < board.length; j++) {
+//                System.out.print(board[i][j] + " ");
+//            }
+//            System.out.println("\n");
+//        }
+//        System.out.println("\n ---------------------- \n");
+//    }
 }

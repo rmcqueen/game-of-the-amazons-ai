@@ -1,7 +1,6 @@
 package ygraphs.ai.smart_fox.games;
 
-public class Arrow extends Tile implements Cloneable{
-	
+public class Arrow extends Tile implements Cloneable {
 	protected Arrow clone() {
         Arrow aNew = new Arrow(row, col);
         return aNew;
@@ -14,16 +13,6 @@ public class Arrow extends Tile implements Cloneable{
 	public int getColPosition() {
         return super.col;
     }
-	
-	public void setColPosition(int col)
-	{
-		super.col = col;
-	}
-	
-	public void setRowPosition(int row)
-	{
-		super.row = row;
-	}
 
     public int getRowPosition() {
         return super.row;

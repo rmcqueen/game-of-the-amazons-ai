@@ -118,6 +118,8 @@ public class Amazon extends GamePlayer{
 
         // Enemy move
 		Queen enemyQueen = new Queen(convertRow(qnew.get(0)), convertCol(qnew.get(1)));
+		enemyQueen.previousRow = qcurr.get(0);
+		enemyQueen.previousCol = qcurr.get(1);
 		Arrow enemyArrow = new Arrow(convertRow(arrow.get(0)), convertCol(arrow.get((1))));
 		search.makeMoveOnRoot(enemyQueen, enemyArrow);
         board.markPosition(qnew.get(0), qnew.get(1), arrow.get(0), arrow.get(1),
@@ -165,34 +167,7 @@ public class Amazon extends GamePlayer{
         return Math.abs(10 - row);	      // formula to convert our Board's row coordinate system to the server's coordinate system
     }
 
-    private boolean randomMove(GameRules b) {
-        Random r = new Random();
-        Queen ourQueens = b.getFriend()[r.nextInt(4)];
-        Queen newMove = null;
-        if(b.getLegalMoves(ourQueens).size() == 0) {
-            for(Queen enemy: b.getFriend()) {
-                newMove = enemy;
-                break;
-            }
-        }
-        else {
-            newMove = b.getLegalMoves().get(r.nextInt(b.getLegalMoves(ourQueens).size()));
-        }
-        ourQueens.moveQueen(newMove.row, newMove.row);
-        b.updateAfterMove();
-        System.out.println(ourQueens.row + " " + ourQueens.col + " ASDASDSAD");
-        Arrow a = b.getArrowMoves(ourQueens.row, ourQueens.col).get(0);
-        b.addArrow(a.row, a.col);
-        board.markPosition(translateRow(newMove.row), translateCol(newMove.col), translateRow(a.getRowPosition()), translateCol(a.getColPosition()),
-                translateRow(ourQueens.row), translateCol(ourQueens.col), false);
 
-        gameClient.sendMoveMessage(ourQueens.combinedMove(translateRow(ourQueens.row), translateCol(ourQueens.col)), ourQueens.combinedMove(translateRow(newMove.row)
-                , translateCol(newMove.col)),
-                a.combinedMove(translateRow(a.getRowPosition()), translateCol(a.getColPosition())));
-        b.updateAfterMove();
-        b.canEnemyMove();
-        return b.goalTest();
-    }
     /**
      * handle a move made by this player --- send the info to the server.
      * @param x queen row index 
@@ -459,8 +434,8 @@ public class Amazon extends GamePlayer{
      * @param args
      */
 	public static void main(String[] args) { 
-		Amazon game = new Amazon("Ronald", "cosc322");
-		//Amazon game2 = new Amazon("asd", "cosc322");
+		//Amazon game = new Amazon("Ronald", "cosc322");
+		Amazon game2 = new Amazon("Ronald V2", "cosc322");
     }
 	
 }//end of Amazon

@@ -95,8 +95,8 @@ public class GameRules {
         Queen[] newEnemy = new Queen[4];
         ArrayList<Arrow> newArrows = new ArrayList<>();
         for(int i = 0; i < newEnemy.length; i++) {
-            newFriend[i] = (Queen) friend[i].clone();
-            newEnemy[i] = (Queen) enemy[i].clone();
+            newFriend[i] = friend[i].clone();
+            newEnemy[i] = enemy[i].clone();
         }
 
         if(arrows != null) {
@@ -394,29 +394,9 @@ public class GameRules {
         legalQueenMoves.clear();
         for(Queen q: friend) {
             legalQueenMoves.addAll(getLegalMoves(q));
-            // TODO: updateLegalArrowMoves?
         }
     } // end of updateLegalQueenMoves
 
-    private void updateLegalArrowMoves() {
-        if(legalArrowMoves != null) {
-            legalArrowMoves.clear();
-            for(Queen q: friend) {
-                legalArrowMoves.addAll(getLegalMoves(q));
-            }
-
-        }
-    } // end of updateLegalArrowMoves
-
-    /**
-     *
-     * @param x: the row position of the arrow
-     * @param y: the column position of the arrow
-     */
-    protected void addArrow(int x, int y) {
-        arrows.add(new Arrow(x, y));
-        updateAfterMove();
-    }
 
     /**
      *

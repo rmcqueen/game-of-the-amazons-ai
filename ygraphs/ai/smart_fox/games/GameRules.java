@@ -8,12 +8,11 @@ public class GameRules {
     protected Queen[] enemy;
     protected Queen[] friend;
     protected ArrayList<Arrow> arrows;
-    private ArrayList<Queen> legalArrowMoves;
     private ArrayList<Queen> legalQueenMoves;
-    /**
-     * CONSTRUCTOR to start the game
-     * @param start: boolean holding whether or not the game is to be started for the first time
 
+    /**
+     * Constructor to start the game, and create the initial board layout
+     * @param start: boolean indicating whether or not we are the white player
      */
     protected GameRules(boolean start) {
         // Our move first
@@ -35,7 +34,7 @@ public class GameRules {
             friend = new Queen[] { (Queen) board[6][0], (Queen) board[6][9], (Queen) board[9][3],	(Queen) board[9][6] };
 
         }
-        // Opponent move first
+        // Opponent moves first
         else {
             board = new Tile[][] {
                     { null, null, null, new Queen(0, 3, false), null, null, new Queen(0, 6, false), null, null, null },
@@ -57,12 +56,12 @@ public class GameRules {
            legal queen moves, and update the moves afterwards
          */
         arrows = new ArrayList<>();
-        legalArrowMoves = new ArrayList<>();
         legalQueenMoves = new ArrayList<>();
         updateLegalQueenMoves();
-        }
+        } // end of constructor
+
         /**
-         * CONSTRUCTOR FOR GameRules
+         * Constructor for GameRules
          * @param enemy: the opponent's queen positions
          * @param friend: the player's queen positions
          * @param arrow: holds the positions of the "stones"
@@ -72,18 +71,28 @@ public class GameRules {
         this.friend = friend;
         this.arrows = arrow;
         updateAfterMove();
-    }
+    } // end of constructor
 
-
+    /**
+     * @return: an Array consisting of the enemy queens on the board
+     */
     protected Queen[] getEnemy() {
         return this.enemy;
     }
 
+    /**
+     *
+     * @return: an Array consisting of our queens on the board
+     */
     protected Queen[] getFriend() {
         return this.friend;
     }
 
 
+    /**
+     * Clones our game board/game state in order to reduce the space used
+     * @return: the board with the new positions of queens/arrows
+     */
     protected GameRules deepCopy() {
         Queen[] newFriend = new Queen[4];
         Queen[] newEnemy = new Queen[4];
@@ -109,6 +118,7 @@ public class GameRules {
      *
      * @param queen: the queen object to check moves for
      * @return: the best legal move a queen can make from it's current position
+     * if there are any queens/arrows in the way, break to save on time
      */
     protected ArrayList<Queen> getLegalMoves(Queen queen) {
         ArrayList<Queen> legalMoves = new ArrayList<>();
@@ -219,6 +229,7 @@ public class GameRules {
      * @param x: int storing the row of the current queen
      * @param y: int storing the column of the current queen
      * @return: an ArrayList<Arrow> containing the possible moves from the current queen
+     * if there are any arrows/queens in the way, break as we know it's blocked
      */
     protected ArrayList<Arrow> getArrowMoves(int x, int y) {
         ArrayList<Arrow> legalArrowMoves = new ArrayList<>();
@@ -321,6 +332,7 @@ public class GameRules {
 
     /**
      * Check to see if the enemy has any queens which can move on the board
+     * if any can move, break the loop to save on time
      */
     public void canEnemyMove() {
         for(Queen q: enemy) {
@@ -367,22 +379,15 @@ public class GameRules {
         }
     } // end of canEnemyMove
 
-
+    /**
+     * Updates each friendly queen's possible moves at the current state
+     */
     public void updateLegalQueenMoves() {
         legalQueenMoves.clear();
         for(Queen q: friend) {
             legalQueenMoves.addAll(getLegalMoves(q));
         }
     } // end of updateLegalQueenMoves
-
-    public void updateLegalArrowMoves() {
-        if(legalArrowMoves != null) {
-            legalArrowMoves.clear();
-            for(Queen q: friend) {
-                legalArrowMoves.addAll(getLegalMoves(q));
-            }
-        }
-    }
 
 
     /**
@@ -392,10 +397,10 @@ public class GameRules {
     protected void addArrow(Arrow newArrow) {
         arrows.add(newArrow);
         updateAfterMove();
-    }
+    } // end of addArrow
 
     /**
-     * Reset each board
+     * Reset the board
      */
     private void clearBoard() {
         for(int i = 0; i <= 9; i++) {
@@ -407,6 +412,7 @@ public class GameRules {
 
     /**
      * Update the board after each move is made
+     * Assigns queens to their new positions, and places new/existing arrows on the board
      */
     protected void updateAfterMove() {
         clearBoard();
@@ -452,37 +458,27 @@ public class GameRules {
         else {
             return false;
         }
-    }
+    } // end of goalTest
 
 
     public void printBoard() {
-        String s = "\n";
-        String line = "\no--- --- --- --- --- --- --- --- --- ---o";
+        String boardLayout = "";
+        String line = "\nx--- --- --- --- --- --- --- --- --- ---x";
         for (int i = 0; i < 10; i++) {
-            s += line + "\n";
+            boardLayout += line + "\n";
             for (int j = 0; j < 10; j++) {
-                s += "| ";
-                if (board[i][j] == null) s += "  ";
+                boardLayout += "| ";
+                if (board[i][j] == null) boardLayout += "  ";
                 else if (board[i][j] instanceof Queen) {
                     if (board[i][j] == getEnemy()[0] || board[i][j] == getEnemy()[1] ||
                             board[i][j] == getEnemy()[2] || board[i][j] == getEnemy()[3]) {
-                        s += "B ";
-                    } else s += "W ";
-                } else s += "a ";
+                        boardLayout += "B ";
+                    } else boardLayout += "W ";
+                } else boardLayout += "a ";
             }
-            s += "|";
+            boardLayout += "|";
         }
-        s +=line;
-        System.out.println(s);
-    }
-//    public void printBoard() {
-//        System.out.println("---------------------- \n");
-//        for(int i = 0; i < board.length; i++) {
-//            for(int j = 0; j < board.length; j++) {
-//                System.out.print(board[i][j] + " ");
-//            }
-//            System.out.println("\n");
-//        }
-//        System.out.println("\n ---------------------- \n");
-//    }
+        boardLayout += line;
+        System.out.println(boardLayout);
+    } // end of printBoard
 }

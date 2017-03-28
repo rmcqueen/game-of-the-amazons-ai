@@ -2,6 +2,9 @@ package ygraphs.ai.smart_fox.games;
 
 import java.util.Stack;
 
+/**
+ * NOTE: this class is unused. We were contemplating implementing it into our game, but ran out of time
+ */
 public class IterativeDeepening {
 	 private Stack<Integer> stack;
 	    private int numberOfNodes;

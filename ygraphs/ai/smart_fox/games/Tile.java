@@ -1,6 +1,8 @@
 package ygraphs.ai.smart_fox.games;
 
-//General parent class for queens and arrows, just holds position
+/**
+ * A parent class for Queen, and Arrow. Used to store their locations on the board
+ */
 public class Tile { 
 
 	protected int row;

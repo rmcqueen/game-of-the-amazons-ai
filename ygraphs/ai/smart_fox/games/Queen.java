@@ -3,8 +3,6 @@ package ygraphs.ai.smart_fox.games;
 public class Queen extends Tile implements Cloneable{
     public int previousRow;
     public int previousCol;
-    public int qRow;
-    public int qCol;
     protected boolean isOpponent;
 
     /**
@@ -39,8 +37,6 @@ public class Queen extends Tile implements Cloneable{
         super(x, y);
         this.previousRow = x;
         this.previousCol = y;
-        this.qRow = x;
-        this.qCol =  y;
     	this.isOpponent = isOpponent;
     }
 

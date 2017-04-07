@@ -18,6 +18,10 @@ public class minDisHeur {
         ownedByUs = 0;
     }
 
+    /**
+     *
+     * @param b: the current GameRules board
+     */
     public void calculate(GameRules b) {
         bl = b;
         board = bl.board;
@@ -44,39 +48,47 @@ public class minDisHeur {
     }
 
 
+    /**
+     *
+     * @param row: the row of the current Tile
+     * @param col: the column of the current Tile
+     */
     public void findNearestQueen(int row, int col) {
         boolean[][] checked = new boolean[10][10];
         checked[row][col] = true;
         boolean isFound = false;
 
-        Queue<Tile> q = new LinkedList<Tile>();
-        q = addQueenMoves(q, row, col, checked);//all moves a queen could make to reach this tile
+        Queue<Tile> q = new LinkedList<>();
+        // All moves a queen could make to reach this tile
+        q = addQueenMoves(q, row, col, checked);
         while (!isFound) {
-            Queue<Tile> tempQ = new LinkedList<Tile>();
+            Queue<Tile> tempQ = new LinkedList<>();
             int index = q.size();
-            if (index == 0) {//no valid moves, tile blocked in
+            // No valid moves, tile blocked in
+            if (index == 0) {
                 isFound = true;
                 break;
             }
-            for (int i = 0; i < index; i++) {//check every move possible from current tile
+            // Check every move possible from current tile
+            for (int i = 0; i < index; i++) {
                 Tile currentTile = (Tile) q.poll();
 
-//	        if(currentTile.row == 0 || currentTile.col == 0)
-//	        	continue;
 
-                //current tile has queen here
+                // Current tile has queen here
                 if ((board[currentTile.row][currentTile.col] != null) && ((board[currentTile.row][currentTile.col] instanceof Queen))) {
                     isFound = true;
                     boolean enemyQueen = ((Queen) board[currentTile.row][currentTile.col]).isOpponent;
                     boolean contested = false;
 
-                    for (Tile shell : q)//if queen found in q, queen is 1 move away, checks if opposing queens 1 move away
+                    // If queen found in q, queen is 1 move away, checks if opposing queens 1 move away
+                    for (Tile shell : q)
                     {
-                        //opposing queen found 1 move away, tile contested
+                        // Opposing queen found 1 move away, tile contested
                         if ((board[shell.row][shell.col] != null) && (board[shell.row][shell.col] instanceof Queen) && !(((Queen) board[shell.row][shell.col]).isOpponent == enemyQueen))
                             contested = true;
                     }
-                    if (contested) {//owned by no one
+                    // Owned by no one
+                    if (contested) {
                         break;
                     }
                     if (((Queen) board[currentTile.row][currentTile.col]).isOpponent) {
@@ -89,7 +101,8 @@ public class minDisHeur {
                     checked[currentTile.row][currentTile.col] = true;
                 }
 
-                if (board[currentTile.row][currentTile.col] == null) {//tile has no arrow or queen
+                // Tile has no arrow or queen
+                if (board[currentTile.row][currentTile.col] == null) {
                     tempQ = addQueenMoves(tempQ, currentTile.row, currentTile.col, checked);
                 }
             }
@@ -98,6 +111,14 @@ public class minDisHeur {
     }
 
 
+    /**
+     *
+     * @param q: the current Queue
+     * @param curRow: the current row of the board
+     * @param curCol: the current column of the board
+     * @param checked: a 2D array of booleans determining whether or not the current Tile has been checked
+     * @return: A Queue holding the possible places to move
+     */
     public Queue<Tile> addQueenMoves(Queue<Tile> q, int curRow, int curCol, boolean[][] checked) {
         for (int i = 1; curCol - i >= 0; i++) {
             Tile lData = new Tile(curRow, curCol - i);

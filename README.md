@@ -3,6 +3,10 @@ A minimax algorithm based bot for the Game of the Amazons
 
 ![alt text](http://www.solitairelaboratory.com/amazons2.gif "Game of the Amazons")
 
+Notice
+----
+The code in this repository will not work out of the box. A private game server was used (see `serverConnect.java` and `Amazon.java`) and the source code is not available. A custom game server is required to send the moves to.
+
 Approach Used
 -----
 1. **Game Tree & Game Tree Nodes** are constructed in order to store possible states of the game for evaluation
